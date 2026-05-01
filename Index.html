@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade do Berço | Directório Comercial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a1a1a; --gold: #c5a059; --bg: #fdfdfd; --whatsapp: #25d366; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: #333; }
+        
+        header { 
+            text-align: center; 
+            padding: 60px 20px; 
+            background: white; 
+            border-bottom: 2px solid #f0e6d2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .logo-text-top { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 38px; 
+            color: var(--primary); 
+            letter-spacing: -1px; 
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .logo-text-bottom { 
+            font-size: 12px; 
+            letter-spacing: 6px; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .divider { height: 2px; width: 60px; background: var(--gold); margin: 20px auto; }
+
+        .search-container { max-width: 600px; margin: -32px auto 40px; padding: 0 20px; }
+        #searchBar { 
+            width: 100%; 
+            padding: 20px 28px; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 50px; 
+            font-size: 16px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 15px 100px; }
+        .table-card { background: white; border-radius: 20px; border: 1px solid #eee; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #fafafa; text-align: left; padding: 18px 25px; font-size: 11px; text-transform: uppercase; color: #bbb; letter-spacing: 2px; }
+        td { padding: 25px; border-bottom: 1px solid #f9f9f9; font-size: 15px; vertical-align: middle; }
+        
+        .row-premium { background: #fffcf5; border-left: 5px solid var(--gold); }
+        .badge-gold { background: var(--gold); color: white; font-size: 10px; padding: 4px 10px; border-radius: 4px; margin-left: 12px; text-transform: uppercase; font-weight: 800; }
+        
+        .btn-contact { text-decoration: none; padding: 12px 25px; border-radius: 50px; font-size: 13px; font-weight: 700; display: inline-block; transition: 0.3s; }
+        .btn-wa { background: var(--whatsapp); color: white; box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2); }
+        .btn-locked { background: #f2f2f2; color: #aaa; border: 1px solid #eee; }
+        
+        footer { text-align: center; padding: 80px; font-size: 11px; color: #ccc; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text-top">Cidade <span style="color:var(--gold)">do</span> Berço</div>
+        <div class="divider"></div>
+        <div class="logo-text-bottom">Guia Comercial de Excelência</div>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Procurar um negócio ou zona...">
+    </div>
+
+    <div class="container">
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estabelecimento / Localização</th>
+                        <th style="text-align:right">Contacto</th>
+                    </tr>
+                </thead>
+                <tbody id="muralBody">
+                    <tr><td colspan="2" style="text-align:center; padding: 60px; color: #ccc;">A carregar o directório...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>Guimarães • MMXXVI</footer>
+
+    <script>
+        async function carregarNegocios() {
+            const user = "sakevct";
+            const repo = "MuralDeGuimaraes";
+            const pasta = "content/negocios";
+            
+            try {
+                const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${pasta}`);
+                if (!response.ok) throw new Error();
+                
+                const ficheiros = await response.json();
+                let listaEmpresas = [];
+
+                for (let file of ficheiros) {
+                    if (file.name.endsWith('.json')) {
+                        const res = await fetch(file.download_url);
+                        const dados = await res.json();
+                        listaEmpresas.push(dados);
+                    }
+                }
+                render(listaEmpresas);
+            } catch (e) {
+                document.getElementById('muralBody').innerHTML = "<tr><td colspan='2' style='text-align:center; padding:60px; color:#bbb;'>Use o Painel Admin para adicionar o primeiro negócio.</td></tr>";
+            }
+        }
+
+        function render(empresas) {
+            const body = document.getElementById('muralBody');
+            const order = { premium: 1, essencial: 2, gratis: 3 };
+            const sorted = empresas.sort((a,b) => (order[a.nivel] || 3) - (order[b.nivel] || 3));
+
+            if (sorted.length === 0) {
+                body.innerHTML = "<tr><td colspan='2' style='text-align:center; padding:60px;'>Sem negócios registados de momento.</td></tr>";
+                return;
+            }
+
+            body.innerHTML = sorted.map(e => {
+                const isGratis = e.nivel === 'gratis';
+                const btnClass = isGratis ? 'btn-locked' : 'btn-wa';
+                const btnText = isGratis ? 'Aderir' : 'WhatsApp';
+                const btnLink = isGratis ? 'https://wa.me/351910000000' : (e.link || '#');
+                const badge = e.nivel === 'premium' ? '<span class="badge-gold">Premium</span>' : '';
+                
+                return `<tr class="row-${e.nivel}">
+                    <td>
+                        <div style="font-weight:700; color:var(--primary); font-size:17px;">${e.title}${badge}</div>
+                        <div style="font-size:12px; color:#999; margin-top:6px; text-transform: uppercase; letter-spacing:1px; font-weight:600;">${e.zona || 'Guimarães'}</div>
+                    </td>
+                    <td style="text-align:right">
+                        <a href="${btnLink}" target="_blank" class="btn-contact ${btnClass}">${btnText}</a>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        function filter() {
+            let val = document.getElementById('searchBar').value.toLowerCase();
+            let rows = document.querySelectorAll("#muralBody tr");
+            rows.forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(val) ? "" : "none";
+            });
+        }
+
+        carregarNegocios();
+    </script>
+</body>
+</html>
