@@ -9,80 +9,61 @@
     <style>
         :root { --bg: #ffffff; --gold: #b38e5d; --dark: #000000; --elite: #fdfaf3; --border: #eee; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
-
         header { padding: 40px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
         .logo span { color: var(--gold); }
-        .tagline { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
-
+        .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
         .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
         .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
         #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; font-family: 'Plus Jakarta Sans'; width: 100%; }
         .search-btn { background: var(--gold); color: white; border: none; padding: 0 25px; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; cursor: pointer; }
-
         .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
-        .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: #999; margin-bottom: 20px; font-weight: 700; text-align: center; }
-        
         #results { display: flex; flex-direction: column; gap: 0; }
-
         .item { display: flex; align-items: center; text-decoration: none; color: inherit; padding: 15px; border-bottom: 1px solid var(--border); transition: 0.3s; background: white; }
         .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 15px; margin-bottom: 3px; }
-        .item:hover { transform: translateX(5px); }
-
         .img-box { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin-right: 20px; flex-shrink: 0; background: #eee; }
         .item.premium .img-box { width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
-
         .info { flex: 1; }
         .status { font-size: 9px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 4px; display: block; letter-spacing: 1px; }
         .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; line-height: 1; }
         .item.premium .item-title { font-size: 1.6rem; }
         .item-cat { font-size: 0.65rem; color: #888; text-transform: uppercase; margin-top: 5px; font-weight: 600; }
-
         footer { padding: 60px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 2px; color: #aaa; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">Cidade do <span>Berço</span></div>
-        <div class="tagline">The Exclusive Ranking</div>
+        <div class="tagline">O Ranking Exclusivo</div>
     </header>
-
     <div class="search-container">
         <form class="search-wrapper" onsubmit="event.preventDefault(); executeSearch();">
             <input type="search" id="searchInput" placeholder="O que deseja pesquisar?" autocomplete="off">
             <button type="submit" class="search-btn">PESQUISAR</button>
         </form>
     </div>
-
     <div class="container">
-        <div class="section-title" id="displayTitle">Diamond Selection & Rankings</div>
         <div id="results">
-            <p style="text-align:center; padding: 50px; opacity: 0.5;">A carregar curadoria...</p>
+            <p style="text-align:center; padding: 50px; opacity: 0.5;">A carregar base de dados...</p>
         </div>
     </div>
-
     <footer>
         &copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit">ADMIN</a>
     </footer>
-
     <script>
         let database = [];
         const normalize = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-
         async function loadData() {
             try {
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await res.json();
                 const items = [];
-                
                 for (let f of files) {
                     if (f.name.endsWith('.md')) {
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         const get = (re) => { const m = t.match(re); return m ? m[1].replace(/"/g,'').trim() : ""; };
-                        
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             category: get(/category:\s*(.*)/) || "Geral",
@@ -95,55 +76,33 @@
                 initialShuffle();
             } catch (e) { console.error(e); }
         }
-
-        // Função para mostrar 5 Premium aleatórios + o resto ao abrir
         function initialShuffle() {
             const premiumOnes = database.filter(i => i.premium).sort(() => 0.5 - Math.random());
             const normalOnes = database.filter(i => !i.premium);
-            
-            // Seleciona apenas os primeiros 5 premium baralhados
             const selectedPremium = premiumOnes.slice(0, 5);
-            
-            // Junta os 5 escolhidos com todos os outros (premium não escolhidos e normais)
             const others = [...premiumOnes.slice(5), ...normalOnes];
-            
             render([...selectedPremium, ...others]);
         }
-
         function render(list) {
             const container = document.getElementById('results');
-            if(list.length === 0) {
-                container.innerHTML = "<div style='text-align:center; padding:50px;'>Sem resultados.</div>";
-                return;
-            }
+            if(list.length === 0) { container.innerHTML = "<div style='text-align:center; padding:50px;'>Sem resultados.</div>"; return; }
             container.innerHTML = list.map(item => `
                 <div class="item ${item.premium ? 'premium' : ''}">
-                    <div class="img-box">
-                        <img src="${item.image}" alt="${item.title}">
-                    </div>
+                    <div class="img-box"><img src="${item.image}"></div>
                     <div class="info">
-                        ${item.premium ? '<span class="status">Diamond Selection</span>' : ''}
+                        ${item.premium ? '<span class="status">Seleção Premium</span>' : ''}
                         <h2 class="item-title">${item.title}</h2>
                         <div class="item-cat">${item.category}</div>
                     </div>
                 </div>
             `).join('');
         }
-
         function executeSearch() {
             const query = normalize(document.getElementById('searchInput').value);
             if(!query) { initialShuffle(); return; }
-
-            const filtered = database.filter(item => {
-                const text = normalize(item.title + " " + item.category);
-                return text.includes(query);
-            });
-
-            // Na pesquisa, mostramos todos os premium que batem com a busca primeiro
+            const filtered = database.filter(item => normalize(item.title + " " + item.category).includes(query));
             render(filtered.sort((a, b) => b.premium - a.premium));
-            document.getElementById('displayTitle').innerText = "Resultados da Pesquisa";
         }
-
         window.onload = loadData;
     </script>
 </body>
