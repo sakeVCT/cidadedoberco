@@ -14,8 +14,9 @@ collections:
     create: true
     slug: "{{title}}"
     
-    # CORREÇÃO: Esta linha agora só mostra "EXPIRA" se o botão Premium estiver ativo
-    summary: "{{title}} {{#if premium}}| ⭐ EXPIRA: {{data_premium}}{{/if}}"
+    # O resumo agora é simples. Se escreveres a data no campo, ela aparece. 
+    # Se apagares o texto, ela desaparece da lista.
+    summary: "{{title}} | {{data_premium}}"
 
     editor:
       preview: false
@@ -24,9 +25,10 @@ collections:
       - {label: "Título da Empresa", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Data de Expiração Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: false}
+      # MUDANÇA AQUI: Agora é um campo de texto (string) para que possas apagar facilmente no teclado do telemóvel
+      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Exemplo: 2026-05-20. DEIXA VAZIO para empresas normais."}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
-      - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
-      - {label: "Website (URL)", name: "website", widget: "string", required: false}
+      - {label: "Email", name: "email_cliente", widget: "string", required: false}
+      - {label: "Website", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
-      - {label: "Imagem de Capa", name: "image", widget: "image", required: false}
+      - {label: "Imagem", name: "image", widget: "image", required: false}
