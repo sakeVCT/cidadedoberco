@@ -10,52 +10,54 @@
     <style>
         :root { --bg: #ffffff; --gold: #b38e5d; --dark: #000000; --elite: #fdfaf3; --border: #eee; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
-        header { padding: 40px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        header { padding: 30px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
         .logo span { color: var(--gold); }
-        .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
+        .tagline { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 8px; font-weight: 700; }
         
-        .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
-        .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
-        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; width: 100%; }
+        .search-container { max-width: 600px; margin: -25px auto 30px; padding: 0 20px; }
+        .search-wrapper { display: flex; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
+        #searchInput { flex: 1; border: none; padding: 15px; font-size: 15px; outline: none; width: 100%; }
         
-        .filters { display: flex; gap: 10px; overflow-x: auto; padding: 15px 0; margin-top: 10px; scrollbar-width: none; }
-        .filter-btn { padding: 8px 18px; background: #f4f4f4; border: 1px solid #ddd; border-radius: 20px; font-size: 11px; text-transform: uppercase; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        .filters { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+        .filter-btn { padding: 6px 14px; background: #f4f4f4; border: 1px solid #ddd; border-radius: 20px; font-size: 10px; text-transform: uppercase; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
 
-        .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
-        .item { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; gap: 15px; }
-        .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 20px; }
+        .container { max-width: 750px; margin: 0 auto 60px; padding: 0 15px; }
+        
+        /* RETÂNGULO MAIS PEQUENO AQUI */
+        .item { display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; gap: 12px; }
+        .item.premium { background: var(--elite); border-left: 4px solid var(--gold); padding: 15px 15px; }
         
         .item.premium::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-25deg); animation: shine 4s infinite; }
         @keyframes shine { 0% { left: -100%; } 20% { left: 150%; } 100% { left: 150%; } }
 
-        .img-box { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #eee; }
-        .item.premium .img-box { width: 90px; height: 90px; border-radius: 12px; border: 2px solid var(--gold); }
+        /* IMAGENS MAIS PEQUENAS */
+        .img-box { width: 55px; height: 55px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #eee; }
+        .item.premium .img-box { width: 70px; height: 70px; border-radius: 10px; border: 1.5px solid var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        .info { flex: 1; }
-        .status { font-size: 9px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; line-height: 1.2; }
-        .item.premium .item-title { font-size: 1.6rem; }
+        .info { flex: 1; min-width: 0; }
+        .status { font-size: 8px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 2px; display: flex; align-items: center; gap: 4px; }
+        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; margin: 0; font-weight: 700; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .item.premium .item-title { font-size: 1.35rem; white-space: normal; }
         
-        /* Novos estilos para morada e email */
-        .item-details { font-size: 0.75rem; color: #666; margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
-        .item-details span { display: flex; align-items: center; gap: 6px; }
-        .item-details i { color: var(--gold); width: 12px; text-align: center; font-size: 0.7rem; }
-        .item-cat { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
+        .item-details { font-size: 0.7rem; color: #777; margin-top: 4px; display: flex; flex-direction: column; gap: 2px; }
+        .item-details span { display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .item-details i { color: var(--gold); width: 10px; text-align: center; font-size: 0.65rem; }
+        .item-cat { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
 
-        .contact-area { display: flex; gap: 8px; flex-shrink: 0; }
-        .contact-btn { background: #25d366; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .contact-area { display: flex; gap: 6px; flex-shrink: 0; }
+        .contact-btn { background: #25d366; color: white; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
         .contact-btn.call { background: var(--gold); }
 
-        footer { padding: 60px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 2px; color: #aaa; }
+        footer { padding: 40px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 9px; letter-spacing: 2px; color: #aaa; }
     </style>
 </head>
 <body>
     <header><div class="logo">Cidade do <span>Berço</span></div><div class="tagline">O Ranking Exclusivo</div></header>
     <div class="search-container">
-        <form class="search-wrapper" onsubmit="event.preventDefault();"><input type="search" id="searchInput" placeholder="O que deseja pesquisar?" oninput="executeSearch()"></form>
+        <form class="search-wrapper" onsubmit="event.preventDefault();"><input type="search" id="searchInput" placeholder="Pesquisar..." oninput="executeSearch()"></form>
         <div class="filters" id="categoryFilters"></div>
     </div>
     <div class="container"><div id="results"></div></div>
@@ -77,10 +79,8 @@
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         const get = (re) => { const m = t.match(re); return m ? m[1].replace(/["']/g, '').trim() : ""; };
-                        
                         const cat = get(/category:\s*(.*)/) || "Geral";
                         categories.add(cat);
-                        
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             category: cat,
