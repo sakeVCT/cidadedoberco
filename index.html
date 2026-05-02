@@ -3,49 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Diretório de Empresas</title>
+    <title>Cidade do Berço | Guimarães</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #001b3a; --secondary: #39CCCC; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #f4f7f6; color: var(--primary); }
-        .hero { text-align: center; padding: 20px; }
-        h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        p { font-size: 1.2rem; color: #666; }
-        .search-box { margin-top: 30px; width: 90%; max-width: 500px; display: flex; }
-        input { flex: 1; padding: 12px; border: 2px solid var(--primary); border-radius: 5px 0 0 5px; outline: none; }
-        button { padding: 12px 20px; background: var(--primary); color: white; border: none; border-radius: 0 5px 5px 0; cursor: pointer; }
-        
-        /* Rodapé com link discreto para ti */
-        footer { position: absolute; bottom: 20px; font-size: 0.8rem; }
-        footer a { color: #ccc; text-decoration: none; }
-    </style>
-</head>
-<body>
-
-    <div class="hero">
-        <h1>Cidade do Berço</h1>
-        <p>Encontre os melhores negócios e serviços em Guimarães.</p>
-        
-        <div class="search-box">
-            <input type="text" placeholder="O que procura? (ex: Restaurantes)">
-            <button>Buscar</button>
-        </div>
-    </div>
-
-    <footer>
-        <a href="/admin/">Acesso Reservado</a>
-    </footer>
-
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
-</body>
-</html>
+        :root {
+            --primary: #001b3a;
+            --accent: #39CCCC;
+            --text: #ffffff;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+        }
+        /* Cabeçalho de Impacto */
+        .header {
+            background: linear-gradient(rgba(0, 27, 58, 0.8), rgba(0, 27, 58, 0.8)), 
+                        url('https://images.unsplash.com/photo-1590422329307-8894982a8785?q=80&w=2000') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text);
+            text-align: center;
+            padding: 0 20px;
+        }
+        h1 { font-size: 2.8rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        p { font-size: 1.1rem; opacity: 0.9; margin: 10px 0
