@@ -1,9 +1,8 @@
 backend:
   name: git-gateway
   branch: main
-  site_domain: cidadedoberco.pt
 
-media_folder: "public/images"
+media_folder: "static/images"
 public_folder: "/images"
 
 collections:
@@ -12,12 +11,10 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{slug}}"
-    editor:
-      preview: false
     fields:
-      - { label: "Nome da Empresa", name: "title", widget: "string" }
-      - { label: "Descrição", name: "body", widget: "markdown" }
-      - { label: "Categoria", name: "category", widget: "select", options: ["Restauração", "Serviços", "Comércio", "Saúde"] }
-      - { label: "Imagem", name: "image", widget: "image", required: false }
-      - { label: "Telefone", name: "phone", widget: "string", required: false }
-      - { label: "Morada", name: "address", widget: "string", required: false }
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "string"}
+      - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false, hint: "Ative para destacar no topo com selo Diamond"}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - {label: "Morada", name: "address", widget: "string"}
+      - {label: "Corpo do Texto", name: "body", widget: "markdown"}
