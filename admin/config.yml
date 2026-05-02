@@ -13,17 +13,20 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{title}}"
+    
+    # O resumo agora é simples. Se escreveres a data no campo, ela aparece. 
+    # Se apagares o texto, ela desaparece da lista.
     summary: "{{title}} | {{data_premium}}"
+
     editor:
       preview: false
+    
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
-      
-      # Mudámos para 'string' (texto). Se quiseres várias, escreve: Restaurante, Bar
-      - {label: "Categorias (separe por vírgula)", name: "category", widget: "string", hint: "Ex: Restaurantes, Café, Tradicional"}
-
+      - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Ex: 2026-05-20"}
+      # MUDANÇA AQUI: Agora é um campo de texto (string) para que possas apagar facilmente no teclado do telemóvel
+      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Exemplo: 2026-05-20. DEIXA VAZIO para empresas normais."}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email", name: "email_cliente", widget: "string", required: false}
       - {label: "Website", name: "website", widget: "string", required: false}
