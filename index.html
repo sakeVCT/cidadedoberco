@@ -1,0 +1,21 @@
+---
+layout: default
+title: Home
+---
+
+<div class="intro" style="text-align: center; margin-bottom: 3rem;">
+    <h2>Diretório Exclusivo</h2>
+    <p>Empresas selecionadas pela sua excelência e contributo para a cidade.</p>
+</div>
+
+<div class="lista-empresas">
+    {% for empresa in site.empresas %}
+    <div class="card">
+        <span class="tag">{{ empresa.category }}</span>
+        <h3>{{ empresa.title }}</h3>
+        <p><strong>Morada:</strong> {{ empresa.address }}</p>
+        <p><strong>Contacto:</strong> {{ empresa.phone }}</p>
+        <a href="{{ empresa.url }}" class="btn">Ver Detalhes</a>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,10 @@
+title: Cidade do Berço
+email: geral@cidadedoberco.pt
+description: O diretório exclusivo das melhores empresas de Guimarães.
+baseurl: ""
+url: "https://cidadedoberco.pt"
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
