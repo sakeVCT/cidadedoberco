@@ -8,8 +8,9 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
   <script>
-    // Se o erro persistir, o script abaixo força o login a aparecer
+    // Se o login não aparecer, este script força a ligação
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
