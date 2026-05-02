@@ -29,34 +29,31 @@
         .search-wrapper { display: flex; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
         #searchInput { flex: 1; border: none; padding: 15px; font-size: 15px; outline: none; width: 100%; }
         
-        /* FILTROS: Pequenos e com Efeito de Deslizar */
+        /* FILTROS: Versão anterior (limpa e pequena) */
         .filters { 
             display: flex; 
             gap: 8px; 
             overflow-x: auto; 
-            padding: 12px 20px; 
-            margin-top: 2px;
+            padding: 10px 0; 
+            margin-top: 5px;
             scrollbar-width: none; 
             -webkit-overflow-scrolling: touch;
             width: 100%;
             box-sizing: border-box;
-            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
         .filters::-webkit-scrollbar { display: none; }
 
         .filter-btn { 
-            padding: 6px 14px;
+            padding: 6px 12px;
             background: #f4f4f4; 
             border: 1px solid #ddd; 
-            border-radius: 15px;
+            border-radius: 20px;
             font-size: 9px;
             text-transform: uppercase; 
             font-weight: 700; 
             cursor: pointer; 
             white-space: nowrap; 
             flex-shrink: 0; 
-            transition: all 0.2s ease;
         }
         .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
 
@@ -70,8 +67,6 @@
         
         .info { flex: 1; min-width: 0; }
         .status { font-size: 8px; text-transform: uppercase; color: var(--gold); font-weight: 800; display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
-        
-        /* Título em Garamond - O visual original */
         .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0 0 8px 0; font-weight: 700; line-height: 1.1; word-wrap: break-word; }
         
         .item-details { font-size: 0.75rem; color: #666; display: flex; flex-direction: column; gap: 4px; }
@@ -162,7 +157,7 @@
             const hoje = new Date();
             hoje.setHours(0,0,0,0);
 
-            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px; color:#999'>Sem resultados.</p>" : 
+            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px;'>Sem resultados.</p>" : 
                 list.map(item => {
                     let isPremiumReal = false;
                     if (item.premium === true || item.premium === "true") {
@@ -170,7 +165,6 @@
                         if (item.data_premium && item.data_premium.includes('-')) {
                             const partes = item.data_premium.split('-');
                             if (partes.length === 3) {
-                                // Conversor DD-MM-AAAA (Mantido)
                                 const exp = new Date(partes[2], partes[1] - 1, partes[0]);
                                 if (!isNaN(exp.getTime())) {
                                     exp.setHours(0,0,0,0);
