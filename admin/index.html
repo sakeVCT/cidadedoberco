@@ -6,47 +6,60 @@
   <title>Gestão | Cidade do Berço</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* RESET TOTAL PARA MOBILE */
-    * { box-sizing: border-box !important; }
-    body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; width: 100vw !important; }
-
-    /* REMOVER BARRA LATERAL E FORÇAR CENTRO */
-    aside, [class*="SidebarContainer"] { display: none !important; }
+    /* 1. RESET ABSOLUTO */
+    body { margin: 0 !important; padding: 0 !important; background: #f4f4f9 !important; width: 100% !important; overflow-x: hidden !important; }
     
-    /* REMOVER MARGENS QUE EMPURRAM PARA A DIREITA */
-    main, [class*="MainViewContainer"], [class*="CollectionMain"] {
+    /* Esconder barra lateral e preview */
+    aside, [class*="SidebarContainer"], [class*="Pane2"] { display: none !important; }
+
+    /* 2. FORÇAR CONTEÚDO AO CENTRO E LARGURA TOTAL */
+    main, [class*="MainViewContainer"], [class*="CollectionMain"], div[class*="AppCardContainer"] {
       width: 100% !important;
+      max-width: 100% !important;
       left: 0 !important;
       margin: 0 !important;
       padding: 10px !important;
       position: relative !important;
-      transform: none !important;
+      display: block !important;
+      box-shadow: none !important;
     }
 
-    /* CARDS DA LISTA OCUPAREM O ECRÃ TODO */
-    [class*="CollectionCard"], a {
+    /* 3. FORMATAR A LISTA (ONDE ESTÁ O "TESTÉ") */
+    /* Faz o card ocupar a largura toda com aspeto limpo */
+    [class*="CollectionCard"] {
       width: 100% !important;
       margin: 10px 0 !important;
-      left: 0 !important;
-      display: block !important;
+      padding: 20px !important;
+      border-radius: 8px !important;
+      border: 1px solid #ddd !important;
+      background: #fff !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
     }
 
-    /* EDITOR (DENTRO DA EMPRESA) */
-    [class*="Pane2"] { display: none !important; } /* Esconde preview */
-    [class*="Pane1"] { width: 100% !important; min-width: 100% !important; }
-    
-    /* BARRA SUPERIOR */
-    header { width: 100% !important; left: 0 !important; }
-    
-    /* BOTÕES DE PESQUISA E FILTRO */
+    /* 4. AJUSTE DO TOPO (BOTÃO NEW EMPRESAS E BUSCA) */
     [class*="CollectionTop"] {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      width: 100% !important;
+      padding: 0 !important;
+      margin-bottom: 20px !important;
+      display: block !important;
     }
+    
+    /* Botão New Empresas largo para o dedo */
+    a[class*="Button"] {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+      margin-bottom: 15px !important;
+      padding: 12px !important;
+    }
+
+    /* 5. EDITOR (DENTRO DA EMPRESA) */
+    [class*="Pane1"] { width: 100% !important; padding: 10px !important; }
+    
+    /* Esconder textos irrelevantes no mobile */
+    [class*="CollectionHeaderTitle"] { font-size: 1.5rem !important; margin: 10px 0 !important; }
   </style>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </body>
 </html>
