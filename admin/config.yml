@@ -5,15 +5,18 @@ backend:
 media_folder: "static/images"
 public_folder: "/images"
 
+# Esta opção ajuda a evitar problemas de bloqueio de edição
+publish_mode: simple
+
 collections:
   - name: "empresas"
     label: "Empresas"
     folder: "content/empresas"
     create: true
-    # Ajuste para evitar erros de gravação/duplicação:
-    identifier_field: title
-    slug: "{{title}}"
-    summary: "{{title}}"
+    # Alteração aqui: removi complexidade para garantir que ele sobrescreva o ficheiro
+    slug: "{{slug}}"
+    editor:
+      preview: false
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
@@ -24,4 +27,4 @@ collections:
       - {label: "Website (URL)", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
       - {label: "Imagem de Capa", name: "image", widget: "image"}
-      - {label: "Descrição/Body", name: "body", widget: "markdown", required: false}
+      - {label: "Descrição (Body)", name: "body", widget: "markdown", required: false}
