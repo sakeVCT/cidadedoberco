@@ -13,20 +13,39 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{title}}"
-    
-    # O resumo agora é simples. Se escreveres a data no campo, ela aparece. 
-    # Se apagares o texto, ela desaparece da lista.
     summary: "{{title}} | {{data_premium}}"
-
     editor:
       preview: false
-    
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
-      - {label: "Categoria", name: "category", widget: "string"}
+      
+      # AGORA PERMITE MÚLTIPLAS:
+      - label: "Categorias"
+        name: "category"
+        widget: "list"
+        summary: "{{fields.category_item}}"
+        field: 
+          label: "Escolha uma Categoria"
+          name: "category_item"
+          widget: "select"
+          options:
+            - "Restaurantes"
+            - "Pastelaria & Café"
+            - "Tasca Típica"
+            - "Bares & Vida Noturna"
+            - "Moda & Acessórios"
+            - "Artesanato"
+            - "Cabeleireiro & Estética"
+            - "Oficina Mecânica"
+            - "Transportes"
+            - "Saúde & Bem-Estar"
+            - "Alojamento Local"
+            - "Hotéis"
+            - "Imobiliária"
+            - "Outros"
+
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      # MUDANÇA AQUI: Agora é um campo de texto (string) para que possas apagar facilmente no teclado do telemóvel
-      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Exemplo: 2026-05-20. DEIXA VAZIO para empresas normais."}
+      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Ex: 2026-05-20"}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email", name: "email_cliente", widget: "string", required: false}
       - {label: "Website", name: "website", widget: "string", required: false}
