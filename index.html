@@ -111,10 +111,18 @@
                     let isPremiumReal = false;
                     if (item.premium === true || item.premium === "true") {
                         isPremiumReal = true;
-                        if (item.data_premium) {
-                            const exp = new Date(item.data_premium);
-                            exp.setHours(0,0,0,0);
-                            if (exp < hoje) isPremiumReal = false;
+                        
+                        if (item.data_premium && item.data_premium.includes('-')) {
+                            // Converte DD-MM-AAAA para objeto Date
+                            const partes = item.data_premium.split('-');
+                            if (partes.length === 3) {
+                                // JavaScript Date usa: Ano, Mês(0-11), Dia
+                                const exp = new Date(partes[2], partes[1] - 1, partes[0]);
+                                if (!isNaN(exp.getTime())) {
+                                    exp.setHours(0,0,0,0);
+                                    if (exp < hoje) isPremiumReal = false;
+                                }
+                            }
                         }
                     }
 
