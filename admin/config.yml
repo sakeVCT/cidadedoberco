@@ -13,17 +13,20 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{title}}"
-    summary: "{{title}} | EXPIRA EM: {{data_premium}}"
+    
+    # CORREÇÃO: Usa um formato que destaca o Premium apenas se ele existir
+    summary: "{{title}} {{#if premium}}| ⭐ EXPIRA: {{data_premium}}{{/if}}"
+
     editor:
       preview: false
+    
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Data de Expiração Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: false}
+      - {label: "Data de Expiração Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: false, hint: "Preencher apenas se for Premium"}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
       - {label: "Website (URL)", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
-      # ALTERADO: required: false permite guardar sem foto
       - {label: "Imagem de Capa", name: "image", widget: "image", required: false}
