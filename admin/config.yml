@@ -2,8 +2,9 @@ backend:
   name: github
   repo: sakevct/cidadedoberco
   branch: main
-  site_domain: cidadedoberco.pt
   base_url: https://github.com
+  auth_endpoint: https://github-os.pbe-tech.workers.dev/callback
+
 
 
 
