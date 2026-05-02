@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article>
+    <span class="tag">{{ page.category }}</span>
+    <h1>{{ page.title }}</h1>
+    
+    {% if page.image %}
+    <img src="{{ page.image }}" alt="{{ page.title }}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;">
+    {% endif %}
+
+    <div class="card">
+        <h3>Informações de Contacto</h3>
+        <p><strong>Morada:</strong> {{ page.address }}</p>
+        <p><strong>Código Postal:</strong> {{ page.zip }}</p>
+        <p><strong>Telefone:</strong> {{ page.phone }}</p>
+        {% if page.website %}
+        <p><strong>Website:</strong> <a href="{{ page.website }}" target="_blank">{{ page.website }}</a></p>
+        {% endif %}
+    </div>
+
+    <div class="content" style="margin-top: 2rem; font-size: 1.1rem;">
+        {{ content }}
+    </div>
+    
+    <div style="margin-top: 3rem;">
+        <a href="/" style="border: none;">&larr; Voltar ao Diretório</a>
+    </div>
+</article>
