@@ -16,7 +16,6 @@
         .search-container { max-width: 600px; margin: 30px auto; display: flex; gap: 10px; padding: 0 20px; }
         #searchInput { flex: 1; padding: 15px; border-radius: 8px; border: none; outline: none; font-size: 16px; }
 
-        /* Grelha de Empresas */
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
         #results { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         
@@ -29,7 +28,7 @@
         .card-info { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; }
 
         footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
-        .admin-link { color: white; text-decoration: none; }
+        .admin-link { color: white; text-decoration: none; border: 1px solid #333; padding: 5px 15px; border-radius: 20px; }
     </style>
 </head>
 <body>
@@ -44,58 +43,63 @@
 
     <div class="container">
         <div id="results">
-            </div>
+            <p style="text-align: center; opacity: 0.5;">A procurar empresas...</p>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2026 Cidade do Berço</p>
+        <br>
         <a href="/admin/" class="admin-link">Gestão</a>
     </footer>
 
     <script>
         let allBusinesses = [];
 
-        // 1. Função para carregar as empresas do GitHub via API
         async function loadBusinesses() {
             const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = "<p>A carregar empresas...</p>";
 
             try {
-                // Vamos buscar a lista de ficheiros na pasta content/empresas
-                const response = await fetch('https://api.github.com/repos/brunofmelo11/cidadedoberco/contents/content/empresas');
+                // Link atualizado para o teu repositório Sakevct/cidadedoberco
+                const response = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await response.json();
+
+                if (!Array.isArray(files)) throw new Error();
 
                 for (let file of files) {
                     if (file.name.endsWith('.md')) {
                         const res = await fetch(file.download_url);
                         const text = await res.text();
                         
-                        // "Limpeza" básica do formato Markdown/YAML
-                        const title = text.match(/title:\s*"(.*)"/) || text.match(/title:\s*(.*)/);
-                        const category = text.match(/category:\s*"(.*)"/) || text.match(/category:\s*(.*)/);
-                        const address = text.match(/address:\s*"(.*)"/) || text.match(/address:\s*(.*)/);
-                        const image = text.match(/image:\s*"(.*)"/) || text.match(/image:\s*(.*)/);
+                        // Extração simples dos dados do ficheiro
+                        const titleMatch = text.match(/title:\s*"(.*)"/) || text.match(/title:\s*(.*)/);
+                        const catMatch = text.match(/category:\s*"(.*)"/) || text.match(/category:\s*(.*)/);
+                        const addrMatch = text.match(/address:\s*"(.*)"/) || text.match(/address:\s*(.*)/);
+                        const imgMatch = text.match(/image:\s*"(.*)"/) || text.match(/image:\s*(.*)/);
 
-                        const business = {
-                            title: title ? title[1].replace(/"/g, '') : "Sem nome",
-                            category: category ? category[1].replace(/"/g, '') : "Geral",
-                            address: address ? address[1].replace(/"/g, '') : "",
-                            image: image ? image[1].replace(/"/g, '') : "https://via.placeholder.com/400x200?text=Cidade+do+Berco"
-                        };
-                        allBusinesses.push(business);
+                        allBusinesses.push({
+                            title: titleMatch ? titleMatch[1].replace(/"/g, '') : "Empresa",
+                            category: catMatch ? catMatch[1].replace(/"/g, '') : "Geral",
+                            address: addrMatch ? addrMatch[1].replace(/"/g, '') : "Guimarães",
+                            image: imgMatch ? imgMatch[1].replace(/"/g, '') : "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=400"
+                        });
                     }
                 }
                 displayBusinesses(allBusinesses);
             } catch (e) {
-                resultsDiv.innerHTML = "<p>Insere a tua primeira empresa no painel de admin!</p>";
+                resultsDiv.innerHTML = "<p style='text-align: center;'>Publica a tua primeira empresa no painel de admin para ela aparecer aqui!</p>";
             }
         }
 
         function displayBusinesses(list) {
             const resultsDiv = document.getElementById('results');
+            if (list.length === 0) {
+                resultsDiv.innerHTML = "<p style='text-align:center;'>Nenhuma empresa encontrada.</p>";
+                return;
+            }
             resultsDiv.innerHTML = list.map(b => `
                 <div class="business-card">
-                    <img src="${b.image}" class="card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Imagem+Indisponivel'">
+                    <img src="${b.image}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=400'">
                     <div class="card-content">
                         <span class="card-tag">${b.category}</span>
                         <h3 class="card-title">${b.title}</h3>
