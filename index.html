@@ -44,41 +44,44 @@
             color: var(--gold);
         }
 
-        /* Pesquisa com Botão */
+        /* Pesquisa Otimizada */
         .search-area {
             max-width: 600px;
             margin: 0 auto 50px;
             padding: 0 20px;
             display: flex;
-            gap: 10px;
+            gap: 0; /* Colados para parecer uma peça única */
         }
 
         #searchInput {
             flex: 1;
-            padding: 18px 25px;
+            padding: 18px 20px;
             border: 1px solid #e5e5e5;
+            border-right: none;
             border-radius: 0;
             font-size: 14px;
             outline: none;
             font-family: 'Montserrat', sans-serif;
-            width: 100%;
         }
 
         .search-btn {
-            background: var(--dark);
+            background: var(--gold);
             color: white;
-            border: none;
-            padding: 0 25px;
+            border: 1px solid var(--gold);
+            padding: 0 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .search-btn:hover { background: var(--gold); }
+        .search-btn:hover {
+            background: var(--dark);
+            border-color: var(--dark);
+        }
 
-        /* Grid Otimizada para Telemóvel */
         .container {
             max-width: 1200px;
             margin: 0 auto 80px;
@@ -91,26 +94,30 @@
             gap: 40px 30px;
         }
 
-        /* Ajuste para ecrãs muito pequenos */
-        @media (max-width: 480px) {
-            #results {
-                grid-template-columns: 1fr; /* Uma coluna apenas no telemóvel */
-            }
+        @media (max-width: 600px) {
             .search-area {
                 flex-direction: column;
+                gap: 10px;
+            }
+            #searchInput {
+                border: 1px solid #e5e5e5;
             }
             .search-btn {
-                padding: 15px;
+                padding: 18px;
+            }
+            #results {
+                grid-template-columns: 1fr;
             }
         }
 
         .curadoria-item {
             text-decoration: none;
             color: inherit;
+            display: block;
         }
 
         .img-container {
-            aspect-ratio: 1/1; /* Quadrado no telemóvel funciona melhor */
+            aspect-ratio: 1/1;
             overflow: hidden;
             background: #f7f7f7;
             margin-bottom: 20px;
@@ -145,7 +152,7 @@
         }
 
         footer {
-            padding: 80px 20px;
+            padding: 60px 20px;
             background: var(--light-gold);
             text-align: center;
             font-size: 0.65rem;
@@ -163,13 +170,14 @@
     </header>
 
     <div class="search-area">
-        <input type="text" id="searchInput" placeholder="O QUE PROCURA?" onkeyup="if(event.keyCode===13) filter()">
-        <button class="search-btn" onclick="filter()">Procurar</button>
+        <input type="text" id="searchInput" placeholder="O QUE DESEJA ENCONTRAR?" onkeydown="if(event.key === 'Enter') runSearch()">
+        <button class="search-btn" onclick="runSearch()">Procurar</button>
     </div>
 
     <div class="container">
         <div id="results">
-            </div>
+            <p style="grid-column: 1/-1; text-align:center; opacity:0.5;">A carregar curadoria...</p>
+        </div>
     </div>
 
     <footer>
@@ -181,8 +189,8 @@
         let allItems = [];
 
         const synonyms = {
-            "lanchar": ["café", "cafetaria", "pastelaria", "padaria", "doce"],
-            "comer": ["restaurante", "gastronomia", "comida", "almoço", "jantar"],
+            "lanchar": ["cafe", "cafetaria", "pastelaria", "padaria", "doce", "lanche"],
+            "comer": ["restaurante", "gastronomia", "comida", "almoco", "jantar"],
             "beber": ["bar", "cocktail", "noite", "vinho"],
             "dormir": ["hotel", "alojamento", "pousada"]
         };
@@ -194,6 +202,7 @@
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await res.json();
                 
+                const loadedItems = [];
                 for (let f of files) {
                     if (f.name.endsWith('.md')) {
                         const r = await fetch(f.download_url);
@@ -204,7 +213,7 @@
                             return m ? m[1].replace(/"/g,'').trim() : null;
                         };
 
-                        allItems.push({
+                        loadedItems.push({
                             title: get(/title:\s*(.*)/) || "Sem Nome",
                             category: get(/category:\s*(.*)/) || "Geral",
                             image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
@@ -212,14 +221,17 @@
                         });
                     }
                 }
+                allItems = loadedItems;
                 show(allItems);
-            } catch (e) { console.error(e); }
+            } catch (e) { 
+                document.getElementById('results').innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Erro ao carregar dados.</p>";
+            }
         }
 
         function show(list) {
             const grid = document.getElementById('results');
             if(list.length === 0) {
-                grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; opacity:0.5;'>Nenhum resultado encontrado.</p>";
+                grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; opacity:0.5;'>Nenhum resultado encontrado para esta pesquisa.</p>";
                 return;
             }
             grid.innerHTML = list.map(item => `
@@ -234,12 +246,23 @@
             `).join('');
         }
 
-        function filter() {
+        // Função unificada para o botão e para o Enter
+        function runSearch() {
             const query = normalize(document.getElementById('searchInput').value);
+            
+            if (!query) {
+                show(allItems);
+                return;
+            }
+
             const filtered = allItems.filter(item => {
                 const title = normalize(item.title);
                 const cat = normalize(item.category);
+                
+                // Busca direta
                 if (title.includes(query) || cat.includes(query)) return true;
+                
+                // Busca por sinónimos
                 for (let key in synonyms) {
                     if (query.includes(key)) {
                         return synonyms[key].some(s => cat.includes(normalize(s)));
