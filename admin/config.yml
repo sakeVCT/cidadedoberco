@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: SEU_UTILIZADOR/cidadedoberco.pt
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  - name: "empresas"
+    label: "Empresas Selecionadas"
+    folder: "_empresas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nome da Empresa", name: "title", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["Restauração", "Serviços", "Moda", "Hotelaria", "Turismo"]}
+      - {label: "Morada Completa", name: "address", widget: "string"}
+      - {label: "Código Postal", name: "zip", widget: "string", default: "4800-000 Guimarães"}
+      - {label: "Telefone", name: "phone", widget: "string"}
+      - {label: "Website Oficial", name: "website", widget: "string"}
+      - {label: "Imagem de Destaque", name: "image", widget: "image"}
+      - {label: "Descrição Premium", name: "body", widget: "markdown"}
