@@ -9,7 +9,7 @@
     <style>
         :root {
             --bg: #ffffff;
-            --gold: #b38e5d; /* Dourado mate estilo joalharia */
+            --gold: #b38e5d;
             --dark: #121212;
             --light-gold: #f9f6f0;
         }
@@ -19,135 +19,152 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
             color: var(--dark);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header Editorial */
         header {
-            padding: 80px 20px;
+            padding: 60px 20px 40px;
             text-align: center;
-            border-bottom: 1px solid #eee;
         }
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            line-height: 0.8;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 0.9;
             margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: -2px;
         }
 
         .logo span { color: var(--gold); }
 
         .tagline {
-            font-size: 0.8rem;
-            letter-spacing: 6px;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold);
-            font-weight: 500;
         }
 
-        /* Pesquisa Inteligente */
+        /* Pesquisa com Botão */
         .search-area {
-            max-width: 700px;
-            margin: -35px auto 60px;
+            max-width: 600px;
+            margin: 0 auto 50px;
             padding: 0 20px;
+            display: flex;
+            gap: 10px;
         }
 
         #searchInput {
-            width: 100%;
-            padding: 25px 40px;
+            flex: 1;
+            padding: 18px 25px;
             border: 1px solid #e5e5e5;
-            border-radius: 0; /* Design quadrado é mais editorial */
-            font-size: 1rem;
+            border-radius: 0;
+            font-size: 14px;
             outline: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            transition: 0.3s;
             font-family: 'Montserrat', sans-serif;
+            width: 100%;
         }
 
-        #searchInput:focus {
-            border-color: var(--gold);
+        .search-btn {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* Grid Curadoria */
+        .search-btn:hover { background: var(--gold); }
+
+        /* Grid Otimizada para Telemóvel */
         .container {
-            max-width: 1300px;
-            margin: 0 auto 100px;
-            padding: 0 30px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
         }
 
         #results {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 60px 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px 30px;
+        }
+
+        /* Ajuste para ecrãs muito pequenos */
+        @media (max-width: 480px) {
+            #results {
+                grid-template-columns: 1fr; /* Uma coluna apenas no telemóvel */
+            }
+            .search-area {
+                flex-direction: column;
+            }
+            .search-btn {
+                padding: 15px;
+            }
         }
 
         .curadoria-item {
-            cursor: pointer;
-            transition: 0.4s;
+            text-decoration: none;
+            color: inherit;
         }
 
         .img-container {
-            aspect-ratio: 4/5; /* Formato retrato estilo revista */
+            aspect-ratio: 1/1; /* Quadrado no telemóvel funciona melhor */
             overflow: hidden;
             background: #f7f7f7;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 1.2s cubic-bezier(0.2, 1, 0.2, 1);
-        }
-
-        .curadoria-item:hover img {
-            transform: scale(1.05);
+            transition: 1s;
         }
 
         .category {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
         }
 
         .title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            margin: 0 0 8px 0;
             font-weight: 600;
         }
 
         .address {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #888;
-            font-weight: 300;
         }
 
         footer {
-            padding: 100px 20px;
+            padding: 80px 20px;
             background: var(--light-gold);
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 2px;
         }
 
-        .admin-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid; }
+        .admin-link { color: var(--gold); text-decoration: none; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Cidade do <span>Berço</span></div>
-        <div class="tagline">The Guimarães Curated Directory</div>
+        <div class="tagline">Curadoria Seleta • Guimarães</div>
     </header>
 
     <div class="search-area">
-        <input type="text" id="searchInput" placeholder="PROCURE POR NOME, CATEGORIA OU CONCEITO..." onkeyup="filter()">
+        <input type="text" id="searchInput" placeholder="O QUE PROCURA?" onkeyup="if(event.keyCode===13) filter()">
+        <button class="search-btn" onclick="filter()">Procurar</button>
     </div>
 
     <div class="container">
@@ -156,23 +173,21 @@
     </div>
 
     <footer>
-        &copy; 2026 CIDADE DO BERÇO &bull; GUIMARÃES, PORTUGAL<br><br>
-        <a href="/admin/" class="admin-link">CURATOR ACCESS</a>
+        &copy; 2026 CIDADE DO BERÇO &bull; GUIMARÃES<br><br>
+        <a href="/admin/" class="admin-link">ACESSO PRIVADO</a>
     </footer>
 
     <script>
         let allItems = [];
 
-        // Dicionário de Sinónimos para pesquisa inteligente
         const synonyms = {
-            "lanchar": ["café", "cafetaria", "pastelaria", "padaria", "lanche", "doce"],
-            "comer": ["restaurante", "jantar", "almoço", "gastronomia", "comida"],
-            "beber": ["bar", "cocktail", "vinhos", "pub", "noite"],
-            "dormir": ["hotel", "alojamento", "pousada", "turismo"]
+            "lanchar": ["café", "cafetaria", "pastelaria", "padaria", "doce"],
+            "comer": ["restaurante", "gastronomia", "comida", "almoço", "jantar"],
+            "beber": ["bar", "cocktail", "noite", "vinho"],
+            "dormir": ["hotel", "alojamento", "pousada"]
         };
 
-        // Função para remover acentos
-        const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const normalize = (str) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
 
         async function load() {
             try {
@@ -184,16 +199,16 @@
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         
-                        const get = (regex, def) => {
+                        const get = (regex) => {
                             const m = t.match(regex);
-                            return m ? m[1].replace(/"/g,'').trim() : def;
+                            return m ? m[1].replace(/"/g,'').trim() : null;
                         };
 
                         allItems.push({
-                            title: get(/title:\s*(.*)/, "Untitled"),
-                            category: get(/category:\s*(.*)/, "General"),
-                            image: get(/image:\s*(.*)/, "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"),
-                            address: get(/address:\s*(.*)/, "Guimarães, PT")
+                            title: get(/title:\s*(.*)/) || "Sem Nome",
+                            category: get(/category:\s*(.*)/) || "Geral",
+                            image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+                            address: get(/address:\s*(.*)/) || "Guimarães"
                         });
                     }
                 }
@@ -203,6 +218,10 @@
 
         function show(list) {
             const grid = document.getElementById('results');
+            if(list.length === 0) {
+                grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; opacity:0.5;'>Nenhum resultado encontrado.</p>";
+                return;
+            }
             grid.innerHTML = list.map(item => `
                 <div class="curadoria-item">
                     <div class="img-container">
@@ -217,15 +236,10 @@
 
         function filter() {
             const query = normalize(document.getElementById('searchInput').value);
-            
             const filtered = allItems.filter(item => {
                 const title = normalize(item.title);
                 const cat = normalize(item.category);
-                
-                // Verifica título ou categoria diretamente
                 if (title.includes(query) || cat.includes(query)) return true;
-
-                // Verifica sinónimos
                 for (let key in synonyms) {
                     if (query.includes(key)) {
                         return synonyms[key].some(s => cat.includes(normalize(s)));
@@ -233,7 +247,6 @@
                 }
                 return false;
             });
-            
             show(filtered);
         }
 
