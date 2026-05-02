@@ -2,6 +2,8 @@ backend:
   name: github
   repo: sakevct/cidadedoberco
   branch: main
+  auth_endpoint: api/auth
+
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
