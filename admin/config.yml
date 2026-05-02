@@ -41,13 +41,13 @@ collections:
 
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
       
-      - label: "Data de Expiração (OBRIGATÓRIO PARA PREMIUM)"
+      - label: "Data de Expiração (DD-MM-AAAA)"
         name: "data_premium"
         widget: "string"
         required: false
-        hint: "⚠️ SE FOR PREMIUM: Coloque a data (Ex: 2026-12-31). SE NÃO FOR: Deixe vazio ou o site dará erro de destaque."
-        # Esta linha abaixo ajuda a garantir que se escreveres algo, tem de ser uma data válida
-        pattern: ['^\d{4}-\d{2}-\d{2}$', "Use o formato AAAA-MM-DD (ex: 2026-05-20) ou deixe vazio"]
+        hint: "⚠️ SE FOR PREMIUM: Use o formato DIA-MÊS-ANO (Ex: 20-05-2026). SE NÃO: Deixe vazio."
+        # Novo padrão para aceitar DD-MM-AAAA
+        pattern: ['^\d{2}-\d{2}-\d{4}$', "Use o formato DD-MM-AAAA (ex: 31-12-2026)"]
 
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email", name: "email_cliente", widget: "string", required: false}
