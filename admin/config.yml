@@ -20,3 +20,4 @@ collections:
       - {label: "Website Oficial", name: "website", widget: "string"}
       - {label: "Imagem de Destaque", name: "image", widget: "image"}
       - {label: "Descrição Premium", name: "body", widget: "markdown"}
+      
