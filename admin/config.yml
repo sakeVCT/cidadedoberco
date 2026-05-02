@@ -3,8 +3,6 @@ backend:
   repo: sakevct/cidadedoberco
   branch: main
   base_url: https://github-os.pbe-tech.workers.dev
-  auth_endpoint: /callback
-
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
