@@ -78,6 +78,7 @@
                             address: get(/address:\s*(.*)/),
                             email_cliente: get(/email_cliente:\s*(.*)/),
                             website: get(/website:\s*(.*)/),
+                            data_premium: get(/data_premium:\s*(.*)/),
                             premium: t.includes('premium: true') || t.includes('premium: "true"')
                         });
                     }
@@ -102,27 +103,41 @@
 
         function render(list) {
             const container = document.getElementById('results');
+            const hoje = new Date();
+            // Zerar horas para comparar apenas os dias
+            hoje.setHours(0,0,0,0);
+
             container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px;'>Sem resultados.</p>" : 
-                list.map(item => `
-                <div class="item ${item.premium ? 'premium-active' : ''}">
-                    <div class="img-box"><img src="${item.image}" onerror="this.src='https://via.placeholder.com/150?text=Logo'"></div>
-                    <div class="info">
-                        ${item.premium ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
-                        <div class="item-cat">${item.categories.join(', ')}</div>
-                        <h2 class="item-title">${item.title}</h2>
-                        <div class="item-details">
-                            ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
-                            ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
-                            ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>` : ''}
+                list.map(item => {
+                    // Lógica de Expiração
+                    let isValido = item.premium;
+                    if (item.data_premium) {
+                        const exp = new Date(item.data_premium);
+                        exp.setHours(0,0,0,0);
+                        if (exp < hoje) isValido = false;
+                    }
+
+                    return `
+                    <div class="item ${isValido ? 'premium-active' : ''}">
+                        <div class="img-box"><img src="${item.image}" onerror="this.src='https://via.placeholder.com/150?text=Logo'"></div>
+                        <div class="info">
+                            ${isValido ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
+                            <div class="item-cat">${item.categories.join(', ')}</div>
+                            <h2 class="item-title">${item.title}</h2>
+                            <div class="item-details">
+                                ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
+                                ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
+                                ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>` : ''}
+                            </div>
                         </div>
+                        ${(isValido && item.whatsapp) ? `
+                        <div class="contact-area">
+                            <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
+                            <a href="https://wa.me/351${item.whatsapp}" class="contact-btn whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>` : ''}
                     </div>
-                    ${(item.premium && item.whatsapp) ? `
-                    <div class="contact-area">
-                        <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
-                        <a href="https://wa.me/351${item.whatsapp}" class="contact-btn whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>` : ''}
-                </div>
-            `).join('');
+                    `;
+                }).join('');
         }
 
         function executeSearch() {
