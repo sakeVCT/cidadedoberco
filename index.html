@@ -34,7 +34,7 @@
         .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; margin: 0; font-weight: 700; line-height: 1.1; }
         .premium-active .item-title { font-size: 1.35rem; }
         .item-details { font-size: 0.7rem; color: #777; margin-top: 4px; display: flex; flex-direction: column; gap: 2px; }
-        .item-details span { display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .item-details span, .item-details a { display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; color: inherit; }
         .item-details i { color: var(--gold); width: 10px; text-align: center; font-size: 0.65rem; }
         .item-cat { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
         .contact-area { display: flex; gap: 6px; flex-shrink: 0; }
@@ -59,7 +59,6 @@
 
         async function loadData() {
             try {
-                // Ajusta aqui com o teu utilizador/repositório correto
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await res.json();
                 const items = [];
@@ -75,12 +74,8 @@
                         const catsArray = catRaw.split(',').map(c => c.trim());
                         catsArray.forEach(c => categories.add(c));
 
-                        // --- CORREÇÃO DE IMAGEM ---
                         let imgPath = get(/image:\s*(.*)/);
-                        if (imgPath) {
-                            // Se começar por / ou ./ removemos para evitar caminhos errados no GitHub Pages/Netlify
-                            imgPath = imgPath.replace(/^\.?\//, '');
-                        }
+                        if (imgPath) imgPath = imgPath.replace(/^\.?\//, '');
 
                         const dataPremStr = get(/data_premium:\s*(.*)/);
                         let isStillPremium = t.includes('premium: true') || t.includes('premium: "true"');
@@ -97,10 +92,11 @@
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             categories: catsArray,
-                            image: imgPath || "static/images/default.jpg",
+                            image: imgPath || "",
                             whatsapp: get(/whatsapp:\s*(.*)/),
                             address: get(/address:\s*(.*)/),
                             email_cliente: get(/email_cliente:\s*(.*)/),
+                            website: get(/website:\s*(.*)/),
                             premium: isStillPremium,
                             days: daysRemaining
                         });
@@ -130,7 +126,7 @@
                 list.map(item => `
                 <div class="item ${item.premium ? 'premium-active' : ''}">
                     <div class="img-box">
-                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150?text=Sem+Foto'">
+                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
                     </div>
                     <div class="info">
                         <div style="display:flex; align-items:center;">
@@ -141,6 +137,7 @@
                         <h2 class="item-title">${item.title}</h2>
                         <div class="item-details">
                             ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
+                            ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Visitar Website</a>` : ''}
                             ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
                         </div>
                     </div>
