@@ -3,331 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Guimarães Premium</title>
+    <title>Cidade do Berço | Curadoria Seleta</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Chique: Branco, Creme e Dourado */
             --bg: #ffffff;
-            --subtle-bg: #fdfbf8; /* Um creme muito suave para profundidade */
-            --text-dark: #1a1a1a;
-            --text-light: #666666;
-            --gold: #c3a365; /* Um dourado sofisticado, não muito amarelo */
-            --gold-light: #e0cc9b;
-            --card-shadow: 0 15px 35px rgba(195, 163, 101, 0.08); /* Sombra suave dourada */
+            --gold: #b38e5d; /* Dourado mate estilo joalharia */
+            --dark: #121212;
+            --light-gold: #f9f6f0;
         }
 
         body {
             margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
-            color: var(--text-dark);
-            line-height: 1.7;
+            color: var(--dark);
         }
 
-        /* Hero Section Chique em tons claros */
-        .hero {
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* Header Editorial */
+        header {
+            padding: 80px 20px;
             text-align: center;
-            /* Imagem de Guimarães com overlay claro/creme */
-            background: linear-gradient(rgba(253, 251, 248, 0.92), rgba(253, 251, 248, 0.95)),
-                        url('https://images.unsplash.com/photo-1590422329307-8894982a8785?q=80&w=2000') center/cover;
-            padding: 0 20px;
-            border-bottom: 1px solid rgba(195, 163, 101, 0.1);
+            border-bottom: 1px solid #eee;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3.2rem, 9vw, 5.5rem);
-            margin: 0;
-            letter-spacing: -2px;
-            color: var(--text-dark);
-            font-weight: 700;
-        }
-
-        /* Destaque dourado no título */
-        h1 span {
-            color: var(--gold);
-            position: relative;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 5px;
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            line-height: 0.8;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            margin-top: 15px;
-            color: var(--gold);
+            letter-spacing: -2px;
         }
 
-        /* Busca Minimalista Dourada */
-        .search-wrapper {
-            margin-top: 60px;
-            width: 100%;
-            max-width: 650px;
-            position: relative;
+        .logo span { color: var(--gold); }
+
+        .tagline {
+            font-size: 0.8rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* Pesquisa Inteligente */
+        .search-area {
+            max-width: 700px;
+            margin: -35px auto 60px;
+            padding: 0 20px;
         }
 
         #searchInput {
             width: 100%;
-            padding: 22px 35px;
-            background: white;
-            border: 1px solid rgba(195, 163, 101, 0.2);
-            border-radius: 100px;
-            color: var(--text-dark);
-            font-size: 18px;
+            padding: 25px 40px;
+            border: 1px solid #e5e5e5;
+            border-radius: 0; /* Design quadrado é mais editorial */
+            font-size: 1rem;
             outline: none;
-            transition: 0.4s;
-            box-sizing: border-box;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            font-family: 'Montserrat', sans-serif;
         }
 
         #searchInput:focus {
             border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(195, 163, 101, 0.15);
         }
 
-        /* Grelha de Conteúdo */
+        /* Grid Curadoria */
         .container {
-            max-width: 1200px;
-            margin: -80px auto 100px;
+            max-width: 1300px;
+            margin: 0 auto 100px;
             padding: 0 30px;
         }
 
         #results {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 45px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 60px 40px;
         }
 
-        /* Cartões Brancos Chique */
-        .business-card {
-            background: white;
-            border-radius: 20px;
+        .curadoria-item {
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .img-container {
+            aspect-ratio: 4/5; /* Formato retrato estilo revista */
             overflow: hidden;
-            border: 1px solid rgba(195, 163, 101, 0.05);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: var(--card-shadow);
-        }
-
-        .business-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(195, 163, 101, 0.3);
-            box-shadow: 0 25px 50px rgba(195, 163, 101, 0.15);
-        }
-
-        .card-img-wrapper {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.9s;
-        }
-
-        .business-card:hover .card-img {
-            scale: 1.08;
-        }
-
-        /* Overlay dourado subtil na imagem ao passar o rato */
-        .card-img-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(195, 163, 101, 0.15));
-            opacity: 0;
-            transition: 0.5s;
-        }
-
-        .business-card:hover .card-img-wrapper::after {
-            opacity: 1;
-        }
-
-        .card-content {
-            padding: 30px;
-            background-color: white;
-        }
-
-        .card-tag {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
-            display: inline-block;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(195, 163, 101, 0.2);
-            padding-bottom: 3px;
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
-            margin: 0 0 12px 0;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .card-info {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-icon {
-            color: var(--gold);
-            opacity: 0.7;
-        }
-
-        /* Footer Elegante */
-        footer {
-            padding: 80px 60px;
-            text-align: center;
-            border-top: 1px solid rgba(195, 163, 101, 0.1);
-            background: var(--subtle-bg);
-        }
-
-        footer p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            opacity: 0.7;
+            background: #f7f7f7;
             margin-bottom: 25px;
         }
 
-        .admin-link {
-            text-decoration: none;
-            color: var(--gold);
-            font-size: 11px;
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1.2s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        .curadoria-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .category {
+            font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            border: 1px solid rgba(195, 163, 101, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            transition: 0.3s;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .admin-link:hover { 
-            background: var(--gold); 
-            color: white; 
-            box-shadow: 0 5px 15px rgba(195, 163, 101, 0.2);
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            font-weight: 600;
         }
 
-        /* Loader chique */
-        .loading { text-align: center; padding: 100px; font-size: 1.1rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; font-weight: 300; }
-        
-        @media (max-width: 600px) {
-            .hero { height: 60vh; }
-            .container { margin-top: -50px; }
-            #results { gap: 30px; }
-            .card-content { padding: 25px; }
+        .address {
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 300;
         }
+
+        footer {
+            padding: 100px 20px;
+            background: var(--light-gold);
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .admin-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1>Cidade do <span>Berço</span></h1>
-        <p>A Curadoria d'Ouro de Guimarães</p>
-        
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" placeholder="O que deseja descobrir hoje?" onkeyup="filterBusinesses()">
-        </div>
-    </section>
+    <header>
+        <div class="logo">Cidade do <span>Berço</span></div>
+        <div class="tagline">The Guimarães Curated Directory</div>
+    </header>
+
+    <div class="search-area">
+        <input type="text" id="searchInput" placeholder="PROCURE POR NOME, CATEGORIA OU CONCEITO..." onkeyup="filter()">
+    </div>
 
     <div class="container">
         <div id="results">
-            <div class="loading">A carregar a experiência...</div>
-        </div>
+            </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Guimarães, Portugal. Todos os direitos reservados.</p>
-        <a href="/admin/" class="admin-link">Acesso Privado</a>
+        &copy; 2026 CIDADE DO BERÇO &bull; GUIMARÃES, PORTUGAL<br><br>
+        <a href="/admin/" class="admin-link">CURATOR ACCESS</a>
     </footer>
 
     <script>
-        let allBusinesses = [];
+        let allItems = [];
 
-        // Este script mantém o funcionamento da listagem, apenas mudamos os placeholders para imagens chiques
-        async function loadBusinesses() {
-            const resultsDiv = document.getElementById('results');
+        // Dicionário de Sinónimos para pesquisa inteligente
+        const synonyms = {
+            "lanchar": ["café", "cafetaria", "pastelaria", "padaria", "lanche", "doce"],
+            "comer": ["restaurante", "jantar", "almoço", "gastronomia", "comida"],
+            "beber": ["bar", "cocktail", "vinhos", "pub", "noite"],
+            "dormir": ["hotel", "alojamento", "pousada", "turismo"]
+        };
 
+        // Função para remover acentos
+        const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+        async function load() {
             try {
-                const response = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
-                const files = await response.json();
-
-                if (!Array.isArray(files)) throw new Error();
-
-                const entries = [];
-                for (let file of files) {
-                    if (file.name.endsWith('.md')) {
-                        const res = await fetch(file.download_url);
-                        const text = await res.text();
+                const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
+                const files = await res.json();
+                
+                for (let f of files) {
+                    if (f.name.endsWith('.md')) {
+                        const r = await fetch(f.download_url);
+                        const t = await r.text();
                         
-                        const titleMatch = text.match(/title:\s*"(.*)"/) || text.match(/title:\s*(.*)/);
-                        const catMatch = text.match(/category:\s*"(.*)"/) || text.match(/category:\s*(.*)/);
-                        const addrMatch = text.match(/address:\s*"(.*)"/) || text.match(/address:\s*(.*)/);
-                        const imgMatch = text.match(/image:\s*"(.*)"/) || text.match(/image:\s*(.*)/);
+                        const get = (regex, def) => {
+                            const m = t.match(regex);
+                            return m ? m[1].replace(/"/g,'').trim() : def;
+                        };
 
-                        entries.push({
-                            title: titleMatch ? titleMatch[1].replace(/"/g, '') : "Curadoria Exclusiva",
-                            category: catMatch ? catMatch[1].replace(/"/g, '') : "Seleção Ouro",
-                            address: addrMatch ? addrMatch[1].replace(/"/g, '') : "Guimarães",
-                            // Placeholder chique: Interior de luxo
-                            image: imgMatch ? imgMatch[1].replace(/"/g, '') : "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800"
+                        allItems.push({
+                            title: get(/title:\s*(.*)/, "Untitled"),
+                            category: get(/category:\s*(.*)/, "General"),
+                            image: get(/image:\s*(.*)/, "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"),
+                            address: get(/address:\s*(.*)/, "Guimarães, PT")
                         });
                     }
                 }
-                allBusinesses = entries;
-                displayBusinesses(allBusinesses);
-            } catch (e) {
-                resultsDiv.innerHTML = "<div class='loading'>Inicie a sua curadoria no painel de gestão.</div>";
-            }
+                show(allItems);
+            } catch (e) { console.error(e); }
         }
 
-        function displayBusinesses(list) {
-            const resultsDiv = document.getElementById('results');
-            if (list.length === 0) {
-                resultsDiv.innerHTML = "<div class='loading'>Nenhum resultado de ouro encontrado.</div>";
-                return;
-            }
-            resultsDiv.innerHTML = list.map(b => `
-                <div class="business-card">
-                    <div class="card-img-wrapper">
-                        <img src="${b.image}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800'">
+        function show(list) {
+            const grid = document.getElementById('results');
+            grid.innerHTML = list.map(item => `
+                <div class="curadoria-item">
+                    <div class="img-container">
+                        <img src="${item.image}" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=800'">
                     </div>
-                    <div class="card-content">
-                        <span class="card-tag">${b.category}</span>
-                        <h3 class="card-title">${b.title}</h3>
-                        <div class="card-info">
-                            <span class="card-icon">📍</span> ${b.address}
-                        </div>
-                    </div>
+                    <span class="category">${item.category}</span>
+                    <h2 class="title">${item.title}</h2>
+                    <div class="address">📍 ${item.address}</div>
                 </div>
             `).join('');
         }
 
-        function filterBusinesses() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allBusinesses.filter(b => 
-                b.title.toLowerCase().includes(term) || 
-                b.category.toLowerCase().includes(term)
-            );
-            displayBusinesses(filtered);
+        function filter() {
+            const query = normalize(document.getElementById('searchInput').value);
+            
+            const filtered = allItems.filter(item => {
+                const title = normalize(item.title);
+                const cat = normalize(item.category);
+                
+                // Verifica título ou categoria diretamente
+                if (title.includes(query) || cat.includes(query)) return true;
+
+                // Verifica sinónimos
+                for (let key in synonyms) {
+                    if (query.includes(key)) {
+                        return synonyms[key].some(s => cat.includes(normalize(s)));
+                    }
+                }
+                return false;
+            });
+            
+            show(filtered);
         }
 
-        window.onload = loadBusinesses;
+        window.onload = load;
     </script>
 </body>
 </html>
