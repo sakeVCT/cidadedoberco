@@ -13,13 +13,9 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{title}}"
-    
-    # Mostra o título e a data de expiração diretamente na lista do telemóvel
     summary: "{{title}} | EXPIRA EM: {{data_premium}}"
-
     editor:
       preview: false
-    
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
@@ -29,4 +25,5 @@ collections:
       - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
       - {label: "Website (URL)", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
-      - {label: "Imagem de Capa", name: "image", widget: "image"}
+      # ALTERADO: required: false permite guardar sem foto
+      - {label: "Imagem de Capa", name: "image", widget: "image", required: false}
