@@ -7,71 +7,78 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #ffffff; --gold: #b38e5d; --dark: #121212; --light-gray: #f2f2f2; }
+        :root { --bg: #ffffff; --gold: #b38e5d; --dark: #121212; --light-gray: #f9f9f9; --border: #eee; }
         
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--dark); }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
 
-        /* Header mais pequeno e elegante */
-        header { padding: 30px 20px 20px; text-align: center; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; margin: 0; letter-spacing: -1px; }
+        /* Header Slim */
+        header { padding: 25px 15px 15px; text-align: center; border-bottom: 1px solid var(--border); background: var(--light-gray); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-transform: uppercase; margin: 0; letter-spacing: -1px; line-height: 1; }
         .logo span { color: var(--gold); }
-        .tagline { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 5px; }
+        .tagline { font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 5px; opacity: 0.8; }
 
-        /* Barra de Busca Slim */
-        .search-area { max-width: 500px; margin: 20px auto 30px; padding: 0 15px; display: flex; }
+        /* Busca Ultra Slim */
+        .search-area { max-width: 400px; margin: 15px auto 25px; padding: 0 15px; display: flex; gap: 5px; }
         #searchInput { 
-            flex: 1; padding: 12px 15px; border: 1px solid #ddd; border-right: none;
-            font-size: 14px; outline: none; border-radius: 4px 0 0 4px;
+            flex: 1; padding: 10px 15px; border: 1px solid #ddd; 
+            font-size: 13px; outline: none; border-radius: 3px; background: #fff;
         }
         .search-btn { 
-            background: var(--gold); color: white; border: none; padding: 0 15px;
-            font-size: 11px; text-transform: uppercase; font-weight: 600; border-radius: 0 4px 4px 0; cursor: pointer;
+            background: var(--dark); color: white; border: none; padding: 0 15px;
+            font-size: 10px; text-transform: uppercase; font-weight: 600; border-radius: 3px; cursor: pointer;
+            transition: 0.3s;
         }
+        .search-btn:hover { background: var(--gold); }
 
-        /* Grelha Compacta (O segredo para ver 5+ negócios) */
-        .container { max-width: 1200px; margin: 0 auto 60px; padding: 0 10px; }
-        #results { 
-            display: grid; 
-            grid-template-columns: repeat(5, 1fr); /* 5 colunas no PC */
-            gap: 20px 15px; 
-        }
-
-        /* Ajuste para Tablets */
-        @media (max-width: 1024px) {
-            #results { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* Ajuste para Telemóveis (Mostra 2 por linha = 4 a 6 visíveis logo) */
-        @media (max-width: 600px) {
-            #results { grid-template-columns: repeat(2, 1fr); gap: 15px 10px; }
-            .logo { font-size: 1.8rem; }
-            header { padding-top: 20px; }
-        }
-
-        .item { text-decoration: none; color: inherit; transition: 0.3s; }
+        /* Lista Compacta */
+        .container { max-width: 800px; margin: 0 auto 50px; padding: 0 10px; }
         
-        .img-box { 
-            aspect-ratio: 1/1; 
-            overflow: hidden; 
-            background: var(--light-gray); 
-            border-radius: 2px; /* Cantos quase retos para ser mais chique */
-            margin-bottom: 10px;
+        #results { display: flex; flex-direction: column; gap: 0; /* Colados para densidade */ }
+
+        .item { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+            color: inherit; 
+            padding: 15px 10px; 
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
         }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .item:hover img { transform: scale(1.08); }
+        .item:hover { background-color: var(--light-gray); }
 
-        .cat { font-size: 0.55rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
-        .name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin: 3px 0; font-weight: 700; line-height: 1.2; }
-        .loc { font-size: 0.7rem; color: #888; display: flex; align-items: center; gap: 3px; }
+        /* Imagem BEM mais pequena */
+        .img-box { 
+            width: 60px; /* Largura fixa e pequena */
+            height: 60px; /* Altura fixa e pequena (Quadrado) */
+            overflow: hidden; 
+            background: #eee; 
+            border-radius: 4px; 
+            margin-right: 15px;
+            flex-shrink: 0; /* Impede a imagem de encolher */
+        }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        footer { padding: 40px 20px; text-align: center; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 1px; color: #aaa; }
+        /* Textos alinhados à direita da foto */
+        .content-box { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+        .cat { font-size: 0.5rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 2px; }
+        .name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin: 0; font-weight: 700; line-height: 1.1; color: var(--dark); }
+        .loc { font-size: 0.65rem; color: #888; margin-top: 3px; display: flex; align-items: center; gap: 3px; }
+
+        @media (max-width: 600px) {
+            .name { font-size: 1.1rem; }
+            .img-box { width: 50px; height: 50px; margin-right: 12px; } /* Ainda mais pequenas no mobile */
+            header { padding-top: 15px; }
+        }
+
+        footer { padding: 30px 20px; text-align: center; border-top: 1px solid var(--border); font-size: 9px; letter-spacing: 1px; color: #bbb; background: var(--light-gray); }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Cidade do <span>Berço</span></div>
-        <div class="tagline">Guimarães Curated Selection</div>
+        <div class="tagline">Guimarães Curated Directory</div>
     </header>
 
     <div class="search-area">
@@ -85,7 +92,7 @@
     </div>
 
     <footer>
-        &copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit; text-decoration:none;">ADMIN</a>
+        &copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit; text-decoration:none;">GESTÃO</a>
     </footer>
 
     <script>
@@ -97,14 +104,14 @@
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await res.json();
                 for (let f of files) {
-                    if (f.name.endsWith('.md')) {
+                    if (f.name && f.name.endsWith('.md')) {
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         const get = (re) => { const m = t.match(re); return m ? m[1].replace(/"/g,'').trim() : ""; };
                         allData.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             category: get(/category:\s*(.*)/) || "Geral",
-                            image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400",
+                            image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=100",
                             address: get(/address:\s*(.*)/) || "Guimarães"
                         });
                     }
@@ -117,11 +124,13 @@
             document.getElementById('results').innerHTML = list.map(item => `
                 <div class="item">
                     <div class="img-box">
-                        <img src="${item.image}" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=400'">
+                        <img src="${item.image}" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=100'">
                     </div>
-                    <span class="cat">${item.category}</span>
-                    <h2 class="name">${item.title}</h2>
-                    <div class="loc">📍 ${item.address}</div>
+                    <div class="content-box">
+                        <span class="cat">${item.category}</span>
+                        <h2 class="name">${item.title}</h2>
+                        <div class="loc">📍 ${item.address}</div>
+                    </div>
                 </div>
             `).join('');
         }
