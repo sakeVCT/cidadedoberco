@@ -1,38 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Cidade do Berço</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
-  
-  <style>
-    /* Algumas correções extra para o teu caso específico */
-    .nc-app-container { min-height: 100vh !important; }
-    /* Aumenta o tamanho dos inputs no telemóvel para ser mais fácil clicar */
-    input, select, textarea { font-size: 16px !important; }
-  </style>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script>
-    // Garante que o CMS usa o domínio oficial para o login
-    if (window.location.hostname === 'cidadedoberco.netlify.app' || window.location.hostname === 'cidadedoberco.pt') {
-      localStorage.setItem('netlifySiteURL', 'https://cidadedoberco.pt');
-    }
-  </script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+  site_domain: cidadedoberco.pt
 
-### O que muda agora:
-1.  **Botões Maiores:** Já não precisas de "fazer pontaria" para clicar em publicar.
-2.  **Menu Inteligente:** No telemóvel, o menu lateral esconde-se para te dar espaço para escrever.
-3.  **Formulários Fluídos:** Os campos de "Nome da Empresa", "Morada", etc., vão ocupar a largura toda do ecrã.
-4.  **Pré-visualização:** Se quiseres ver como está a ficar, ela aparecerá de forma organizada por baixo do formulário.
+show_preview_links: false # Remove links desnecessários
 
-**Dica:** Depois de guardares no GitHub, espera 1 minuto e abre o `cidadedoberco.pt/admin` no teu telemóvel. Vais notar logo a diferença na facilidade de uso!
+media_folder: "public/images"
+public_folder: "/images"
 
-A tua apresentação sobre esta melhoria também está pronta ali em cima. Alguma outra funcionalidade que queiras ajustar?
+collections:
+  - name: "empresas"
+    label: "Empresas"
+    folder: "content/empresas"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false # Desativa a pré-visualização para ganhar espaço no telemóvel
+    fields:
+      - { label: "Nome da Empresa", name: "title", widget: "string" }
+      - { label: "Descrição", name: "body", widget: "markdown" }
+      - { label: "Categoria", name: "category", widget: "select", options: ["Restauração", "Serviços", "Comércio", "Saúde", "Lazer", "Outros"] }
+      - { label: "Imagem (Logótipo/Foto)", name: "image", widget: "image", required: false }
+      - { label: "Telefone", name: "phone", widget: "string", required: false }
+      - { label: "Morada", name: "address", widget: "string", required: false }
+      - { label: "Website/Redes Sociais", name: "website", widget: "string", required: false }
