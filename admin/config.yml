@@ -14,7 +14,8 @@ collections:
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
-      - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false, hint: "Ative para destacar no topo com selo Diamond"}
+      - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
       - {label: "Imagem", name: "image", widget: "image"}
       - {label: "Morada", name: "address", widget: "string"}
       - {label: "Corpo do Texto", name: "body", widget: "markdown"}
+      
