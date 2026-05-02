@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço - Diretório</title>
+    <title>Cidade do Berço | Diretório de Empresas</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        .btn-admin { background: #ff007f; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
+        :root { --primary: #001b3a; --secondary: #39CCCC; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #f4f7f6; color: var(--primary); }
+        .hero { text-align: center; padding: 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; color: #666; }
+        .search-box { margin-top: 30px; width: 90%; max-width: 500px; display: flex; }
+        input { flex: 1; padding: 12px; border: 2px solid var(--primary); border-radius: 5px 0 0 5px; outline: none; }
+        button { padding: 12px 20px; background: var(--primary); color: white; border: none; border-radius: 0 5px 5px 0; cursor: pointer; }
+        
+        /* Rodapé com link discreto para ti */
+        footer { position: absolute; bottom: 20px; font-size: 0.8rem; }
+        footer a { color: #ccc; text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>Bem-vindo à Cidade do Berço</h1>
-    <p>O teu diretório de empresas locais.</p>
-    
-    <a href="/admin/" class="btn-admin">Entrar no Painel de Gestão</a>
+
+    <div class="hero">
+        <h1>Cidade do Berço</h1>
+        <p>Encontre os melhores negócios e serviços em Guimarães.</p>
+        
+        <div class="search-box">
+            <input type="text" placeholder="O que procura? (ex: Restaurantes)">
+            <button>Buscar</button>
+        </div>
+    </div>
+
+    <footer>
+        <a href="/admin/">Acesso Reservado</a>
+    </footer>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>
