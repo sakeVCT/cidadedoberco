@@ -3,32 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Top GUIMARÃES</title>
+    <title>Cidade do Berço | Top 2026</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #ffffff; --gold: #b38e5d; --dark: #000000; --elite: #fdfaf3; --border: #eee; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
 
-        /* Header Estilo Editorial */
         header { padding: 40px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
         .logo span { color: var(--gold); }
         .tagline { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
 
-        /* Barra de Pesquisa de Alta Performance */
         .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
         .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
-        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; font-family: 'Plus Jakarta Sans'; }
+        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; font-family: 'Plus Jakarta Sans'; width: 100%; }
         .search-btn { background: var(--gold); color: white; border: none; padding: 0 25px; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; cursor: pointer; }
 
-        /* Lista de Ranking */
         .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
         .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: #999; margin-bottom: 20px; font-weight: 700; text-align: center; }
         
         #results { display: flex; flex-direction: column; gap: 0; }
 
-        /* Item Premium */
         .item { display: flex; align-items: center; text-decoration: none; color: inherit; padding: 15px; border-bottom: 1px solid var(--border); transition: 0.3s; background: white; }
         .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 15px; margin-bottom: 3px; }
         .item:hover { transform: translateX(5px); }
@@ -55,15 +51,15 @@
 
     <div class="search-container">
         <form class="search-wrapper" onsubmit="event.preventDefault(); executeSearch();">
-            <input type="search" id="searchInput" placeholder="O que deseja pesquisar em Guimarães?" autocomplete="off">
+            <input type="search" id="searchInput" placeholder="O que deseja pesquisar?" autocomplete="off">
             <button type="submit" class="search-btn">PESQUISAR</button>
         </form>
     </div>
 
     <div class="container">
-        <div class="section-title">Resultados da Curadoria</div>
+        <div class="section-title" id="displayTitle">Diamond Selection & Rankings</div>
         <div id="results">
-            <p style="text-align:center; padding: 50px; opacity: 0.5;">A carregar base de dados...</p>
+            <p style="text-align:center; padding: 50px; opacity: 0.5;">A carregar curadoria...</p>
         </div>
     </div>
 
@@ -74,14 +70,6 @@
     <script>
         let database = [];
         const normalize = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-
-        // Sinónimos para busca inteligente
-        const searchCloud = {
-            "lanchar": ["cafe", "doce", "pastelaria", "padaria"],
-            "comer": ["restaurante", "almoco", "jantar", "gastronomia"],
-            "beber": ["bar", "noite", "cocktail", "vinho"],
-            "dormir": ["hotel", "quarto", "alojamento"]
-        };
 
         async function loadData() {
             try {
@@ -103,15 +91,29 @@
                         });
                     }
                 }
-                database = items.sort((a, b) => b.premium - a.premium);
-                render(database);
+                database = items;
+                initialShuffle();
             } catch (e) { console.error(e); }
+        }
+
+        // Função para mostrar 5 Premium aleatórios + o resto ao abrir
+        function initialShuffle() {
+            const premiumOnes = database.filter(i => i.premium).sort(() => 0.5 - Math.random());
+            const normalOnes = database.filter(i => !i.premium);
+            
+            // Seleciona apenas os primeiros 5 premium baralhados
+            const selectedPremium = premiumOnes.slice(0, 5);
+            
+            // Junta os 5 escolhidos com todos os outros (premium não escolhidos e normais)
+            const others = [...premiumOnes.slice(5), ...normalOnes];
+            
+            render([...selectedPremium, ...others]);
         }
 
         function render(list) {
             const container = document.getElementById('results');
             if(list.length === 0) {
-                container.innerHTML = "<div style='text-align:center; padding:50px;'>Nenhum resultado encontrado para a sua pesquisa.</div>";
+                container.innerHTML = "<div style='text-align:center; padding:50px;'>Sem resultados.</div>";
                 return;
             }
             container.innerHTML = list.map(item => `
@@ -130,22 +132,16 @@
 
         function executeSearch() {
             const query = normalize(document.getElementById('searchInput').value);
-            if(!query) { render(database); return; }
+            if(!query) { initialShuffle(); return; }
 
             const filtered = database.filter(item => {
                 const text = normalize(item.title + " " + item.category);
-                if(text.includes(query)) return true;
-                
-                // Checa sinónimos
-                for(let key in searchCloud) {
-                    if(query.includes(key) && searchCloud[key].some(s => normalize(item.category).includes(s))) return true;
-                }
-                return false;
+                return text.includes(query);
             });
 
+            // Na pesquisa, mostramos todos os premium que batem com a busca primeiro
             render(filtered.sort((a, b) => b.premium - a.premium));
-            // Scroll suave para os resultados no mobile
-            window.scrollTo({ top: 250, behavior: 'smooth' });
+            document.getElementById('displayTitle').innerText = "Resultados da Pesquisa";
         }
 
         window.onload = loadData;
