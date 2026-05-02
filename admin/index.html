@@ -6,57 +6,53 @@
   <title>Gestão | Cidade do Berço</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* 1. RESET ABSOLUTO */
-    body { margin: 0 !important; padding: 0 !important; background: #f4f4f9 !important; width: 100% !important; overflow-x: hidden !important; }
+    /* 1. LIMPEZA TOTAL DE MARGENS */
+    body { margin: 0 !important; padding: 0 !important; background: #f4f4f9 !important; width: 100% !important; }
     
-    /* Esconder barra lateral e preview */
+    /* Remover barra lateral e preview */
     aside, [class*="SidebarContainer"], [class*="Pane2"] { display: none !important; }
 
-    /* 2. FORÇAR CONTEÚDO AO CENTRO E LARGURA TOTAL */
-    main, [class*="MainViewContainer"], [class*="CollectionMain"], div[class*="AppCardContainer"] {
+    /* 2. CORREÇÃO DO ALINHAMENTO (O PONTO CRÍTICO) */
+    /* Removemos o 'left' e as margens que empurram o conteúdo para a direita */
+    main, 
+    [class*="MainViewContainer"], 
+    [class*="CollectionMain"], 
+    div[class*="AppCardContainer"],
+    [class*="CollectionHeader"] {
       width: 100% !important;
       max-width: 100% !important;
       left: 0 !important;
-      margin: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
       padding: 10px !important;
       position: relative !important;
-      display: block !important;
-      box-shadow: none !important;
+      transform: none !important;
     }
 
-    /* 3. FORMATAR A LISTA (ONDE ESTÁ O "TESTÉ") */
-    /* Faz o card ocupar a largura toda com aspeto limpo */
-    [class*="CollectionCard"] {
-      width: 100% !important;
-      margin: 10px 0 !important;
-      padding: 20px !important;
-      border-radius: 8px !important;
-      border: 1px solid #ddd !important;
-      background: #fff !important;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
-    }
-
-    /* 4. AJUSTE DO TOPO (BOTÃO NEW EMPRESAS E BUSCA) */
-    [class*="CollectionTop"] {
-      padding: 0 !important;
-      margin-bottom: 20px !important;
-      display: block !important;
-    }
-    
-    /* Botão New Empresas largo para o dedo */
+    /* 3. FORMATAR OS CARDS (BOTÃO E LISTA) */
+    /* Botão "New Empresas" */
     a[class*="Button"] {
-      display: block !important;
       width: 100% !important;
+      display: block !important;
       text-align: center !important;
-      margin-bottom: 15px !important;
-      padding: 12px !important;
+      margin: 10px 0 !important;
+      box-sizing: border-box !important;
     }
 
-    /* 5. EDITOR (DENTRO DA EMPRESA) */
-    [class*="Pane1"] { width: 100% !important; padding: 10px !important; }
-    
-    /* Esconder textos irrelevantes no mobile */
-    [class*="CollectionHeaderTitle"] { font-size: 1.5rem !important; margin: 10px 0 !important; }
+    /* Card da Empresa (ex: Testé) */
+    [class*="CollectionCard"] {
+      width: calc(100% - 20px) !important; /* Ocupa a largura quase toda com margem pequena */
+      margin: 10px auto !important;
+      padding: 15px !important;
+      left: 0 !important;
+      display: block !important;
+      border: 1px solid #ddd !important;
+      background: white !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Ajuste da barra de topo (Contents / Media) */
+    header { width: 100% !important; left: 0 !important; position: relative !important; }
   </style>
 </head>
 <body>
