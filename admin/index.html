@@ -3,11 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Cidade do Berço</title>
+  <title>Painel de Gestão | Cidade do Berço</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.min.css">
+  <style>
+    /* Forçar layout vertical no telemóvel */
+    [class^="Pane2"] { display: none !important; } /* Esconde a pré-visualização que rouba espaço */
+    [class^="Pane1"] { width: 100% !important; padding: 10px !important; }
+    
+    /* Tornar os campos mais bonitos */
+    .nc-controlPane-widget {
+      margin-bottom: 20px !important;
+      border: none !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    }
+    
+    /* Botões mais visíveis */
+    button { border-radius: 4px !important; text-transform: uppercase !important; font-weight: bold !important; }
+    
+    /* Ajuste de largura total */
+    div[class*="AppCardContainer"] {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </body>
 </html>
