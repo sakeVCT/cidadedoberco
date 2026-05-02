@@ -13,20 +13,42 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{title}}"
-    
-    # O resumo agora é simples. Se escreveres a data no campo, ela aparece. 
-    # Se apagares o texto, ela desaparece da lista.
     summary: "{{title}} | {{data_premium}}"
-
     editor:
       preview: false
-    
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
-      - {label: "Categoria", name: "category", widget: "string"}
+      
+      - label: "Categorias"
+        name: "category"
+        widget: "select"
+        multiple: true
+        options:
+          - "Restaurantes"
+          - "Pastelaria & Café"
+          - "Tasca Típica"
+          - "Bares & Vida Noturna"
+          - "Moda & Acessórios"
+          - "Artesanato"
+          - "Cabeleireiro & Estética"
+          - "Oficina Mecânica"
+          - "Transportes"
+          - "Saúde & Bem-Estar"
+          - "Alojamento Local"
+          - "Hotéis"
+          - "Imobiliária"
+          - "Outros"
+
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      # MUDANÇA AQUI: Agora é um campo de texto (string) para que possas apagar facilmente no teclado do telemóvel
-      - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Exemplo: 2026-05-20. DEIXA VAZIO para empresas normais."}
+      
+      - label: "Data de Expiração (OBRIGATÓRIO PARA PREMIUM)"
+        name: "data_premium"
+        widget: "string"
+        required: false
+        hint: "⚠️ SE FOR PREMIUM: Coloque a data (Ex: 2026-12-31). SE NÃO FOR: Deixe vazio ou o site dará erro de destaque."
+        # Esta linha abaixo ajuda a garantir que se escreveres algo, tem de ser uma data válida
+        pattern: ['^\d{4}-\d{2}-\d{2}$', "Use o formato AAAA-MM-DD (ex: 2026-05-20) ou deixe vazio"]
+
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email", name: "email_cliente", widget: "string", required: false}
       - {label: "Website", name: "website", widget: "string", required: false}
