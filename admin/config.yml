@@ -19,30 +19,8 @@ collections:
     fields:
       - {label: "Título da Empresa", name: "title", widget: "string"}
       
-      # AGORA PERMITE MÚLTIPLAS:
-      - label: "Categorias"
-        name: "category"
-        widget: "list"
-        summary: "{{fields.category_item}}"
-        field: 
-          label: "Escolha uma Categoria"
-          name: "category_item"
-          widget: "select"
-          options:
-            - "Restaurantes"
-            - "Pastelaria & Café"
-            - "Tasca Típica"
-            - "Bares & Vida Noturna"
-            - "Moda & Acessórios"
-            - "Artesanato"
-            - "Cabeleireiro & Estética"
-            - "Oficina Mecânica"
-            - "Transportes"
-            - "Saúde & Bem-Estar"
-            - "Alojamento Local"
-            - "Hotéis"
-            - "Imobiliária"
-            - "Outros"
+      # Mudámos para 'string' (texto). Se quiseres várias, escreve: Restaurante, Bar
+      - {label: "Categorias (separe por vírgula)", name: "category", widget: "string", hint: "Ex: Restaurantes, Café, Tradicional"}
 
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
       - {label: "Expira em (ANO-MES-DIA)", name: "data_premium", widget: "string", required: false, hint: "Ex: 2026-05-20"}
