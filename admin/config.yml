@@ -5,7 +5,6 @@ backend:
 media_folder: "static/images"
 public_folder: "/images"
 
-# Esta opção ajuda a evitar problemas de bloqueio de edição
 publish_mode: simple
 
 collections:
@@ -13,7 +12,6 @@ collections:
     label: "Empresas"
     folder: "content/empresas"
     create: true
-    # Alteração aqui: removi complexidade para garantir que ele sobrescreva o ficheiro
     slug: "{{slug}}"
     editor:
       preview: false
@@ -27,4 +25,3 @@ collections:
       - {label: "Website (URL)", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
       - {label: "Imagem de Capa", name: "image", widget: "image"}
-      - {label: "Descrição (Body)", name: "body", widget: "markdown", required: false}
