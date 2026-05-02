@@ -2,8 +2,8 @@ backend:
   name: github
   repo: sakevct/cidadedoberco
   branch: main
-  
-  media_folder: "assets/images/uploads"
+
+media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
 collections:
@@ -21,3 +21,4 @@ collections:
       - {label: "Website Oficial", name: "website", widget: "string"}
       - {label: "Imagem de Destaque", name: "image", widget: "image"}
       - {label: "Descrição Premium", name: "body", widget: "markdown"}
+      
