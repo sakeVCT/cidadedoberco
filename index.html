@@ -3,213 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cidade do Berço | Business Directory</title>
+    <title>Cidade do Berço | Top 2026</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { 
-            --bg: #ffffff; 
-            --card-bg: #ffffff;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
-            --accent: #2d3436; /* Cinza Ardósia Profissional */
-            --premium-soft: #fcfaf7;
-            --border: #f0f0f0;
-        }
+        :root { --bg: #ffffff; --gold: #b38e5d; --dark: #000000; --elite: #fdfaf3; --border: #eee; }
         
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body { 
+        html, body { 
             margin: 0; 
-            font-family: 'Inter', sans-serif; 
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             background: var(--bg); 
-            color: var(--text-main); 
-            -webkit-font-smoothing: antialiased;
+            color: var(--dark); 
         }
 
-        /* HEADER PROFISSIONAL */
-        header { 
-            padding: 50px 20px 30px; 
-            text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto;
-        }
-        .logo { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-        .logo span { color: #8e735b; } /* Tom bronze discreto */
-        .tagline { 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            color: var(--text-muted); 
-            margin-top: 10px;
-            font-weight: 400;
-        }
-
-        /* PESQUISA INTEGRADA */
-        .search-container { 
-            max-width: 700px; 
-            margin: 0 auto 40px; 
-            padding: 0 20px;
-        }
-        .search-wrapper { 
-            display: flex; 
-            align-items: center;
-            border-bottom: 2px solid var(--border);
-            padding: 10px 0;
-            transition: border-color 0.3s;
-        }
-        .search-wrapper:focus-within { border-color: var(--accent); }
-        #searchInput { 
-            flex: 1; 
-            border: none; 
-            padding: 10px; 
-            font-size: 16px; 
-            outline: none; 
-            background: transparent;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* FILTROS MINIMALISTAS */
+        header { padding: 30px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        .logo span { color: var(--gold); }
+        .tagline { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 8px; font-weight: 700; }
+        
+        .search-container { max-width: 600px; margin: -25px auto 20px; padding: 0 15px; position: relative; z-index: 10; }
+        .search-wrapper { display: flex; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
+        #searchInput { flex: 1; border: none; padding: 15px; font-size: 15px; outline: none; width: 100%; }
+        
+        /* FILTROS: Pequenos e com Efeito de Deslizar */
         .filters { 
             display: flex; 
-            gap: 15px; 
+            gap: 8px; 
             overflow-x: auto; 
-            padding: 20px 0; 
-            scrollbar-width: none;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 12px 20px; 
+            margin-top: 2px;
+            scrollbar-width: none; 
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            box-sizing: border-box;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
         .filters::-webkit-scrollbar { display: none; }
 
         .filter-btn { 
-            padding: 5px 0;
-            background: transparent; 
-            border: none;
-            border-bottom: 2px solid transparent;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
+            padding: 6px 14px;
+            background: #f4f4f4; 
+            border: 1px solid #ddd; 
+            border-radius: 15px;
+            font-size: 9px;
+            text-transform: uppercase; 
+            font-weight: 700; 
+            cursor: pointer; 
             white-space: nowrap; 
             flex-shrink: 0; 
-            cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.2s ease;
         }
-        .filter-btn.active { 
-            color: var(--text-main);
-            border-bottom-color: var(--accent);
-        }
+        .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
 
-        /* LISTA DE EMPRESAS */
-        .container { max-width: 700px; margin: 0 auto 80px; padding: 0 20px; }
+        .container { max-width: 750px; margin: 0 auto 60px; padding: 0 15px; width: 100%; box-sizing: border-box; }
+        .item { display: flex; align-items: center; padding: 18px 15px; border-bottom: 1px solid var(--border); background: white; gap: 15px; }
+        .item.premium-active { background: var(--elite); border-left: 4px solid var(--gold); }
         
-        .item { 
-            display: flex; 
-            padding: 30px 0; 
-            border-bottom: 1px solid var(--border);
-            gap: 25px;
-            transition: opacity 0.3s;
-        }
-        .item.premium-active {
-            /* Destaque premium é apenas um fundo muito suave */
-            background-color: var(--premium-soft);
-            margin-left: -20px;
-            margin-right: -20px;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .img-box { 
-            width: 80px; height: 80px; 
-            border-radius: 4px; 
-            overflow: hidden; 
-            flex-shrink: 0; 
-            background: #f9f9f9;
-            border: 1px solid #f0f0f0;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .img-box { width: 65px; height: 65px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #f0f0f0; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 24px; }
+        .premium-active .img-box { width: 85px; height: 85px; border-radius: 12px; border: 1.5px solid var(--gold); background: #fffaf0; color: var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .img-box i { font-size: 20px; color: #ddd; }
-
-        .info { flex: 1; min-width: 0; }
-        .premium-tag { 
-            font-size: 9px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            color: #8e735b;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .item-title { 
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem; 
-            font-weight: 700; 
-            margin: 0 0 5px 0; 
-            color: var(--text-main);
-        }
-        .item-meta {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
         
-        .item-details { 
-            font-size: 0.85rem; 
-            color: var(--text-muted); 
-            display: flex; flex-direction: column; gap: 6px;
-        }
-        .item-details span { display: flex; align-items: center; gap: 8px; }
-        .item-details i { font-size: 12px; width: 14px; color: #ccc; }
-
-        /* CONTACTOS DISCRETOS */
-        .actions { 
-            display: flex; 
-            gap: 15px; 
-            margin-top: 20px;
-        }
-        .btn-link { 
-            text-decoration: none; 
-            font-size: 11px; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            display: flex; align-items: center; gap: 5px;
-        }
-        .btn-link i { font-size: 14px; }
-        .btn-link.wa { color: #27ae60; }
-
-        footer { text-align: center; padding: 60px 20px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
+        .info { flex: 1; min-width: 0; }
+        .status { font-size: 8px; text-transform: uppercase; color: var(--gold); font-weight: 800; display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+        
+        /* Título em Garamond - O visual original */
+        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0 0 8px 0; font-weight: 700; line-height: 1.1; word-wrap: break-word; }
+        
+        .item-details { font-size: 0.75rem; color: #666; display: flex; flex-direction: column; gap: 4px; }
+        .item-details span, .item-details a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+        .item-details i { color: var(--gold); width: 14px; text-align: center; }
+        
+        .contact-area { display: flex; flex-direction: column; gap: 10px; }
+        .contact-btn { color: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; }
+        .contact-btn.call { background: var(--gold); }
+        .contact-btn.whatsapp { background: #25d366; }
+        
+        footer { padding: 40px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 9px; letter-spacing: 2px; color: #aaa; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Cidade do <span>Berço</span></div>
-        <div class="tagline">The Guimarães Directory</div>
-    </header>
+    <header><div class="logo">Cidade do <span>Berço</span></div><div class="tagline">O Ranking Exclusivo</div></header>
     
     <div class="search-container">
-        <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass" style="color: #ccc; font-size: 14px;"></i>
-            <input type="search" id="searchInput" placeholder="Pesquisar por nome ou setor..." oninput="executeSearch()">
-        </div>
+        <form class="search-wrapper" onsubmit="event.preventDefault();">
+            <input type="search" id="searchInput" placeholder="Pesquisar..." oninput="executeSearch()">
+        </form>
         <div class="filters" id="categoryFilters"></div>
     </div>
 
-    <div class="container" id="results"></div>
+    <div class="container">
+        <div id="results"></div>
+    </div>
 
-    <footer>&copy; 2026 Guimarães Business Bureau</footer>
+    <footer>&copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit">ADMIN</a></footer>
 
     <script>
         let database = [];
@@ -227,17 +118,21 @@
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         const get = (re) => { const m = t.match(re); return m ? m[1].replace(/["']/g, '').trim() : ""; };
+                        
                         const catRaw = get(/category:\s*(.*)/) || "Geral";
                         const catsArray = catRaw.split(',').map(c => c.trim());
                         catsArray.forEach(c => { if(c) categories.add(c) });
+
                         let imgPath = get(/image:\s*(.*)/);
                         if (imgPath) imgPath = imgPath.replace(/^\.?\//, '');
+
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             categories: catsArray,
                             image: imgPath,
                             whatsapp: get(/whatsapp:\s*(.*)/),
                             address: get(/address:\s*(.*)/),
+                            email_cliente: get(/email_cliente:\s*(.*)/),
                             website: get(/website:\s*(.*)/),
                             data_premium: get(/data_premium:\s*(.*)/),
                             premium: t.includes('premium: true') || t.includes('premium: "true"')
@@ -267,39 +162,45 @@
             const hoje = new Date();
             hoje.setHours(0,0,0,0);
 
-            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px; color:#999; font-size:13px;'>Sem resultados para a sua pesquisa.</p>" : 
+            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px; color:#999'>Sem resultados.</p>" : 
                 list.map(item => {
                     let isPremiumReal = false;
                     if (item.premium === true || item.premium === "true") {
                         isPremiumReal = true;
                         if (item.data_premium && item.data_premium.includes('-')) {
                             const partes = item.data_premium.split('-');
-                            const exp = new Date(partes[2], partes[1] - 1, partes[0]);
-                            if (!isNaN(exp.getTime()) && exp < hoje) isPremiumReal = false;
+                            if (partes.length === 3) {
+                                // Conversor DD-MM-AAAA (Mantido)
+                                const exp = new Date(partes[2], partes[1] - 1, partes[0]);
+                                if (!isNaN(exp.getTime())) {
+                                    exp.setHours(0,0,0,0);
+                                    if (exp < hoje) isPremiumReal = false;
+                                }
+                            }
                         }
                     }
 
+                    const fotoHtml = item.image 
+                        ? `<img src="${item.image}" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-shop\'></i>'">`
+                        : `<i class="fa-solid fa-shop"></i>`;
+
                     return `
                     <div class="item ${isPremiumReal ? 'premium-active' : ''}">
-                        <div class="img-box">
-                            ${item.image ? `<img src="${item.image}">` : `<i class="fa-solid fa-shop"></i>`}
-                        </div>
+                        <div class="img-box">${fotoHtml}</div>
                         <div class="info">
-                            ${isPremiumReal ? `<span class="premium-tag">Destaque Editorial</span>` : ''}
+                            ${isPremiumReal ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
                             <h2 class="item-title">${item.title}</h2>
-                            <div class="item-meta">${item.categories.join(' &nbsp;•&nbsp; ')}</div>
-                            
                             <div class="item-details">
                                 ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
-                                ${item.website ? `<span><i class="fa-solid fa-arrow-up-right-from-square"></i> Consultar Website</span>` : ''}
+                                ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
+                                ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>` : ''}
                             </div>
-
-                            ${isPremiumReal && item.whatsapp ? `
-                            <div class="actions">
-                                <a href="tel:+351${item.whatsapp}" class="btn-link"><i class="fa-solid fa-phone"></i> Ligar</a>
-                                <a href="https://wa.me/351${item.whatsapp}" class="btn-link wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                            </div>` : ''}
                         </div>
+                        ${(isPremiumReal && item.whatsapp) ? `
+                        <div class="contact-area">
+                            <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
+                            <a href="https://wa.me/351${item.whatsapp}" class="contact-btn whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>` : ''}
                     </div>
                     `;
                 }).join('');
@@ -310,7 +211,11 @@
             let filtered = database;
             if (currentCat !== "Todas") filtered = filtered.filter(i => i.categories.includes(currentCat));
             if (query) filtered = filtered.filter(i => normalize(i.title + i.categories.join(' ') + i.address).includes(query));
-            render(filtered.sort((a, b) => (b.premium === true) - (a.premium === true)));
+            render(filtered.sort((a, b) => {
+                const aP = a.premium === true || a.premium === "true";
+                const bP = b.premium === true || b.premium === "true";
+                return bP - aP;
+            }));
         }
         window.onload = loadData;
     </script>
