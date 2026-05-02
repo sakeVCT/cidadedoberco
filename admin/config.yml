@@ -11,14 +11,14 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{slug}}"
-    summary: "{{data_pagamento}} — {{title}}"
+    summary: "{{data_premium}} — {{title}}" # Mostra a data do premium no resumo
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Data de Inscrição", name: "data_pagamento", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false}
+      - {label: "Início do Premium (Data)", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false, hint: "Ex: 912345678"}
-      - {label: "Email do Cliente (Optional)", name: "email_cliente", widget: "string", required: false}
+      - {label: "Email do Cliente (Opcional)", name: "email_cliente", widget: "string", required: false}
       - {label: "Imagem", name: "image", widget: "image"}
       - {label: "Morada", name: "address", widget: "string"}
       - {label: "Corpo do Texto", name: "body", widget: "markdown", required: false}
