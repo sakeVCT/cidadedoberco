@@ -137,8 +137,8 @@
                         <h2 class="item-title">${item.title}</h2>
                         <div class="item-details">
                             ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
-                            ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Visitar Website</a>` : ''}
                             ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
+                            ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Visitar Website</a>` : ''}
                         </div>
                     </div>
                     ${item.whatsapp ? `<div class="contact-area">
