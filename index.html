@@ -3,36 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço - Guia de Empresas</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>Cidade do Berço - Diretório</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
-        .container { text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 400px; }
-        h1 { color: #d63384; margin-bottom: 10px; }
-        p { color: #555; line-height: 1.6; }
-        .btn-admin { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #d63384; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .btn-admin { background: #ff007f; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cidade do Berço</h1>
-        <p>O teu guia de empresas de Guimarães está a chegar.</p>
-        <a href="/admin/" class="btn-admin">Entrar no Painel</a>
-    </div>
-
-    <script>
-      // Este script inicializa o Identity mas NÃO te redireciona automaticamente
-      // para evitar o erro do domínio .pt enquanto o DNS não espalha.
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              // Apenas recarrega a página para validar o login
-              document.location.reload();
-            });
-          }
-        });
-      }
-    </script>
+    <h1>Bem-vindo à Cidade do Berço</h1>
+    <p>O teu diretório de empresas locais.</p>
+    
+    <a href="/admin/" class="btn-admin">Entrar no Painel de Gestão</a>
 </body>
 </html>
