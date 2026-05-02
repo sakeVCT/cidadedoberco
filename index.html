@@ -14,27 +14,41 @@
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
         .logo span { color: var(--gold); }
         .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
+        
         .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
         .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
         #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; width: 100%; }
+        
         .filters { display: flex; gap: 10px; overflow-x: auto; padding: 15px 0; margin-top: 10px; scrollbar-width: none; }
         .filter-btn { padding: 8px 18px; background: #f4f4f4; border: 1px solid #ddd; border-radius: 20px; font-size: 11px; text-transform: uppercase; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
+
         .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
-        .item { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; }
-        .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 15px; }
+        .item { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; gap: 15px; }
+        .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 20px; }
+        
         .item.premium::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-25deg); animation: shine 4s infinite; }
         @keyframes shine { 0% { left: -100%; } 20% { left: 150%; } 100% { left: 150%; } }
-        .img-box { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin-right: 20px; flex-shrink: 0; background: #eee; }
-        .item.premium .img-box { width: 85px; height: 85px; border-radius: 12px; border: 2px solid var(--gold); }
+
+        .img-box { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #eee; }
+        .item.premium .img-box { width: 90px; height: 90px; border-radius: 12px; border: 2px solid var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
         .info { flex: 1; }
         .status { font-size: 9px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; }
+        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; line-height: 1.2; }
         .item.premium .item-title { font-size: 1.6rem; }
-        .contact-area { display: flex; gap: 8px; }
-        .contact-btn { background: #25d366; color: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Novos estilos para morada e email */
+        .item-details { font-size: 0.75rem; color: #666; margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+        .item-details span { display: flex; align-items: center; gap: 6px; }
+        .item-details i { color: var(--gold); width: 12px; text-align: center; font-size: 0.7rem; }
+        .item-cat { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
+
+        .contact-area { display: flex; gap: 8px; flex-shrink: 0; }
+        .contact-btn { background: #25d366; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .contact-btn.call { background: var(--gold); }
+
         footer { padding: 60px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 2px; color: #aaa; }
     </style>
 </head>
@@ -46,10 +60,12 @@
     </div>
     <div class="container"><div id="results"></div></div>
     <footer>&copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit">ADMIN</a></footer>
+
     <script>
         let database = [];
         let currentCat = "Todas";
         const normalize = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+
         async function loadData() {
             try {
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
@@ -61,13 +77,17 @@
                         const r = await fetch(f.download_url);
                         const t = await r.text();
                         const get = (re) => { const m = t.match(re); return m ? m[1].replace(/["']/g, '').trim() : ""; };
+                        
                         const cat = get(/category:\s*(.*)/) || "Geral";
                         categories.add(cat);
+                        
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             category: cat,
                             image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=150",
                             whatsapp: get(/whatsapp:\s*(.*)/),
+                            address: get(/address:\s*(.*)/),
+                            email_cliente: get(/email_cliente:\s*(.*)/),
                             premium: t.includes('premium: true') || t.includes('premium: "true"')
                         });
                     }
@@ -77,26 +97,35 @@
                 executeSearch();
             } catch (e) { console.error(e); }
         }
+
         function renderFilters(cats) {
             const f = document.getElementById('categoryFilters');
             f.innerHTML = `<button class="filter-btn active" onclick="filterByCat('Todas')">Todas</button>` + 
                 cats.sort().map(c => `<button class="filter-btn" onclick="filterByCat('${c}')">${c}</button>`).join('');
         }
+
         function filterByCat(cat) {
             currentCat = cat;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.innerText === cat));
             executeSearch();
         }
+
         function render(list) {
             const container = document.getElementById('results');
             if(list.length === 0) { container.innerHTML = "<p style='text-align:center; padding:50px;'>Sem resultados.</p>"; return; }
+            
             container.innerHTML = list.map(item => `
                 <div class="item ${item.premium ? 'premium' : ''}">
                     <div class="img-box"><img src="${item.image}"></div>
                     <div class="info">
                         ${item.premium ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
+                        <div class="item-cat">${item.category}</div>
                         <h2 class="item-title">${item.title}</h2>
-                        <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600; margin-top:4px;">${item.category}</div>
+                        
+                        <div class="item-details">
+                            ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
+                            ${item.email_cliente ? `<span><i class="fa-solid fa-envelope"></i> ${item.email_cliente}</span>` : ''}
+                        </div>
                     </div>
                     ${item.whatsapp ? `<div class="contact-area">
                         <a href="https://wa.me/351${item.whatsapp}" class="contact-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
@@ -105,11 +134,12 @@
                 </div>
             `).join('');
         }
+
         function executeSearch() {
             const query = normalize(document.getElementById('searchInput').value);
             let filtered = database;
             if (currentCat !== "Todas") filtered = filtered.filter(i => i.category === currentCat);
-            if (query) filtered = filtered.filter(i => normalize(i.title + i.category).includes(query));
+            if (query) filtered = filtered.filter(i => normalize(i.title + i.category + i.address).includes(query));
             render(filtered.sort((a, b) => b.premium - a.premium));
         }
         window.onload = loadData;
