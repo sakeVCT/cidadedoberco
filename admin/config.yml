@@ -1,1 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main
 
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: "empresas"
+    label: "Empresas"
+    folder: "content/empresas"
+    create: true
+    slug: "{{slug}}"
+    # O 'summary' abaixo faz com que a data apareça logo na lista principal
+    summary: "{{title}} — (Pago em: {{data_pagamento}})"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "string"}
+      - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
+      - {label: "Data de Inscrição/Pagamento", name: "data_pagamento", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false}
+      - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - {label: "Morada", name: "address", widget: "string"}
+      - {label: "Corpo do Texto", name: "body", widget: "markdown"}
