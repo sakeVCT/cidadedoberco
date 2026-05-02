@@ -8,9 +8,8 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
   <script>
-    // Se o login não aparecer, este script força a ligação
+    // Este código força o login a encontrar o teu domínio oficial
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
