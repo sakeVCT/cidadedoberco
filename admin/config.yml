@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Cidade do Berço</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    // Este pequeno truque impede que ele salte para o .pt
-    // Se ele detetar que estás no .app, ele "prende-te" aqui
-    if (window.location.hostname === 'cidadedoberco.netlify.app') {
-      localStorage.setItem('netlifySiteURL', 'https://cidadedoberco.netlify.app');
-    }
-  </script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "empresas"
+    label: "Empresas"
+    folder: "content/empresas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nome da Empresa", name: "title", widget: "string" }
+      - { label: "Descrição", name: "body", widget: "markdown" }
+      - { label: "Categoria", name: "category", widget: "select", options: ["Restauração", "Serviços", "Comércio", "Saúde"] }
+      - { label: "Imagem", name: "image", widget: "image", required: false }
+      - { label: "Telefone", name: "phone", widget: "string", required: false }
+      - { label: "Morada", name: "address", widget: "string", required: false }
