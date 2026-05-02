@@ -1,5 +1,5 @@
 ---
-title: Bolama Supermecados
+title: Bolama Supermercados
 category: Supermercados
 premium: false
 data_premium: 2026-05-02
