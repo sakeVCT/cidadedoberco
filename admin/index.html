@@ -9,7 +9,7 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Força o Widget a ligar-se ao teu Netlify
+    // Se o erro persistir, o script abaixo força o login a aparecer
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -19,14 +19,6 @@
         }
       });
     }
-    // Linha de emergência: força o widget a abrir se demorar
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        if (!window.localStorage.getItem('netlify-cms-user')) {
-          window.netlifyIdentity && window.netlifyIdentity.open();
-        }
-      }, 2000);
-    });
   </script>
 </body>
 </html>
