@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: SEU_UTILIZADOR/cidadedoberco.pt
+  repo: sakevct/cidadedoberco.pt
   branch: main
 
 media_folder: "assets/images/uploads"
