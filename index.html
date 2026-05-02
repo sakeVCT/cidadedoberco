@@ -140,7 +140,8 @@
                             ${item.website ? `<a href="${item.website.startsWith('http') ? item.website : 'https://' + item.website}" target="_blank"><i class="fa-solid fa-globe"></i> Website Oficial</a>` : ''}
                         </div>
                     </div>
-                    ${item.whatsapp ? `<div class="contact-area">
+                    ${(item.premium && item.whatsapp) ? `
+                    <div class="contact-area">
                         <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
                         <a href="https://wa.me/351${item.whatsapp}" class="contact-btn whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>` : ''}
