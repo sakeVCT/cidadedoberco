@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GMR City Guide | 2026</title>
+    <title>Cidade do Berço | Business Directory</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { 
-            --bg: #0f1115; 
-            --card: #1a1d23; 
-            --accent: #3b82f6; 
-            --text: #ffffff; 
-            --text-dim: #94a3b8;
-            --premium: #fbbf24;
+            --bg: #ffffff; 
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent: #2d3436; /* Cinza Ardósia Profissional */
+            --premium-soft: #fcfaf7;
+            --border: #f0f0f0;
         }
         
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -23,172 +24,192 @@
             margin: 0; 
             font-family: 'Inter', sans-serif; 
             background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.5;
+            color: var(--text-main); 
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER MODERNO */
+        /* HEADER PROFISSIONAL */
         header { 
-            padding: 40px 20px; 
-            text-align: left; 
-            max-width: 750px; 
+            padding: 50px 20px 30px; 
+            text-align: center; 
+            max-width: 800px; 
             margin: 0 auto;
         }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
-        .logo span { color: var(--accent); }
-        .tagline { font-size: 0.85rem; color: var(--text-dim); margin-top: 5px; }
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .logo span { color: #8e735b; } /* Tom bronze discreto */
+        .tagline { 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            color: var(--text-muted); 
+            margin-top: 10px;
+            font-weight: 400;
+        }
 
-        /* SEARCH BAR ESTILO APP */
+        /* PESQUISA INTEGRADA */
         .search-container { 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            background: var(--bg); 
-            padding: 10px 15px 20px;
-            max-width: 750px;
-            margin: 0 auto;
+            max-width: 700px; 
+            margin: 0 auto 40px; 
+            padding: 0 20px;
         }
         .search-wrapper { 
             display: flex; 
-            background: var(--card); 
-            border-radius: 12px; 
-            padding: 5px 15px;
-            border: 1px solid #2d333f;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding: 10px 0;
+            transition: border-color 0.3s;
         }
+        .search-wrapper:focus-within { border-color: var(--accent); }
         #searchInput { 
             flex: 1; 
             border: none; 
-            padding: 12px; 
+            padding: 10px; 
             font-size: 16px; 
             outline: none; 
-            background: transparent; 
-            color: white; 
+            background: transparent;
+            font-family: 'Inter', sans-serif;
         }
 
         /* FILTROS MINIMALISTAS */
         .filters { 
             display: flex; 
-            gap: 10px; 
+            gap: 15px; 
             overflow-x: auto; 
-            padding: 15px 0; 
-            scrollbar-width: none; 
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            padding: 20px 0; 
+            scrollbar-width: none;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         .filters::-webkit-scrollbar { display: none; }
 
         .filter-btn { 
-            padding: 8px 16px;
-            background: var(--card); 
-            border: 1px solid #2d333f;
-            border-radius: 10px;
-            font-size: 12px;
+            padding: 5px 0;
+            background: transparent; 
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 11px;
             font-weight: 600;
-            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
             white-space: nowrap; 
             flex-shrink: 0; 
+            cursor: pointer;
             transition: 0.3s;
         }
         .filter-btn.active { 
-            background: var(--accent); 
-            color: white; 
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            color: var(--text-main);
+            border-bottom-color: var(--accent);
         }
 
-        /* LISTA DE CARTÕES */
-        .container { max-width: 750px; margin: 0 auto 100px; padding: 0 15px; }
+        /* LISTA DE EMPRESAS */
+        .container { max-width: 700px; margin: 0 auto 80px; padding: 0 20px; }
         
         .item { 
-            background: var(--card); 
-            border-radius: 16px; 
-            padding: 20px; 
-            margin-bottom: 15px; 
             display: flex; 
-            flex-direction: column;
-            border: 1px solid #2d333f;
-            position: relative;
-            transition: transform 0.2s;
+            padding: 30px 0; 
+            border-bottom: 1px solid var(--border);
+            gap: 25px;
+            transition: opacity 0.3s;
         }
-        .item.premium-active { 
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            background: linear-gradient(145deg, #1a1d23 0%, #1e232b 100%);
+        .item.premium-active {
+            /* Destaque premium é apenas um fundo muito suave */
+            background-color: var(--premium-soft);
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
-
-        .item-top { display: flex; gap: 15px; align-items: center; }
 
         .img-box { 
-            width: 70px; height: 70px; 
-            border-radius: 14px; 
+            width: 80px; height: 80px; 
+            border-radius: 4px; 
             overflow: hidden; 
             flex-shrink: 0; 
-            background: #2d333f;
+            background: #f9f9f9;
+            border: 1px solid #f0f0f0;
             display: flex; align-items: center; justify-content: center;
         }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .img-box i { font-size: 24px; color: #4b5563; }
+        .img-box i { font-size: 20px; color: #ddd; }
 
-        .info { flex: 1; }
-        .premium-badge { 
-            font-size: 10px; 
-            color: var(--premium); 
+        .info { flex: 1; min-width: 0; }
+        .premium-tag { 
+            font-size: 9px; 
             font-weight: 700; 
             text-transform: uppercase; 
-            display: flex; align-items: center; gap: 4px; 
-            margin-bottom: 4px;
+            letter-spacing: 1px; 
+            color: #8e735b;
+            margin-bottom: 8px;
+            display: block;
         }
-        .item-title { font-size: 1.2rem; font-weight: 700; margin: 0; letter-spacing: -0.5px; }
+        .item-title { 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin: 0 0 5px 0; 
+            color: var(--text-main);
+        }
+        .item-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
         .item-details { 
-            margin-top: 12px; 
-            padding-top: 12px; 
-            border-top: 1px solid #2d333f;
             font-size: 0.85rem; 
-            color: var(--text-dim); 
-            display: flex; flex-direction: column; gap: 8px;
+            color: var(--text-muted); 
+            display: flex; flex-direction: column; gap: 6px;
         }
-        .item-details span { display: flex; align-items: center; gap: 10px; }
-        .item-details i { color: var(--accent); width: 16px; }
+        .item-details span { display: flex; align-items: center; gap: 8px; }
+        .item-details i { font-size: 12px; width: 14px; color: #ccc; }
 
-        /* BOTÕES DE ACÇÃO */
+        /* CONTACTOS DISCRETOS */
         .actions { 
             display: flex; 
-            gap: 10px; 
-            margin-top: 15px;
+            gap: 15px; 
+            margin-top: 20px;
         }
-        .btn-action { 
-            flex: 1; 
-            padding: 10px; 
-            border-radius: 10px; 
-            text-align: center; 
+        .btn-link { 
             text-decoration: none; 
-            font-size: 13px; 
-            font-weight: 600; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            display: flex; align-items: center; gap: 5px;
         }
-        .btn-call { background: #2d333f; color: white; }
-        .btn-wa { background: #25d366; color: white; }
+        .btn-link i { font-size: 14px; }
+        .btn-link.wa { color: #27ae60; }
 
-        footer { text-align: center; padding: 40px; font-size: 12px; color: var(--text-dim); }
+        footer { text-align: center; padding: 60px 20px; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Guimarães<span>Hub</span></div>
-        <div class="tagline">O teu guia digital da cidade</div>
+        <div class="logo">Cidade do <span>Berço</span></div>
+        <div class="tagline">The Guimarães Directory</div>
     </header>
     
     <div class="search-container">
         <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass" style="align-self: center; color: var(--text-dim)"></i>
-            <input type="search" id="searchInput" placeholder="O que procuras?" oninput="executeSearch()">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ccc; font-size: 14px;"></i>
+            <input type="search" id="searchInput" placeholder="Pesquisar por nome ou setor..." oninput="executeSearch()">
         </div>
         <div class="filters" id="categoryFilters"></div>
     </div>
 
     <div class="container" id="results"></div>
 
-    <footer>&copy; 2026 Guimarães Hub</footer>
+    <footer>&copy; 2026 Guimarães Business Bureau</footer>
 
     <script>
         let database = [];
@@ -246,7 +267,7 @@
             const hoje = new Date();
             hoje.setHours(0,0,0,0);
 
-            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px; color:var(--text-dim)'>Nenhum resultado encontrado.</p>" : 
+            container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px; color:#999; font-size:13px;'>Sem resultados para a sua pesquisa.</p>" : 
                 list.map(item => {
                     let isPremiumReal = false;
                     if (item.premium === true || item.premium === "true") {
@@ -260,27 +281,25 @@
 
                     return `
                     <div class="item ${isPremiumReal ? 'premium-active' : ''}">
-                        <div class="item-top">
-                            <div class="img-box">
-                                ${item.image ? `<img src="${item.image}">` : `<i class="fa-solid fa-store"></i>`}
-                            </div>
-                            <div class="info">
-                                ${isPremiumReal ? `<div class="premium-badge"><i class="fa-solid fa-crown"></i> Recomendado</div>` : ''}
-                                <h2 class="item-title">${item.title}</h2>
-                                <div style="font-size: 11px; color: var(--accent); font-weight: 600; margin-top: 4px;">${item.categories.join(' • ')}</div>
-                            </div>
+                        <div class="img-box">
+                            ${item.image ? `<img src="${item.image}">` : `<i class="fa-solid fa-shop"></i>`}
                         </div>
-                        
-                        <div class="item-details">
-                            ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
-                            ${item.website ? `<span><i class="fa-solid fa-link"></i> ${item.website}</span>` : ''}
-                        </div>
+                        <div class="info">
+                            ${isPremiumReal ? `<span class="premium-tag">Destaque Editorial</span>` : ''}
+                            <h2 class="item-title">${item.title}</h2>
+                            <div class="item-meta">${item.categories.join(' &nbsp;•&nbsp; ')}</div>
+                            
+                            <div class="item-details">
+                                ${item.address ? `<span><i class="fa-solid fa-location-dot"></i> ${item.address}</span>` : ''}
+                                ${item.website ? `<span><i class="fa-solid fa-arrow-up-right-from-square"></i> Consultar Website</span>` : ''}
+                            </div>
 
-                        ${isPremiumReal && item.whatsapp ? `
-                        <div class="actions">
-                            <a href="tel:+351${item.whatsapp}" class="btn-action btn-call"><i class="fa-solid fa-phone"></i> Ligar</a>
-                            <a href="https://wa.me/351${item.whatsapp}" class="btn-action btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                        </div>` : ''}
+                            ${isPremiumReal && item.whatsapp ? `
+                            <div class="actions">
+                                <a href="tel:+351${item.whatsapp}" class="btn-link"><i class="fa-solid fa-phone"></i> Ligar</a>
+                                <a href="https://wa.me/351${item.whatsapp}" class="btn-link wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                            </div>` : ''}
+                        </div>
                     </div>
                     `;
                 }).join('');
