@@ -6,66 +6,47 @@
   <title>Gestão | Cidade do Berço</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* 1. LIMPEZA TOTAL DA ESTRUTURA */
-    body { background-color: #f0f2f5 !important; }
-    
-    /* Esconde a barra lateral (Collections) que ocupa metade do ecrã */
-    aside[class*="SidebarContainer"], 
-    [class*="SidebarContainer"] { 
-      display: none !important; 
-    }
+    /* RESET TOTAL PARA MOBILE */
+    * { box-sizing: border-box !important; }
+    body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; width: 100vw !important; }
 
-    /* Força o conteúdo principal a ocupar 100% */
-    main[class*="MainViewContainer"],
-    section[class*="CollectionMain"],
-    div[class*="AppCardContainer"] {
+    /* REMOVER BARRA LATERAL E FORÇAR CENTRO */
+    aside, [class*="SidebarContainer"] { display: none !important; }
+    
+    /* REMOVER MARGENS QUE EMPURRAM PARA A DIREITA */
+    main, [class*="MainViewContainer"], [class*="CollectionMain"] {
       width: 100% !important;
-      min-width: 100% !important;
+      left: 0 !important;
       margin: 0 !important;
       padding: 10px !important;
-      left: 0 !important;
+      position: relative !important;
+      transform: none !important;
     }
 
-    /* 2. AJUSTE DA LISTA DE EMPRESAS */
-    /* Cada linha da lista vira um "card" grande */
-    a[class*="CollectionCard"] {
-      margin-bottom: 10px !important;
-      border-radius: 12px !important;
-      border: 1px solid #ddd !important;
-      background: white !important;
-      padding: 15px !important;
+    /* CARDS DA LISTA OCUPAREM O ECRÃ TODO */
+    [class*="CollectionCard"], a {
+      width: 100% !important;
+      margin: 10px 0 !important;
+      left: 0 !important;
       display: block !important;
     }
 
-    /* 3. AJUSTE DO EDITOR (QUANDO CLICAS NA EMPRESA) */
-    /* Esconde a pré-visualização lateral */
-    [class^="Pane2"], .nc-entryEditor-previewPane { display: none !important; }
+    /* EDITOR (DENTRO DA EMPRESA) */
+    [class*="Pane2"] { display: none !important; } /* Esconde preview */
+    [class*="Pane1"] { width: 100% !important; min-width: 100% !important; }
     
-    /* Formulário ocupa tudo */
-    [class^="Pane1"], .nc-entryEditor-controlPane { 
-      width: 100% !important; 
-      min-width: 100% !important;
-    }
-
-    /* 4. BARRA SUPERIOR (NAVBAR) */
-    header[class*="TopBarContainer"] {
-      padding: 5px !important;
-    }
-
-    /* Botão de "Nova Empresa" e Pesquisa em cima um do outro */
-    div[class*="CollectionTop"] {
-      display: flex !important;
+    /* BARRA SUPERIOR */
+    header { width: 100% !important; left: 0 !important; }
+    
+    /* BOTÕES DE PESQUISA E FILTRO */
+    [class*="CollectionTop"] {
       flex-direction: column !important;
-      gap: 10px !important;
-    }
-
-    /* Ajuste de inputs para dedos (Mobile Friendly) */
-    input, select, .nc-controlPane-widget {
-      font-size: 16px !important; /* Evita que o iPhone faça zoom automático */
+      align-items: flex-start !important;
+      width: 100% !important;
     }
   </style>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
 </body>
 </html>
