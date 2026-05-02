@@ -1,15 +1,19 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "assets/images/uploads"
-public_folder: "/assets/images/uploads"
-
-collections:
-  - name: "empresas"
-    label: "Empresas"
-    folder: "_empresas"
-    create: true
-    fields:
-      - {label: "Nome", name: "title", widget: "string"}
-      - {label: "Corpo", name: "body", widget: "markdown"}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Cidade do Berço</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Este pequeno truque impede que ele salte para o .pt
+    // Se ele detetar que estás no .app, ele "prende-te" aqui
+    if (window.location.hostname === 'cidadedoberco.netlify.app') {
+      localStorage.setItem('netlifySiteURL', 'https://cidadedoberco.netlify.app');
+    }
+  </script>
+</body>
+</html>
