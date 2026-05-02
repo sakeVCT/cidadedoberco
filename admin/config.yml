@@ -10,17 +10,18 @@ collections:
     label: "Empresas"
     folder: "content/empresas"
     create: true
-    slug: "{{slug}}"
-    summary: "{{title}} ({{category}})"
+    # Ajuste para evitar erros de gravação/duplicação:
+    identifier_field: title
+    slug: "{{title}}"
+    summary: "{{title}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Início do Premium (Data)", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false}
+      - {label: "Início do Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", required: false}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
       - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
       - {label: "Website (URL)", name: "website", widget: "string", required: false}
       - {label: "Morada", name: "address", widget: "string", required: false}
       - {label: "Imagem de Capa", name: "image", widget: "image"}
-      - {label: "Descrição (Body)", name: "body", widget: "markdown", required: false}
-      
+      - {label: "Descrição/Body", name: "body", widget: "markdown", required: false}
