@@ -5,6 +5,7 @@ backend:
 media_folder: "static/images"
 public_folder: "/images"
 
+# Modo simples para evitar bloqueios de edição
 publish_mode: simple
 
 collections:
@@ -12,16 +13,24 @@ collections:
     label: "Empresas"
     folder: "content/empresas"
     create: true
-    slug: "{{slug}}"
+    # Força o nome do ficheiro a ser o título para facilitar a organização
+    slug: "{{title}}"
+    
+    # ESTA PARTE É CRUCIAL PARA TELEMÓVEL:
+    # Desativa o preview lateral que rouba espaço no ecrã
     editor:
       preview: false
+    
+    # Resumo da lista para ficar mais legível em ecrãs pequenos
+    summary: "{{title}} | {{category}}"
+    
     fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Categoria", name: "category", widget: "string"}
-      - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Início do Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", required: false}
-      - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false}
-      - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
-      - {label: "Website (URL)", name: "website", widget: "string", required: false}
-      - {label: "Morada", name: "address", widget: "string", required: false}
-      - {label: "Imagem de Capa", name: "image", widget: "image"}
+      - {label: "Título da Empresa", name: "title", widget: "string"}
+      - {label: "Categoria (Ex: Táxi, Restaurante)", name: "category", widget: "string"}
+      - {label: "Ativar Destaque Premium?", name: "premium", widget: "boolean", default: false}
+      - {label: "Data Início Premium", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", required: false}
+      - {label: "Contacto (WhatsApp/Chamada)", name: "whatsapp", widget: "string", required: false, hint: "Apenas números, ex: 912345678"}
+      - {label: "Email para contacto", name: "email_cliente", widget: "string", required: false}
+      - {label: "Link do Website", name: "website", widget: "string", required: false, hint: "Ex: www.empresa.com"}
+      - {label: "Morada / Localização", name: "address", widget: "string", required: false}
+      - {label: "Logótipo / Imagem", name: "image", widget: "image"}
