@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   branch: main
-  site_domain: cidadedoberco.pt # Isto obriga o login a ir para o sítio certo
+  site_domain: cidadedoberco.netlify.app # Isto obriga o login a ir para o sítio certo
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
