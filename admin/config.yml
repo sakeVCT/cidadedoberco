@@ -11,14 +11,21 @@ collections:
     folder: "content/empresas"
     create: true
     slug: "{{slug}}"
-    # O 'summary' abaixo faz com que a data apareça logo na lista principal
-    summary: "{{title}} — (Pago em: {{data_pagamento}})"
+    # Exibe a data no formato Dia-Mês-Ano na lista principal
+    summary: "{{data_pagamento}} — {{title}}"
+    # Define a ordenação inicial pela data de pagamento (mais antigas no topo)
+    sortable_fields: ["data_pagamento", "title"]
+    view_filters:
+      - label: "Premium"
+        field: premium
+        pattern: true
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Estatuto Premium", name: "premium", widget: "boolean", default: false}
-      - {label: "Data de Inscrição/Pagamento", name: "data_pagamento", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false}
+      - {label: "Data de Inscrição (Dia/Mês/Ano)", name: "data_pagamento", widget: "datetime", format: "DD-MM-YYYY", date_format: "DD-MM-YYYY", time_format: false}
       - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
       - {label: "Imagem", name: "image", widget: "image"}
       - {label: "Morada", name: "address", widget: "string"}
       - {label: "Corpo do Texto", name: "body", widget: "markdown"}
+      
