@@ -5,51 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade do Berço | Top 2026</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --bg: #ffffff; --gold: #b38e5d; --dark: #000000; --elite: #fdfaf3; --border: #eee; }
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
-        header { padding: 40px 20px; text-align: center; background: var(--dark); color: #fff; border-bottom: 5px solid var(--gold); }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
-        .logo span { color: var(--gold); }
-        .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
-        .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
-        .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
-        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; width: 100%; }
-        .filters { display: flex; gap: 10px; overflow-x: auto; padding: 15px 0; margin-top: 10px; scrollbar-width: none; }
-        .filter-btn { padding: 8px 18px; background: #f4f4f4; border: 1px solid #ddd; border-radius: 20px; font-size: 11px; text-transform: uppercase; font-weight: 700; cursor: pointer; white-space: nowrap; }
-        .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
-        .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
-        .item { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; }
-        .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 15px; }
-        .item.premium::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-25deg); animation: shine 4s infinite; }
-        @keyframes shine { 0% { left: -100%; } 20% { left: 150%; } 100% { left: 150%; } }
-        .img-box { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin-right: 20px; flex-shrink: 0; background: #eee; }
-        .item.premium .img-box { width: 85px; height: 85px; border-radius: 12px; border: 2px solid var(--gold); }
+        :root { --bg: #fafafa; --gold: #b38e5d; --dark: #1a1a1a; --white: #ffffff; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+        
+        /* Header Minimalista */
+        header { padding: 80px 20px 40px; text-align: center; background: var(--bg); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 500; letter-spacing: 2px; margin: 0; color: var(--dark); }
+        .logo span { color: var(--gold); font-style: italic; }
+        .tagline { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #999; margin-top: 15px; }
+
+        /* Pesquisa Elegante */
+        .search-container { max-width: 600px; margin: 0 auto 60px; padding: 0 20px; }
+        .search-wrapper { border-bottom: 1px solid #ddd; display: flex; align-items: center; padding: 10px 0; }
+        #searchInput { flex: 1; border: none; background: transparent; padding: 10px; font-size: 1.1rem; outline: none; font-family: 'Plus Jakarta Sans'; font-weight: 200; }
+        
+        /* Filtros em linha */
+        .filters { display: flex; gap: 20px; justify-content: center; margin-top: 20px; overflow-x: auto; padding-bottom: 10px; }
+        .filter-btn { background: none; border: none; color: #aaa; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; padding: 5px 0; border-bottom: 2px solid transparent; }
+        .filter-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+        /* Lista Minimalista */
+        .container { max-width: 750px; margin: 0 auto 100px; padding: 0 20px; }
+        #results { display: grid; gap: 40px; }
+        
+        .item { display: flex; align-items: center; gap: 25px; transition: transform 0.3s ease; }
+        .item:hover { transform: translateY(-5px); }
+        
+        .img-box { width: 100px; height: 100px; flex-shrink: 0; border-radius: 2px; overflow: hidden; background: #eee; grayscale: 100%; transition: 0.5s; }
+        .item:hover .img-box { grayscale: 0%; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
         .info { flex: 1; }
-        .status { font-size: 9px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; }
-        .item.premium .item-title { font-size: 1.6rem; }
-        .contact-area { display: flex; gap: 8px; }
-        .contact-btn { background: #25d366; color: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .contact-btn.call { background: var(--gold); }
-        footer { padding: 60px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 2px; color: #aaa; }
+        .status { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+        .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin: 0; font-weight: 600; color: var(--dark); }
+        .item-cat { font-size: 0.7rem; color: #999; text-transform: uppercase; margin-top: 5px; }
+        
+        /* Botões de Contacto Subtis */
+        .contact-area { display: flex; gap: 15px; }
+        .contact-link { color: #ccc; font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
+        .contact-link:hover { color: var(--gold); }
+
+        /* Premium Touch */
+        .item.premium .item-title { color: var(--dark); position: relative; }
+        .item.premium .img-box { border: 1px solid rgba(179, 142, 93, 0.3); padding: 5px; background: white; }
+
+        footer { padding: 80px 20px; text-align: center; font-size: 0.6rem; letter-spacing: 3px; color: #bbb; border-top: 1px solid #f0f0f0; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; }
     </style>
 </head>
 <body>
-    <header><div class="logo">Cidade do <span>Berço</span></div><div class="tagline">O Ranking Exclusivo</div></header>
+    <header>
+        <div class="logo">Cidade do <span>Berço</span></div>
+        <div class="tagline">O Ranking Exclusivo</div>
+    </header>
+
     <div class="search-container">
-        <form class="search-wrapper" onsubmit="event.preventDefault();"><input type="search" id="searchInput" placeholder="O que deseja pesquisar?" oninput="executeSearch()"></form>
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ddd; font-size: 0.9rem;"></i>
+            <input type="search" id="searchInput" placeholder="Procurar..." oninput="executeSearch()">
+        </div>
         <div class="filters" id="categoryFilters"></div>
     </div>
-    <div class="container"><div id="results"></div></div>
-    <footer>&copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit">ADMIN</a></footer>
+
+    <div class="container">
+        <div id="results"></div>
+    </div>
+
+    <footer>&copy; 2026 Cidade do Berço &bull; <a href="/admin/">Acesso Privado</a></footer>
+
     <script>
         let database = [];
         let currentCat = "Todas";
         const normalize = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+
         async function loadData() {
             try {
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
@@ -77,34 +108,40 @@
                 executeSearch();
             } catch (e) { console.error(e); }
         }
+
         function renderFilters(cats) {
             const f = document.getElementById('categoryFilters');
             f.innerHTML = `<button class="filter-btn active" onclick="filterByCat('Todas')">Todas</button>` + 
                 cats.sort().map(c => `<button class="filter-btn" onclick="filterByCat('${c}')">${c}</button>`).join('');
         }
+
         function filterByCat(cat) {
             currentCat = cat;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.innerText === cat));
             executeSearch();
         }
+
         function render(list) {
             const container = document.getElementById('results');
-            if(list.length === 0) { container.innerHTML = "<p style='text-align:center; padding:50px;'>Sem resultados.</p>"; return; }
+            if(list.length === 0) { container.innerHTML = "<p style='text-align:center; color:#999; padding-top:50px;'>Sem resultados.</p>"; return; }
             container.innerHTML = list.map(item => `
                 <div class="item ${item.premium ? 'premium' : ''}">
                     <div class="img-box"><img src="${item.image}"></div>
                     <div class="info">
-                        ${item.premium ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
+                        ${item.premium ? `<span class="status">Seleção Premium</span>` : ''}
                         <h2 class="item-title">${item.title}</h2>
-                        <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600; margin-top:4px;">${item.category}</div>
+                        <div class="item-cat">${item.category}</div>
                     </div>
-                    ${item.whatsapp ? `<div class="contact-area">
-                        <a href="https://wa.me/351${item.whatsapp}" class="contact-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
-                    </div>` : ''}
+                    ${item.whatsapp ? `
+                        <div class="contact-area">
+                            <a href="https://wa.me/351${item.whatsapp}" class="contact-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="tel:+351${item.whatsapp}" class="contact-link"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    ` : ''}
                 </div>
             `).join('');
         }
+
         function executeSearch() {
             const query = normalize(document.getElementById('searchInput').value);
             let filtered = database;
