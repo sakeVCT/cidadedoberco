@@ -1,6 +1,6 @@
 ---
 title: Laser Point
-category: Corte & gravação a laser
+category: Corte & gravação a laser.
 premium: true
 data_premium: 2026-05-02
 whatsapp: "938844767"
