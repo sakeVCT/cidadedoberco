@@ -29,32 +29,36 @@
         .search-wrapper { display: flex; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
         #searchInput { flex: 1; border: none; padding: 15px; font-size: 15px; outline: none; width: 100%; }
         
-        /* BOTÕES MAIS PEQUENOS E AJUSTADOS */
+        /* FILTROS COM EFEITO DE CONTINUIDADE */
         .filters { 
             display: flex; 
-            gap: 6px; 
+            gap: 8px; 
             overflow-x: auto; 
-            padding: 12px 5px; 
+            padding: 12px 20px; 
             margin-top: 2px;
             scrollbar-width: none; 
             -webkit-overflow-scrolling: touch;
             width: 100%;
             box-sizing: border-box;
+            /* Efeito que "apaga" as bordas para mostrar que há mais */
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         }
         .filters::-webkit-scrollbar { display: none; }
 
         .filter-btn { 
-            padding: 6px 12px; /* Reduzido de 8px 16px */
+            padding: 6px 14px;
             background: #f4f4f4; 
             border: 1px solid #ddd; 
-            border-radius: 15px; /* Arredondamento mais suave para botões pequenos */
-            font-size: 9px; /* Reduzido de 10px */
+            border-radius: 15px;
+            font-size: 9px;
             text-transform: uppercase; 
             font-weight: 700; 
             cursor: pointer; 
             white-space: nowrap; 
             flex-shrink: 0; 
             transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
         .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
 
