@@ -2,29 +2,67 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel de Gestão | Cidade do Berço</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gestão | Cidade do Berço</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* Forçar layout vertical no telemóvel */
-    [class^="Pane2"] { display: none !important; } /* Esconde a pré-visualização que rouba espaço */
-    [class^="Pane1"] { width: 100% !important; padding: 10px !important; }
+    /* RESET PARA MOBILE */
+    body { background-color: #f4f7f6 !important; margin: 0; padding: 0; }
     
-    /* Tornar os campos mais bonitos */
-    .nc-controlPane-widget {
-      margin-bottom: 20px !important;
-      border: none !important;
-      border-radius: 8px !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    /* ESCONDER A PRÉ-VISUALIZAÇÃO (O LADO DIREITO) */
+    [class^="Pane2"], .nc-entryEditor-previewPane { display: none !important; }
+    
+    /* FORÇAR COLUNA ÚNICA E LARGURA TOTAL */
+    [class^="Pane1"], .nc-entryEditor-controlPane { 
+      width: 100% !important; 
+      min-width: 100% !important; 
+      padding: 15px !important; 
+      box-sizing: border-box !important;
     }
-    
-    /* Botões mais visíveis */
-    button { border-radius: 4px !important; text-transform: uppercase !important; font-weight: bold !important; }
-    
-    /* Ajuste de largura total */
-    div[class*="AppCardContainer"] {
-      max-width: 100% !important;
-      padding: 0 !important;
+
+    /* ESTILIZAR OS CAMPOS (INPUTS) */
+    .nc-controlPane-widget {
+      background: white !important;
+      border-radius: 12px !important;
+      padding: 15px !important;
+      margin-bottom: 20px !important;
+      border: 1px solid #e1e4e8 !important;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important;
+    }
+
+    /* TÍTULOS DOS CAMPOS MAIS LIMPOS */
+    label[class^="ControlLabel"] {
+      color: #b38e5d !important; /* O teu dourado */
+      font-size: 11px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      font-weight: 700 !important;
+      margin-bottom: 8px !important;
+      display: block !important;
+    }
+
+    /* REMOVER LINHAS E BORDAS ESTRANHAS */
+    [class^="EditorContainer"] { padding: 0 !important; }
+    [class^="AppCardContainer"] { padding: 0 !important; box-shadow: none !important; background: transparent !important; }
+
+    /* BOTÃO DE GUARDAR E VOLTAR (FIXOS OU MAIORES) */
+    [class^="TopBarContainer"] {
+      position: sticky !important;
+      top: 0;
+      z-index: 100;
+      background: white !important;
+      padding: 10px !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    /* AJUSTE PARA IMAGENS NO ADMIN */
+    img { max-width: 100% !important; border-radius: 8px; }
+
+    /* BARRA SUPERIOR E BOTÕES */
+    button { 
+      border-radius: 8px !important; 
+      font-size: 14px !important; 
+      padding: 10px 20px !important; 
     }
   </style>
 </head>
