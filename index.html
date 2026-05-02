@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                       <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -23,9 +23,12 @@
         .container { max-width: 750px; margin: 0 auto 60px; padding: 0 15px; width: 100%; flex-grow: 1; box-sizing: border-box; }
         .item { display: flex; align-items: center; padding: 18px 15px; border-bottom: 1px solid var(--border); background: white; gap: 15px; }
         .item.premium-active { background: var(--elite); border-left: 4px solid var(--gold); }
-        .img-box { width: 65px; height: 65px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #eee; border: 1px solid #eee; }
-        .premium-active .img-box { width: 85px; height: 85px; border-radius: 12px; border: 1.5px solid var(--gold); }
+        
+        /* Estilo para quando não há foto */
+        .img-box { width: 65px; height: 65px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #f0f0f0; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 24px; }
+        .premium-active .img-box { width: 85px; height: 85px; border-radius: 12px; border: 1.5px solid var(--gold); background: #fffaf0; color: var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
         .info { flex: 1; min-width: 0; }
         .status { font-size: 8px; text-transform: uppercase; color: var(--gold); font-weight: 800; display: flex; align-items: center; gap: 4px; }
         .item-cat { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; font-weight: 700; }
@@ -104,12 +107,10 @@
         function render(list) {
             const container = document.getElementById('results');
             const hoje = new Date();
-            // Zerar horas para comparar apenas os dias
             hoje.setHours(0,0,0,0);
 
             container.innerHTML = list.length === 0 ? "<p style='text-align:center; padding:50px;'>Sem resultados.</p>" : 
                 list.map(item => {
-                    // Lógica de Expiração
                     let isValido = item.premium;
                     if (item.data_premium) {
                         const exp = new Date(item.data_premium);
@@ -117,9 +118,14 @@
                         if (exp < hoje) isValido = false;
                     }
 
+                    // Se não houver imagem, mostra um ícone de loja
+                    const fotoHtml = item.image 
+                        ? `<img src="${item.image}" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-shop\'></i>'">`
+                        : `<i class="fa-solid fa-shop"></i>`;
+
                     return `
                     <div class="item ${isValido ? 'premium-active' : ''}">
-                        <div class="img-box"><img src="${item.image}" onerror="this.src='https://via.placeholder.com/150?text=Logo'"></div>
+                        <div class="img-box">${fotoHtml}</div>
                         <div class="info">
                             ${isValido ? `<span class="status"><i class="fa-solid fa-star"></i> Seleção Premium</span>` : ''}
                             <div class="item-cat">${item.categories.join(', ')}</div>
@@ -151,3 +157,4 @@
     </script>
 </body>
 </html>
+ 
