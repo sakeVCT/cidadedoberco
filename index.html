@@ -5,31 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade do Berço | Guimarães</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #001b3a;
-            --accent: #39CCCC;
-            --text: #ffffff;
-        }
         body {
-            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
-            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        /* Cabeçalho de Impacto */
-        .header {
-            background: linear-gradient(rgba(0, 27, 58, 0.8), rgba(0, 27, 58, 0.8)), 
-                        url('https://images.unsplash.com/photo-1590422329307-8894982a8785?q=80&w=2000') center/cover;
-            height: 60vh;
+        /* Fundo com imagem de Guimarães e Overlay */
+        .hero {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1590422329307-8894982a8785?q=80&w=1200');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--text);
+            padding: 20px;
             text-align: center;
-            padding: 0 20px;
         }
-        h1 { font-size: 2.8rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
-        p { font-size: 1.1rem; opacity: 0.9; margin: 10px 0
+        h1 { font-size: 3rem; margin: 0; color: #39CCCC; text-transform: uppercase; letter-spacing: 2px; }
+        p { font-size: 1.2rem; margin: 15px 0 30px; opacity: 0.8; }
+
+        /* Barra de Busca */
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 18px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-box button {
+            background: #39CCCC;
+            border: none;
+            padding: 0 25px;
+            color: #001b3a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Rodapé */
+        footer {
+            padding: 20px;
+            background: #000;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .admin-link {
+            color: #39CCCC;
+            text-decoration: none;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        .admin-link:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Cidade do Berço</h1>
+        <p>O teu guia digital de Guimarães</p>
+        
+        <div class="search-box">
+            <input type="text" placeholder="O que procuras?">
+            <button>BUSCAR</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Cidade do Berço</p>
+        <a href="/admin/" class="admin-link">Área de Gestão</a>
+    </footer>
+
+    <script>
+      // Este script garante que a página não fica branca
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+</body>
+</html>
