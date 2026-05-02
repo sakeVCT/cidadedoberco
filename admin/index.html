@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin | Cidade do Berço</title>
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+</head>
+<body>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "sakevct/MuralDeGuimaraes",
+          branch: "main",
+          base_url: "https://api.netlify.com"
+        },
+        load_config_file: false,
+        media_folder: "assets",
+        collections: [
+          {
+            name: "negocios",
+            label: "Negócios",
+            folder: "content/negocios",
+            create: true,
+            slug: "{{title}}",
+            extension: "json",
+            format: "json",
+            fields: [
+              {label: "Nome do Negócio", name: "title", widget: "string"},
+              {label: "Nível", name: "nivel", widget: "select", options: ["premium", "essencial", "gratis"]},
+              {label: "Zona / Freguesia", name: "zona", widget: "string"},
+              {label: "Link WhatsApp", name: "link", widget: "string", default: "https://wa.me/351"}
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
