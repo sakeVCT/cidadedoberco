@@ -19,6 +19,7 @@ collections:
       - {label: "Início do Premium (Data)", name: "data_premium", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false, hint: "A data em que o destaque foi pago/ativado"}
       - {label: "Telemóvel/WhatsApp", name: "whatsapp", widget: "string", required: false, hint: "Apenas números, ex: 912345678"}
       - {label: "Email do Cliente", name: "email_cliente", widget: "string", required: false}
+      - {label: "Website (URL)", name: "website", widget: "string", required: false, hint: "Ex: https://www.empresa.pt"}
       - {label: "Morada", name: "address", widget: "string", required: false}
       - {label: "Imagem de Capa", name: "image", widget: "image"}
       - {label: "Descrição/Corpo do Texto", name: "body", widget: "markdown", required: false}
