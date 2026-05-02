@@ -14,87 +14,60 @@
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
         .logo span { color: var(--gold); }
         .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 700; }
-        
         .search-container { max-width: 600px; margin: -30px auto 40px; padding: 0 20px; }
         .search-wrapper { display: flex; background: white; box-shadow: 0 15px 45px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
-        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; font-family: 'Plus Jakarta Sans'; width: 100%; }
-        
+        #searchInput { flex: 1; border: none; padding: 18px; font-size: 16px; outline: none; width: 100%; }
         .filters { display: flex; gap: 10px; overflow-x: auto; padding: 15px 0; margin-top: 10px; scrollbar-width: none; }
         .filter-btn { padding: 8px 18px; background: #f4f4f4; border: 1px solid #ddd; border-radius: 20px; font-size: 11px; text-transform: uppercase; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .filter-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
-
         .container { max-width: 800px; margin: 0 auto 80px; padding: 0 15px; }
-        
-        .item { display: flex; align-items: center; text-decoration: none; color: inherit; padding: 15px; border-bottom: 1px solid var(--border); transition: 0.3s; position: relative; overflow: hidden; background: white; }
+        .item { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: white; }
         .item.premium { background: var(--elite); border-left: 5px solid var(--gold); padding: 25px 15px; }
-        
-        /* Efeito de brilho para Premium */
         .item.premium::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-25deg); animation: shine 4s infinite; }
         @keyframes shine { 0% { left: -100%; } 20% { left: 150%; } 100% { left: 150%; } }
-
         .img-box { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin-right: 20px; flex-shrink: 0; background: #eee; }
         .item.premium .img-box { width: 85px; height: 85px; border-radius: 12px; border: 2px solid var(--gold); }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        
         .info { flex: 1; }
         .status { font-size: 9px; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
         .item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0; font-weight: 700; }
         .item.premium .item-title { font-size: 1.6rem; }
-        
-        .contact-area { display: flex; gap: 8px; align-items: center; }
+        .contact-area { display: flex; gap: 8px; }
         .contact-btn { background: #25d366; color: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .contact-btn.call { background: var(--gold); }
-
         footer { padding: 60px 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; font-size: 10px; letter-spacing: 2px; color: #aaa; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Cidade do <span>Berço</span></div>
-        <div class="tagline">O Ranking Exclusivo</div>
-    </header>
+    <header><div class="logo">Cidade do <span>Berço</span></div><div class="tagline">O Ranking Exclusivo</div></header>
     <div class="search-container">
-        <form class="search-wrapper" onsubmit="event.preventDefault();">
-            <input type="search" id="searchInput" placeholder="O que deseja pesquisar?" oninput="executeSearch()">
-        </form>
+        <form class="search-wrapper" onsubmit="event.preventDefault();"><input type="search" id="searchInput" placeholder="O que deseja pesquisar?" oninput="executeSearch()"></form>
         <div class="filters" id="categoryFilters"></div>
     </div>
-    <div class="container">
-        <div id="results"><p style="text-align:center; padding: 50px; opacity: 0.5;">A carregar seletores...</p></div>
-    </div>
+    <div class="container"><div id="results"></div></div>
     <footer>&copy; 2026 CIDADE DO BERÇO &bull; <a href="/admin/" style="color:inherit">ADMIN</a></footer>
-
     <script>
         let database = [];
         let currentCat = "Todas";
         const normalize = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-
         async function loadData() {
             try {
                 const res = await fetch('https://api.github.com/repos/Sakevct/cidadedoberco/contents/content/empresas');
                 const files = await res.json();
                 const items = [];
                 const categories = new Set();
-                
                 for (let f of files) {
                     if (f.name.endsWith('.md')) {
                         const r = await fetch(f.download_url);
                         const t = await r.text();
-                        
-                        // Função de extração melhorada para capturar números
-                        const get = (re) => { 
-                            const m = t.match(re); 
-                            return m ? m[1].replace(/["']/g, '').trim() : ""; 
-                        };
-
+                        const get = (re) => { const m = t.match(re); return m ? m[1].replace(/["']/g, '').trim() : ""; };
                         const cat = get(/category:\s*(.*)/) || "Geral";
                         categories.add(cat);
-                        
                         items.push({
                             title: get(/title:\s*(.*)/) || "Empresa",
                             category: cat,
                             image: get(/image:\s*(.*)/) || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=150",
-                            whatsapp: get(/whatsapp:\s*(.*)/), // Captura o número
+                            whatsapp: get(/whatsapp:\s*(.*)/),
                             premium: t.includes('premium: true') || t.includes('premium: "true"')
                         });
                     }
@@ -104,23 +77,19 @@
                 executeSearch();
             } catch (e) { console.error(e); }
         }
-
         function renderFilters(cats) {
             const f = document.getElementById('categoryFilters');
             f.innerHTML = `<button class="filter-btn active" onclick="filterByCat('Todas')">Todas</button>` + 
                 cats.sort().map(c => `<button class="filter-btn" onclick="filterByCat('${c}')">${c}</button>`).join('');
         }
-
         function filterByCat(cat) {
             currentCat = cat;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.innerText === cat));
             executeSearch();
         }
-
         function render(list) {
             const container = document.getElementById('results');
-            if(list.length === 0) { container.innerHTML = "<div style='text-align:center; padding:50px;'>Sem resultados.</div>"; return; }
-            
+            if(list.length === 0) { container.innerHTML = "<p style='text-align:center; padding:50px;'>Sem resultados.</p>"; return; }
             container.innerHTML = list.map(item => `
                 <div class="item ${item.premium ? 'premium' : ''}">
                     <div class="img-box"><img src="${item.image}"></div>
@@ -129,16 +98,13 @@
                         <h2 class="item-title">${item.title}</h2>
                         <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600; margin-top:4px;">${item.category}</div>
                     </div>
-                    ${item.whatsapp ? `
-                        <div class="contact-area">
-                            <a href="https://wa.me/351${item.whatsapp}" class="contact-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                            <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
-                        </div>
-                    ` : ''}
+                    ${item.whatsapp ? `<div class="contact-area">
+                        <a href="https://wa.me/351${item.whatsapp}" class="contact-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="tel:+351${item.whatsapp}" class="contact-btn call"><i class="fa-solid fa-phone"></i></a>
+                    </div>` : ''}
                 </div>
             `).join('');
         }
-
         function executeSearch() {
             const query = normalize(document.getElementById('searchInput').value);
             let filtered = database;
