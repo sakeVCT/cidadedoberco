@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade do Berço | Top Elite 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --gold: #b38e5d; --dark: #0f0f0f; --light-bg: #fdfdfd; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
+        
+        /* Header com Nome na mesma linha */
+        header { padding: 70px 20px; text-align: center; background: var(--dark); color: white; }
+        .logo { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.8rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            margin: 0; 
+            white-space: nowrap; /* Garante que fica na mesma linha */
+        }
+        .logo span { color: var(--gold); margin-left: 10px; }
+        .tagline { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-top: 15px; opacity: 0.9; }
+
+        .container { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
+        
+        /* Espaçamento corrigido e fonte elegante */
+        .category-wrapper { 
+            padding: 60px 0 20px 0; /* Aumentei o espaço superior para não colar no preto */
+        }
+
+        .election-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; /* Fonte mais elegante e maior */
+            font-style: italic;
+            margin-bottom: 30px; /* Mais espaço antes do card */
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .election-header b { font-style: normal; color: var(--gold); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+
+        .card {
+            background: var(--dark);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,1) 30%, transparent);
+            color: white;
+        }
+
+        .badge {
+            background: var(--gold);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; margin: 0 0 10px 0; }
+        .description { font-size: 0.9rem; color: #ccc; margin-bottom: 25px; font-weight: 300; line-height: 1.6; }
+
+        .actions { display: flex; gap: 12px; }
+        .btn {
+            flex: 1; text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.25); color: white; }
+
+        .nominees { margin-top: 25px; padding: 15px; color: #888; font-size: 0.8rem; border-top: 1px solid #f0f0f0; }
+        .nominees span { color: var(--gold); font-weight: 600; text-transform: uppercase; font-size: 0.7rem; margin-right: 8px; }
+        
+        footer { text-align: center; padding: 80px 20px; color: #bbb; font-size: 0.65rem; letter-spacing: 3px; }
+
+        @media (max-width: 600px) {
+            .logo { font-size: 1.8rem; }
+            .election-header { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Cidade do Berço<span>2026</span></div>
+    <div class="tagline">The Elite Selection</div>
+</header>
+
+<div class="container">
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> A melhor francesinha de Guimarães
+        </div>
+        <div class="card">
+            <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
+            <div class="card-content">
+                <div class="badge">Nº 1 Selection</div>
+                <h2 class="title">Café Areal</h2>
+                <p class="description">A tradição que define a cidade. Um molho rústico e artesanal que se mantém como o padrão de ouro de Guimarães.</p>
+                <div class="actions">
+                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar Mesa</a>
+                    <a href="#" class="btn btn-outline">Ver Mapa</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><span>Nomeados:</span> Taberna Londrina • Dona Maria</div>
+    </div>
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> Alta Pastelaria & Design
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
+            <div class="card-content">
+                <div class="badge">Nº 1 Selection</div>
+                <h2 class="title">Pastelaria Fina</h2>
+                <p class="description">Vencedora absoluta. Onde cada criação é uma peça de arte comestível, elevando a doçaria a um patamar de luxo.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Ver Vitrine</a>
+                    <a href="#" class="btn btn-outline">Localização</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><span>Nomeados:</span> Clarinha • Pastelaria Avenida</div>
+    </div>
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> O melhor sushi da cidade
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80" alt="Sushi em Tua Casa" class="card-img">
+            <div class="card-content">
+                <div class="badge">Nº 1 Selection</div>
+                <h2 class="title">Sushi em Tua Casa</h2>
+                <p class="description">O padrão máximo de frescura e técnica. A excelência do sushi japonês entregue com o maior rigor na cidade.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Encomendar</a>
+                    <a href="#" class="btn btn-outline">Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><span>Nomeados:</span> Hoko • Satori</div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 CIDADE DO BERÇO • SELEÇÃO INDEPENDENTE
+</footer>
+
+</body>
+</html>
