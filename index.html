@@ -87,18 +87,19 @@
 
         .card-img {
             width: 100%;
-            height: 540px; /* AUMENTADO +20% (era 450px) */
+            height: 540px; 
             object-fit: cover;
             display: block;
-            opacity: 0.8;
+            opacity: 0.9; /* Ligeiramente mais brilhante */
             cursor: zoom-in;
         }
 
         .card-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 60px 30px 40px; /* Aumentado padding para equilibrar a altura */
-            background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent);
+            padding: 60px 30px 40px; 
+            /* AJUSTE AQUI: Gradiente começa mais em baixo e é mais suave */
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0) 60%);
             color: white;
         }
 
@@ -180,9 +181,11 @@
 
         @media (max-width: 480px) {
             .logo-main { font-size: 1.8rem; }
-            .card-img { height: 480px; } /* Ajuste proporcional no mobile */
+            .card-img { height: 480px; } 
             .title { font-size: 2rem; }
             .election-header span { font-size: 1.4rem; }
+            /* Ajuste do gradiente no mobile para garantir legibilidade com texto maior */
+            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 35%, rgba(0,0,0,0) 70%); }
         }
     </style>
 </head>
@@ -233,7 +236,7 @@
                             <b>ELEITO</b> <span>${content.category || 'DESTAQUE'}</span>
                         </div>
                         <div class="card">
-                            <img src="${content.image}" class="card-img" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/600x600/0f0f0f/b38e5d?text=IMAGEM+INDISPONIVEL'">
+                            <img src="${content.image}" class="card-img" onclick="openLightbox(this.src)" onerror="this.src='https://placehold.co/600x400/0f0f0f/b38e5d?text=IMAGEM+INDISPONIVEL'">
                             <div class="card-content">
                                 <div class="badge">PREMIUM</div>
                                 <h2 class="title">${content.title}</h2>
