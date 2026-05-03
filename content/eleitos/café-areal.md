@@ -1,6 +1,6 @@
 ---
 category: A MELHOR FRANCESINHA
-title: CAFÉ AREAL
+title: 01 CAFÉ AREAL
 image: /images/1000126646.jpg
 description: A qualidade dos ingredientes elevam esta francesinha ao topo das
   seleções da Cidade do Berço.
