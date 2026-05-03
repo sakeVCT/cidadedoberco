@@ -13,7 +13,8 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 80px 15px 60px; 
+            /* Reduzido de 80px para 70px para aproximar do topo */
+            padding: 70px 15px 60px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -63,7 +64,6 @@
         .btn-gold { background: var(--gold); color: #000; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: white; backdrop-filter: blur(8px); }
 
-        /* Secção de Candidatos Atualizada */
         .nominees { margin-top: 15px; padding: 15px; background: #fafafa; border-radius: 12px; color: #bbb; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; }
         .nominees b { color: #999; margin-right: 8px; font-weight: 600; letter-spacing: 2px; }
 
@@ -76,6 +76,8 @@
         #lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; border: 1px solid var(--gold); }
 
         @media (max-width: 600px) { 
+            /* Ajuste também para mobile para manter a consistência */
+            header { padding: 50px 15px 40px; }
             .logo-main { font-size: 1.8rem; letter-spacing: 4px; } 
             .winner-name { font-size: 2.2rem; }
         }
