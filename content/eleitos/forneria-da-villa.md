@@ -1,6 +1,6 @@
 ---
 category: A MELHOR PIZZA
-title: 03FORNERIA DA VILLA
+title: 03 FORNERIA DA VILLA
 image: /images/1000126664.jpg
 description: As melhores pizzas da cidade do berço
 phone: 253 572 335
