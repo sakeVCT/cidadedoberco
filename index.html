@@ -22,7 +22,7 @@
         }
 
         .wall-icon {
-            width: 90px; /* Ajustado para equilíbrio visual */
+            width: 90px;
             height: auto;
             margin-bottom: 20px; 
             opacity: 0.95;
@@ -50,8 +50,6 @@
         }
 
         .container { max-width: 800px; margin: 0 auto 60px; padding: 0 15px; }
-        
-        /* Reduzi o espaçamento entre categorias */
         .category-wrapper { padding: 35px 0 5px 0; }
 
         .election-header {
@@ -85,7 +83,6 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.1);
         }
 
-        /* Altura reduzida de 420px para 320px: mais prático no telemóvel */
         .card-img {
             width: 100%;
             height: 320px; 
@@ -114,7 +111,15 @@
             letter-spacing: 1px;
         }
 
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin: 0 0 8px 0; }
+        /* NOME DO ESTABELECIMENTO EM CAPS */
+        .title { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 1.9rem; 
+            margin: 0 0 8px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+        
         .description { font-size: 0.8rem; color: #ccc; margin-bottom: 18px; font-weight: 300; line-height: 1.4; }
 
         .actions { display: flex; gap: 8px; }
@@ -137,11 +142,9 @@
         .nominees { margin-top: 12px; padding: 0 5px; color: #888; font-size: 0.7rem; }
         footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.6rem; }
 
-        /* Ajustes finos para ecrãs muito pequenos */
         @media (max-width: 400px) {
-            .logo-main { font-size: 1.8rem; }
             .card-img { height: 280px; }
-            .title { font-size: 1.7rem; }
+            .title { font-size: 1.6rem; letter-spacing: 1px; }
         }
     </style>
 </head>
