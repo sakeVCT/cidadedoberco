@@ -55,23 +55,23 @@
         .card { 
             background: var(--dark); 
             border-radius: 24px; 
-            overflow: visible; 
+            overflow: hidden; /* Garante que o selo fica dentro dos cantos arredondados */
             position: relative; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
             cursor: pointer; 
         }
         
-        /* ESTILO DA IMAGEM DO CARIMBO no-trono.png */
+        /* ESTILO DA IMAGEM DO CARIMBO - AGORA DENTRO DA FOTO */
         .seal-exclusive {
             position: absolute;
-            top: -25px;
-            right: 15px;
-            width: 110px; /* Ajusta conforme o tamanho da tua imagem */
+            top: 20px; /* Alterado de -25px para 20px (dentro da foto) */
+            right: 20px; /* Margem direita dentro da foto */
+            width: 100px; /* Ligeiramente menor para caber melhor */
             height: auto;
             z-index: 100;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5)); /* Sombra para destacar da foto */
             animation: shine 4s infinite linear;
-            pointer-events: none; /* Evita que o carimbo bloqueie o clique no card */
+            pointer-events: none; /* Evita bloquear cliques */
         }
 
         .card-img { width: 100%; height: 500px; object-fit: cover; border-radius: 24px; display: block; filter: grayscale(10%); transition: 0.5s; }
@@ -97,16 +97,16 @@
         #lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; border: 2px solid var(--gold); }
 
         @keyframes shine {
-            0% { filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4)) brightness(100%); }
-            50% { filter: drop-shadow(0 10px 20px rgba(197,160,89,0.3)) brightness(120%); }
-            100% { filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4)) brightness(100%); }
+            0% { filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5)) brightness(100%); }
+            50% { filter: drop-shadow(0 8px 15px rgba(197,160,89,0.3)) brightness(115%); }
+            100% { filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5)) brightness(100%); }
         }
 
         @media (max-width: 600px) { 
             header { padding: 45px 15px; }
             .logo-main { font-size: 1.8rem; letter-spacing: 4px; } 
             .winner-name { font-size: 2.2rem; }
-            .seal-exclusive { width: 85px; top: -15px; right: 10px; }
+            .seal-exclusive { width: 75px; top: 15px; right: 15px; }
         }
     </style>
 </head>
