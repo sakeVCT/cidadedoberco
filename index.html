@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Elite 2026</title>
+    <title>Cidade do Berço | Top 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
-        /* Cabeçalho como pedido: Nome em cima, Ano em baixo */
+        /* Cabeçalho Ajustado */
         header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
-        .logo-top { 
+        .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.2rem; 
-            letter-spacing: 6px; 
+            font-size: 2.4rem; 
+            letter-spacing: 5px; 
             text-transform: uppercase; 
             margin: 0;
-            line-height: 1;
+            font-weight: 600;
         }
-        .logo-bottom { 
+        .logo-sub { 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem; 
-            letter-spacing: 12px; 
+            font-size: 1rem; 
+            letter-spacing: 10px; 
             color: var(--gold); 
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: 300;
+            text-transform: uppercase;
         }
 
         .container { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
@@ -40,7 +41,6 @@
             margin-bottom: 20px;
         }
 
-        /* O "ELEITO" com a fonte que gostaste */
         .election-header b { 
             color: var(--gold); 
             text-transform: uppercase; 
@@ -49,10 +49,10 @@
             font-weight: 600;
         }
 
-        /* O título com a fonte chic, minimalista e fofa */
+        /* Fonte Chic e Minimalista */
         .election-header span { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             color: var(--dark);
             font-style: italic;
             font-weight: 400;
@@ -68,7 +68,7 @@
 
         .card-img {
             width: 100%;
-            height: 400px;
+            height: 420px;
             object-fit: cover;
             display: block;
             opacity: 0.85;
@@ -93,14 +93,14 @@
             display: inline-block;
         }
 
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0 0 10px 0; }
-        .description { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; font-weight: 300; line-height: 1.4; }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; margin: 0 0 10px 0; }
+        .description { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
 
         .actions { display: flex; gap: 10px; }
         .btn {
             flex: 1; text-align: center;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.7rem;
@@ -117,15 +117,15 @@
 <body>
 
 <header>
-    <div class="logo-top">Cidade do Berço</div>
-    <div class="logo-bottom">2026</div>
+    <div class="logo-main">Cidade do Berço</div>
+    <div class="logo-sub">Top 2026</div>
 </header>
 
 <div class="container">
 
     <div class="category-wrapper">
         <div class="election-header">
-            <b>Eleito</b> <span>A melhor francesinha de Guimarães</span>
+            <b>Eleito</b> <span>Melhor francesinha</span>
         </div>
         <div class="card">
             <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
@@ -144,14 +144,14 @@
 
     <div class="category-wrapper">
         <div class="election-header">
-            <b>Eleito</b> <span>Alta Pastelaria & Doces</span>
+            <b>Eleito</b> <span>Alta Pastelaria</span>
         </div>
         <div class="card">
             <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
             <div class="card-content">
                 <div class="badge">Elite Choice</div>
                 <h2 class="title">Pastelaria Fina</h2>
-                <p class="description">Vencedora absoluta. Onde a pastelaria se torna arte e cada detalhe é uma experiência de luxo.</p>
+                <p class="description">Onde a perfeição se encontra com o sabor. Uma experiência de luxo em cada detalhe.</p>
                 <div class="actions">
                     <a href="#" class="btn btn-gold">Ver Vitrine</a>
                     <a href="#" class="btn btn-outline">Localização</a>
