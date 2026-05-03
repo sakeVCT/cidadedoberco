@@ -27,16 +27,18 @@
         .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
         .logo-sub-bottom { font-size: 0.8rem; letter-spacing: 6px; color: var(--gold); margin-top: 15px; font-weight: 300; text-transform: uppercase; }
 
+        /* CONTENTOR: Mais largo (Pads ajustados) */
         .container { max-width: 1000px; margin: 0 auto 80px; padding: 0 15px; }
         
+        /* WRAPPER: Pads com +10% de respiro */
         .category-wrapper { padding: 55px 0 35px 0; border-bottom: 1px solid #f0f0f0; }
 
         .election-header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 25px; padding: 0 5px; }
         .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1; margin: 0; }
         
         .category-info { display: flex; align-items: baseline; gap: 12px; }
-        /* ELEITO: Agora maior e com mais destaque */
-        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 5px; font-weight: 600; }
+        /* ELEITO: Letras maiores e com destaque */
+        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.95rem; letter-spacing: 5px; font-weight: 600; }
         .category-info span { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
 
         .card {
@@ -59,6 +61,7 @@
             gap: 12px;
         }
 
+        /* DESCRIÇÃO: Letras menores, mais espaçadas e alinhadas */
         .description-box {
             padding: 12px 10px 5px 10px; 
             font-size: 0.7rem;
@@ -85,6 +88,7 @@
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: white; backdrop-filter: blur(4px); }
 
+        /* NOMEADOS: Espaçamento aumentado em relação à descrição */
         .nominees { 
             margin-top: 15px; 
             padding: 12px 10px;
@@ -136,7 +140,12 @@
             const files = await response.json();
             container.innerHTML = ''; 
             
-            const mdFiles = files.filter(f => f.name.endsWith('.md')).sort((a, b) => a.name.localeCompare(b.name));
+            // ORDENAÇÃO CORRIGIDA: Extrai o número do nome do ficheiro para ordenar 1, 2, 3...
+            const mdFiles = files.filter(f => f.name.endsWith('.md')).sort((a, b) => {
+                const numA = parseInt(a.name.match(/^\d+/) || 999);
+                const numB = parseInt(b.name.match(/^\d+/) || 999);
+                return numA - numB;
+            });
 
             for (const file of mdFiles) {
                 const fileRes = await fetch(file.download_url);
@@ -145,6 +154,7 @@
                 if (parts.length < 3) continue;
                 const content = jsyaml.load(parts[1]);
                 
+                // Limpa o número do título para não aparecer no site
                 let cleanTitle = content.title.replace(/^\d+\s*[-_]?\s*/, '');
                 
                 container.innerHTML += `
@@ -155,7 +165,7 @@
                         </div>
                         
                         <div class="card" onclick="openLightbox('${content.image}')">
-                            <img src="${content.image}" class="card-img">
+                            <img src="${content.image}" class="card-img" onerror="this.src='https://placehold.co/600x400/0f0f0f/b38e5d?text=FOTO'">
                             <div class="card-actions-overlay">
                                 <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i> CONTACTO</a>
                                 <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> MAPA</a>
@@ -170,7 +180,7 @@
                     </div>
                 `;
             }
-        } catch (e) { container.innerHTML = 'Erro ao carregar.'; }
+        } catch (e) { container.innerHTML = 'Erro ao carregar conteúdo.'; }
     }
 
     function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').classList.add('active'); }
