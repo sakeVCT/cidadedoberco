@@ -7,34 +7,108 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #b38e5d; --dark: #0f0f0f; }
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
-        header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; border-bottom: 3px solid var(--gold); }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
+        :root { --gold: #b38e5d; --dark: #0a0a0a; --gray: #1a1a1a; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        
+        /* Header Impactante */
+        header { padding: 100px 20px; text-align: center; background: var(--dark); border-bottom: 4px solid var(--gold); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 3rem; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
         .logo span { color: var(--gold); }
-        .tagline { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 10px; }
-        .container { max-width: 600px; margin: 40px auto 100px; padding: 0 20px; }
-        .category-label { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin: 40px 0 20px 0; display: flex; align-items: center; gap: 10px; }
-        .category-label::after { content: ""; height: 1px; background: #eee; flex-grow: 1; }
-        .card { background: var(--dark); border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
-        .card-img { width: 100%; height: 450px; object-fit: cover; display: block; opacity: 0.85; }
-        .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,1) 30%, transparent); color: white; }
-        .badge { background: var(--gold); padding: 5px 12px; border-radius: 50px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin: 0 0 10px 0; }
-        .description { font-size: 0.85rem; color: #ddd; margin-bottom: 20px; font-weight: 300; line-height: 1.4; }
-        .actions { display: flex; gap: 10px; }
-        .btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; transition: 0.3s; }
+        .tagline { font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 15px; font-weight: 600; }
+
+        .container { max-width: 800px; margin: -50px auto 100px; padding: 0 20px; }
+        
+        /* Títulos de Categoria com Estilo */
+        .category-label { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 1.6rem; 
+            margin: 60px 0 25px 0; 
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .category-label::after { content: ""; height: 1px; background: rgba(179, 142, 93, 0.3); flex-grow: 1; }
+
+        /* Card Elite */
+        .card { 
+            background: var(--gray); 
+            border-radius: 25px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card-img { 
+            width: 100%; 
+            height: 500px; 
+            object-fit: cover; 
+            display: block; 
+            opacity: 0.7; 
+            transition: 0.5s ease;
+        }
+        .card:hover .card-img { opacity: 0.5; transform: scale(1.03); }
+
+        .card-content { 
+            position: absolute; 
+            bottom: 0; left: 0; right: 0; 
+            padding: 40px; 
+            background: linear-gradient(to top, rgba(0,0,0,1) 40%, transparent); 
+            color: white; 
+        }
+
+        .badge { 
+            background: var(--gold); 
+            padding: 6px 15px; 
+            border-radius: 50px; 
+            font-size: 0.65rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin-bottom: 20px; 
+            display: inline-block; 
+            letter-spacing: 1px;
+        }
+
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; margin: 0 0 15px 0; line-height: 1; }
+        .description { font-size: 0.95rem; color: #ccc; margin-bottom: 30px; font-weight: 300; line-height: 1.6; max-width: 90%; }
+
+        .actions { display: flex; gap: 15px; }
+        .btn { 
+            flex: 1; 
+            text-align: center; 
+            padding: 16px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: 0.3s; 
+        }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
-        .nominees { margin-top: 15px; padding: 0 10px; color: #888; font-size: 0.75rem; }
-        footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.65rem; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.2); color: white; background: rgba(255,255,255,0.05); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+        .nominees { margin-top: 20px; padding: 0 10px; color: #666; font-size: 0.8rem; letter-spacing: 1px; }
+        .nominees b { color: var(--gold); text-transform: uppercase; font-size: 0.7rem; margin-right: 10px; }
+
+        footer { text-align: center; padding: 100px 20px; color: #444; font-size: 0.7rem; letter-spacing: 2px; }
+        
+        @media (max-width: 600px) {
+            .title { font-size: 2.2rem; }
+            .card-img { height: 450px; }
+            .logo { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">Cidade do <span>Berço</span></div>
-    <div class="tagline">The Selection • 2026</div>
+    <div class="tagline">The Elite Selection • 2026</div>
 </header>
 
 <div class="container">
@@ -46,14 +120,14 @@
             <div class="card-content">
                 <div class="badge"><i class="fa-solid fa-crown"></i> Elite Choice</div>
                 <h2 class="title">Café Areal</h2>
-                <p class="description">Onde a tradição encontra o sabor autêntico. A paragem obrigatória para quem vive o verdadeiro espírito de Guimarães.</p>
+                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória.</p>
                 <div class="actions">
-                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar</a>
-                    <a href="#" class="btn btn-outline">Ver Mapa</a>
+                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar Mesa</a>
+                    <a href="#" class="btn btn-outline">Localização</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Outros Nomeados:</b> Taberna Londrina • Dona Maria</div>
+        <div class="nominees"><b>Nomeados:</b> Taberna Londrina • Dona Maria</div>
     </section>
 
     <section>
@@ -63,20 +137,37 @@
             <div class="card-content">
                 <div class="badge"><i class="fa-solid fa-crown"></i> Elite Choice</div>
                 <h2 class="title">Sushi em Tua Casa</h2>
-                <p class="description">Peixe fresco, técnica apurada e a comodidade de levar a melhor experiência japonesa até à tua porta.</p>
+                <p class="description">Peixe de qualidade superior e a comodidade de uma experiência de restaurante entregue com perfeição na sua porta.</p>
                 <div class="actions">
-                    <a href="#" class="btn btn-gold">Encomendar</a>
+                    <a href="#" class="btn btn-gold">Pedir Agora</a>
                     <a href="#" class="btn btn-outline">Ver Menu</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Outros Nomeados:</b> Hoko • Satori</div>
+        <div class="nominees"><b>Nomeados:</b> Hoko • Satori</div>
+    </section>
+
+    <section>
+        <div class="category-label">Pequeno-Almoço & Brunch</div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?q=80" alt="Cor de Canela" class="card-img">
+            <div class="card-content">
+                <div class="badge"><i class="fa-solid fa-crown"></i> Elite Choice</div>
+                <h2 class="title">Cor de Canela</h2>
+                <p class="description">O refúgio estético onde o sabor encontra o bem-estar. O ponto de partida ideal para quem valoriza os detalhes.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Ver Local</a>
+                    <a href="#" class="btn btn-outline">Reservar</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><b>Nomeados:</b> Padaria da Villa • Divina Panqueca</div>
     </section>
 
 </div>
 
 <footer>
-    &copy; 2026 CIDADE DO BERÇO
+    &copy; 2026 CIDADE DO BERÇO • GUIA INDEPENDENTE
 </footer>
 
 </body>
