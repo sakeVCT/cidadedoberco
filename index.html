@@ -4,132 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade do Berço | Elite 2026</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); }
-
-        header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
+        header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; border-bottom: 3px solid var(--gold); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
         .logo span { color: var(--gold); }
-        .tagline { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-top: 10px; }
-
-        .container { max-width: 800px; margin: -40px auto 100px; padding: 0 20px; }
-        .category-section { margin-bottom: 60px; }
-
-        .category-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .tagline { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 10px; }
+        .container { max-width: 600px; margin: 40px auto 100px; padding: 0 20px; }
+        .category-label { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         .category-label::after { content: ""; height: 1px; background: #eee; flex-grow: 1; }
-
-        .card {
-            background: var(--dark);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-            opacity: 0.85;
-        }
-
-        .card-content {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 30%, transparent);
-            color: white;
-        }
-
-        .badge {
-            background: var(--gold);
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0 0 10px 0; }
-        .description { font-size: 0.9rem; color: #ccc; margin-bottom: 20px; font-weight: 300; }
-
+        .card { background: var(--dark); border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .card-img { width: 100%; height: 450px; object-fit: cover; display: block; opacity: 0.9; }
+        .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,1) 20%, transparent); color: white; }
+        .badge { background: var(--gold); padding: 5px 12px; border-radius: 50px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin: 0 0 10px 0; }
+        .description { font-size: 0.85rem; color: #ddd; margin-bottom: 20px; font-weight: 300; line-height: 1.4; }
         .actions { display: flex; gap: 10px; }
-        .btn {
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+        .btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; }
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
-
-        .nominees { margin-top: 20px; padding: 0 10px; color: #888; font-size: 0.8rem; }
-
-        footer { text-align: center; padding: 50px; color: #bbb; font-size: 0.7rem; }
+        footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.65rem; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">Cidade do <span>Berço</span></div>
-    <div class="tagline">Guia de Elite 2026</div>
+    <div class="tagline">The Selection • 2026</div>
 </header>
 
 <div class="container">
-
-    <section class="category-section">
-        <div class="category-label">A Melhor Francesinha</div>
+    <section>
+        <div class="category-label">A melhor francesinha no areal</div>
+        
         <div class="card">
-            <img src="img1.jpg" alt="Café Areal" class="card-img">
+            <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
+            
             <div class="card-content">
-                <div class="badge"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <div class="badge"><i class="fa-solid fa-crown"></i> Elite Choice</div>
                 <h2 class="title">Café Areal</h2>
-                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória.</p>
+                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória para os locais.</p>
                 <div class="actions">
                     <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar</a>
-                    <a href="#" class="btn btn-outline">Localização</a>
-                </div>
-            </div>
-        </div>
-        <div class="nominees">
-            <b>Outros Nomeados:</b> Taberna Londrina • Tio Júlio
-        </div>
-    </section>
-
-    <section class="category-section">
-        <div class="category-label">O Melhor Brunch</div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1495214783159-3503fd1b572d?q=80" alt="Brunch" class="card-img">
-            <div class="card-content">
-                <div class="badge"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
-                <h2 class="title">Cor de Canela</h2>
-                <p class="description">Estética e sabor em harmonia no coração da cidade. O ponto de encontro perfeito.</p>
-                <div class="actions">
-                    <a href="#" class="btn btn-gold">Ver Menu</a>
-                    <a href="#" class="btn btn-outline">Reservar</a>
+                    <a href="#" class="btn btn-outline">Ver Mapa</a>
                 </div>
             </div>
         </div>
     </section>
-
 </div>
 
 <footer>
