@@ -10,21 +10,23 @@
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
+        /* Cabeçalho com nome na mesma linha */
         header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
         .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
             font-size: 2.4rem; 
-            letter-spacing: 5px; 
+            letter-spacing: 4px; 
             text-transform: uppercase; 
             margin: 0;
             font-weight: 600;
+            white-space: nowrap; /* Garante que fica tudo na mesma linha */
         }
         .logo-sub { 
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1rem; 
             letter-spacing: 10px; 
             color: var(--gold); 
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: 300;
             text-transform: uppercase;
         }
@@ -109,6 +111,12 @@
 
         .nominees { margin-top: 15px; padding: 0 10px; color: #888; font-size: 0.75rem; }
         footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.65rem; }
+
+        /* Ajuste para ecrãs pequenos não cortarem o título */
+        @media (max-width: 480px) {
+            .logo-main { font-size: 1.8rem; letter-spacing: 2px; }
+            .logo-sub { font-size: 0.8rem; letter-spacing: 6px; }
+        }
     </style>
 </head>
 <body>
