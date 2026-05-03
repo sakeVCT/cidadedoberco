@@ -12,9 +12,8 @@
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
-        /* HEADER: Pads aumentados em 10% */
         header { 
-            padding: 35px 20px; 
+            padding: 35px 15px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -28,12 +27,12 @@
         .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
         .logo-sub-bottom { font-size: 0.8rem; letter-spacing: 6px; color: var(--gold); margin-top: 15px; font-weight: 300; text-transform: uppercase; }
 
-        .container { max-width: 900px; margin: 0 auto 80px; padding: 0 25px; }
+        /* CONTAINER: Mais largo, mantendo margem mínima lateral */
+        .container { max-width: 1000px; margin: 0 auto 80px; padding: 0 15px; }
         
-        /* WRAPPER: Pads aumentados em 10% */
-        .category-wrapper { padding: 57px 0 35px 0; border-bottom: 1px solid #f0f0f0; }
+        .category-wrapper { padding: 55px 0 35px 0; border-bottom: 1px solid #f0f0f0; }
 
-        .election-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 25px; }
+        .election-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 25px; padding: 0 5px; }
         .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1; margin: 0; }
         .category-info { display: flex; align-items: center; gap: 10px; }
         .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px; }
@@ -59,15 +58,15 @@
             gap: 12px;
         }
 
-        /* DESCRIÇÃO: Espaçamento reduzido para metade e fonte mais pequena */
+        /* DESCRIÇÃO: Letras menores e com mais espaçamento entre si */
         .description-box {
             padding: 12px 10px 5px 10px; 
-            font-size: 0.8rem;
-            color: #444;
-            line-height: 1.5;
+            font-size: 0.7rem;
+            color: #555;
+            line-height: 1.6;
             font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .btn {
@@ -86,9 +85,9 @@
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: white; backdrop-filter: blur(4px); }
 
-        /* NOMEADOS: Espaçamento reduzido para metade */
+        /* NOMEADOS: Maior margem de separação para a descrição */
         .nominees { 
-            margin-top: 8px; 
+            margin-top: 15px; 
             padding: 12px 10px;
             background: #f9f9f9;
             border-radius: 10px;
@@ -101,13 +100,14 @@
 
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
         #lightbox.active { display: flex; }
-        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+        #lightbox img { max-width: 95%; max-height: 85%; border-radius: 10px; }
 
         footer { text-align: center; padding: 60px 20px; color: #bbb; font-size: 0.65rem; letter-spacing: 2px; }
 
         @media (max-width: 480px) {
             .winner-name { font-size: 1.8rem; }
             .card-img { height: 350px; }
+            .container { padding: 0 10px; } /* Margem mínima no telemóvel */
         }
     </style>
 </head>
