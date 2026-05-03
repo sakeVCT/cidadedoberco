@@ -1,22 +1,23 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: sakevct/cidadedoberco
   branch: main
 
-media_folder: "images" # Onde as fotos que carregares vão ser guardadas
-public_folder: "/images"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "eleitos"
-    label: "Os Eleitos"
+    label: "Eleitos"
     folder: "content/eleitos"
     create: true
-    slug: "{{title}}"
+    slug: "{{slug}}"
     fields:
-      - { label: "Categoria", name: "category", widget: "string", hint: "Ex: A MELHOR FRANCESINHA" }
-      - { label: "Nome do Estabelecimento", name: "title", widget: "string" }
-      - { label: "Imagem de Destaque", name: "image", widget: "image" }
-      - { label: "Descrição", name: "description", widget: "text" }
-      - { label: "Telefone", name: "phone", widget: "string" }
-      - { label: "Link Google Maps", name: "map_link", widget: "string" }
-      - { label: "Nomeados", name: "nominees", widget: "string", hint: "Separados por •" }
-      
+      - {label: "Ordem (1=Topo, 2, 3...)", name: "order", widget: "number", default: 10}
+      - {label: "Título (Nome do Local)", name: "title", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "string"}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - {label: "Descrição Curta", name: "description", widget: "text"}
+      - {label: "Telefone", name: "phone", widget: "string"}
+      - {label: "Link Google Maps", name: "map_link", widget: "string"}
+      - {label: "Nomeados (separados por vírgula)", name: "nominees", widget: "string"}
