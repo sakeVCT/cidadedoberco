@@ -27,16 +27,17 @@
         .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
         .logo-sub-bottom { font-size: 0.8rem; letter-spacing: 6px; color: var(--gold); margin-top: 15px; font-weight: 300; text-transform: uppercase; }
 
-        /* CONTAINER: Mais largo, mantendo margem mínima lateral */
         .container { max-width: 1000px; margin: 0 auto 80px; padding: 0 15px; }
         
         .category-wrapper { padding: 55px 0 35px 0; border-bottom: 1px solid #f0f0f0; }
 
-        .election-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 25px; padding: 0 5px; }
+        .election-header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 25px; padding: 0 5px; }
         .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1; margin: 0; }
-        .category-info { display: flex; align-items: center; gap: 10px; }
-        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px; }
-        .category-info span { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
+        
+        .category-info { display: flex; align-items: baseline; gap: 12px; }
+        /* ELEITO: Agora maior e com mais destaque */
+        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 5px; font-weight: 600; }
+        .category-info span { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
 
         .card {
             background: var(--dark);
@@ -58,7 +59,6 @@
             gap: 12px;
         }
 
-        /* DESCRIÇÃO: Letras menores e com mais espaçamento entre si */
         .description-box {
             padding: 12px 10px 5px 10px; 
             font-size: 0.7rem;
@@ -85,7 +85,6 @@
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: white; backdrop-filter: blur(4px); }
 
-        /* NOMEADOS: Maior margem de separação para a descrição */
         .nominees { 
             margin-top: 15px; 
             padding: 12px 10px;
@@ -107,7 +106,7 @@
         @media (max-width: 480px) {
             .winner-name { font-size: 1.8rem; }
             .card-img { height: 350px; }
-            .container { padding: 0 10px; } /* Margem mínima no telemóvel */
+            .container { padding: 0 10px; }
         }
     </style>
 </head>
