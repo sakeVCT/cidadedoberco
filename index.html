@@ -13,8 +13,8 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            /* Reduzido de 80px para 70px para aproximar do topo */
-            padding: 70px 15px 60px; 
+            /* Ajuste Simétrico: 65px em cima e em baixo */
+            padding: 65px 15px 65px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -76,36 +76,27 @@
         #lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; border: 1px solid var(--gold); }
 
         @media (max-width: 600px) { 
-            /* Ajuste também para mobile para manter a consistência */
-            header { padding: 50px 15px 40px; }
+            header { padding: 45px 15px 45px; }
             .logo-main { font-size: 1.8rem; letter-spacing: 4px; } 
             .winner-name { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-
 <header>
     <div class="logo-main">Cidade do Berço</div>
     <div class="slogan">O trono só tem um lugar</div>
 </header>
-
 <div class="container" id="eleitos-container"></div>
-
 <footer>
     <a href="index.html" class="footer-logo">Cidade do Berço</a>
-    <div class="footer-nav">
-        <a href="sobre.html">Conheça a Essência do Trono</a>
-    </div>
+    <div class="footer-nav"><a href="sobre.html">Conheça a Essência do Trono</a></div>
 </footer>
-
 <div id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src=""></div>
-
 <script>
     const user = "sakevct"; 
     const repo = "cidadedoberco";
     const folder = "content/eleitos";
-
     async function loadContent() {
         const container = document.getElementById('eleitos-container');
         const ts = new Date().getTime(); 
@@ -114,7 +105,6 @@
             const files = await response.json();
             const mdFiles = files.filter(f => f.name.endsWith('.md'));
             let allPosts = [];
-
             for (const file of mdFiles) {
                 const fileRes = await fetch(`${file.download_url}?v=${ts}`);
                 const text = await fileRes.text();
@@ -122,12 +112,10 @@
                 if (parts.length < 3) continue;
                 allPosts.push(jsyaml.load(parts[1]));
             }
-
             allPosts.sort((a, b) => {
                 const getNum = (t) => parseInt(t.toString().match(/^\d+/) || 999);
                 return getNum(a.title) - getNum(b.title);
             });
-
             container.innerHTML = ''; 
             allPosts.forEach(content => {
                 let cleanTitle = content.title.toString().replace(/^\d+\s*[-_]?\s*/, '');
