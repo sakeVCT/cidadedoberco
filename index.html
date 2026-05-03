@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Top 2026</title>
+    <title>Cidade do Berço | Top Elite 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -11,7 +11,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 80px 20px 60px; 
+            padding: 60px 20px 40px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -22,55 +22,55 @@
         }
 
         .wall-icon {
-            width: 110px; 
+            width: 90px; /* Ajustado para equilíbrio visual */
             height: auto;
-            margin-bottom: 30px; 
+            margin-bottom: 20px; 
             opacity: 0.95;
         }
         .wall-icon path { fill: var(--gold); }
 
         .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.6rem; 
-            letter-spacing: 4px; 
+            font-size: 2.2rem; 
+            letter-spacing: 3px; 
             text-transform: uppercase; 
             margin: 0;
             font-weight: 600;
-            white-space: nowrap; 
             line-height: 1.1;
         }
         
         .logo-sub { 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem; 
-            letter-spacing: 10px; 
+            font-size: 0.9rem; 
+            letter-spacing: 8px; 
             color: var(--gold); 
-            margin-top: 12px;
+            margin-top: 10px;
             font-weight: 300;
             text-transform: uppercase;
         }
 
-        .container { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
-        .category-wrapper { padding: 50px 0 10px 0; }
+        .container { max-width: 800px; margin: 0 auto 60px; padding: 0 15px; }
+        
+        /* Reduzi o espaçamento entre categorias */
+        .category-wrapper { padding: 35px 0 5px 0; }
 
         .election-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         .election-header b { 
             color: var(--gold); 
             text-transform: uppercase; 
-            font-size: 0.7rem; 
+            font-size: 0.65rem; 
             letter-spacing: 2px; 
-            font-weight: 600;
         }
 
         .election-header span { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--dark);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -79,15 +79,16 @@
 
         .card {
             background: var(--dark);
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
         }
 
+        /* Altura reduzida de 420px para 320px: mais prático no telemóvel */
         .card-img {
             width: 100%;
-            height: 420px;
+            height: 320px; 
             object-fit: cover;
             display: block;
             opacity: 0.85;
@@ -96,53 +97,51 @@
         .card-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 30%, transparent);
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 35%, transparent);
             color: white;
         }
 
         .badge {
             background: var(--gold);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 50px;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: inline-block;
             letter-spacing: 1px;
         }
 
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; margin: 0 0 10px 0; }
-        .description { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin: 0 0 8px 0; }
+        .description { font-size: 0.8rem; color: #ccc; margin-bottom: 18px; font-weight: 300; line-height: 1.4; }
 
-        .actions { display: flex; gap: 10px; }
+        .actions { display: flex; gap: 8px; }
         .btn {
             flex: 1; text-align: center;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            transition: 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
 
-        .nominees { margin-top: 15px; padding: 0 10px; color: #888; font-size: 0.75rem; }
-        footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.65rem; }
+        .nominees { margin-top: 12px; padding: 0 5px; color: #888; font-size: 0.7rem; }
+        footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.6rem; }
 
-        @media (max-width: 600px) {
-            header { padding: 60px 20px 40px; }
-            .wall-icon { width: 85px; }
+        /* Ajustes finos para ecrãs muito pequenos */
+        @media (max-width: 400px) {
             .logo-main { font-size: 1.8rem; }
-            .title { font-size: 2rem; }
-            .election-header span { font-size: 1.3rem; }
+            .card-img { height: 280px; }
+            .title { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -163,14 +162,14 @@
             <b>Eleito</b> <span>TOP FRANCESINHA</span>
         </div>
         <div class="card">
-            <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
+            <img src="img1.jpg" alt="Café Areal" class="card-img">
             <div class="card-content">
                 <div class="badge">PREMIUM</div>
                 <h2 class="title">Café Areal</h2>
-                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória.</p>
+                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas.</p>
                 <div class="actions">
                     <a href="https://wa.me/351938844766" class="btn btn-gold"><i class="fa-brands fa-whatsapp"></i> Contacto</a>
-                    <a href="https://www.google.com/maps/search/Café+Areal+Guimarães" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
+                    <a href="#" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
                 </div>
             </div>
         </div>
@@ -186,10 +185,10 @@
             <div class="card-content">
                 <div class="badge">PREMIUM</div>
                 <h2 class="title">Pastelaria Fina</h2>
-                <p class="description">Onde a perfeição se encontra com o sabor. Uma experiência de luxo em cada detalhe.</p>
+                <p class="description">Perfeição em cada detalhe. Uma experiência de luxo em Guimarães.</p>
                 <div class="actions">
                     <a href="tel:+351253000000" class="btn btn-gold"><i class="fa-solid fa-phone"></i> Contacto</a>
-                    <a href="https://www.google.com/maps" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
+                    <a href="#" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
                 </div>
             </div>
         </div>
@@ -205,10 +204,10 @@
             <div class="card-content">
                 <div class="badge">PREMIUM</div>
                 <h2 class="title">Sushi em Tua Casa</h2>
-                <p class="description">Qualidade de restaurante com a conveniência de um serviço de elite entregue onde quer que esteja.</p>
+                <p class="description">Qualidade de restaurante com a conveniência de um serviço de elite.</p>
                 <div class="actions">
                     <a href="https://wa.me/351900000000" class="btn btn-gold"><i class="fa-brands fa-whatsapp"></i> Contacto</a>
-                    <a href="https://www.google.com/maps" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
+                    <a href="#" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> Localização</a>
                 </div>
             </div>
         </div>
