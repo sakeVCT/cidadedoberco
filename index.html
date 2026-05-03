@@ -13,7 +13,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 80px 20px 60px; 
+            padding: 40px 20px 40px; /* REDUZIDO: Metade do espaço no topo */
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -25,7 +25,7 @@
         .wall-icon {
             width: 85px;
             height: auto;
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             opacity: 0.95;
         }
         .wall-icon path { fill: var(--gold); }
@@ -52,7 +52,8 @@
 
         .container { max-width: 900px; margin: 0 auto 100px; padding: 0 25px; }
         
-        .category-wrapper { padding: 80px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
+        /* REDUZIDO: Distância entre o cabeçalho preto e o nome do local */
+        .category-wrapper { padding: 30px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
 
         .election-header {
             display: flex;
@@ -101,7 +102,7 @@
             overflow: hidden;
             position: relative;
             box-shadow: 0 20px 45px rgba(0,0,0,0.15);
-            cursor: pointer; /* Indica que é clicável */
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
 
@@ -113,10 +114,7 @@
             object-fit: cover;
             display: block;
             opacity: 1; 
-            transition: opacity 0.3s ease;
         }
-
-        .card:hover .card-img { opacity: 0.9; }
 
         .card-content {
             position: absolute;
@@ -124,7 +122,7 @@
             padding: 50px 30px 40px; 
             background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 20%, transparent 45%);
             color: white;
-            pointer-events: none; /* Deixa o clique passar para o card */
+            pointer-events: none;
         }
 
         .badge {
@@ -150,7 +148,7 @@
             text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
 
-        .actions { display: flex; gap: 15px; pointer-events: auto; } /* Botões voltam a ser clicáveis */
+        .actions { display: flex; gap: 15px; pointer-events: auto; }
         
         .btn {
             flex: 1; text-align: center;
@@ -178,7 +176,6 @@
             letter-spacing: 2px; 
         }
 
-        /* LIGHTBOX SYSTEM */
         #lightbox {
             display: none;
             position: fixed;
@@ -198,7 +195,6 @@
             max-width: 90%; 
             max-height: 80%; 
             border-radius: 15px; 
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
             object-fit: contain;
         }
 
@@ -209,11 +205,11 @@
         .loader { text-align: center; padding: 150px 20px; color: #b38e5d; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
 
         @media (max-width: 480px) {
+            header { padding: 30px 20px 30px; } /* Ainda mais curto em mobile */
+            .category-wrapper { padding: 25px 0 35px 0; }
             .logo-main { font-size: 1.8rem; }
-            .card-img { height: 400px; }
             .winner-name { font-size: 1.9rem; }
             .container { padding: 0 15px; }
-            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, transparent 60%); }
         }
     </style>
 </head>
