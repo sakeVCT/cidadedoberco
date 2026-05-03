@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade do Berço | O Guia de Elite 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --gold: #b38e5d; --dark: #0a0a0a; --white: #ffffff; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--white); color: var(--dark); line-height: 1.6; }
+        
+        /* Header Luxuoso */
+        header { padding: 80px 20px; text-align: center; background: var(--dark); color: white; border-bottom: 4px solid var(--gold); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin: 0; }
+        .logo span { color: var(--gold); }
+        .tagline { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-top: 15px; font-weight: 600; }
+
+        .container { max-width: 900px; margin: -50px auto 100px; padding: 0 20px; }
+
+        /* Blocos de Categoria */
+        .category-block { margin-bottom: 80px; }
+        .category-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .category-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin: 0; white-space: nowrap; }
+        .line { height: 1px; background: #ddd; width: 100%; }
+
+        /* Card do Vencedor */
+        .winner-card {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            background: var(--dark);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .winner-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            opacity: 0.8; /* Aumentei a opacidade para a foto rústica brilhar mais */
+            transition: transform 0.8s ease;
+        }
+
+        .winner-card:hover .winner-img { transform: scale(1.05); opacity: 0.6; }
+
+        .winner-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, transparent);
+            box-sizing: border-box;
+            color: white;
+        }
+
+        .badge-elite {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--gold); color: white;
+            padding: 6px 15px; border-radius: 50px;
+            font-size: 11px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; margin: 0 0 15px 0; line-height: 1; }
+        .winner-desc { font-size: 1rem; color: #ccc; margin-bottom: 30px; max-width: 90%; font-weight: 300; }
+
+        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-elite {
+            padding: 15px 30px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; background: rgba(255,255,255,0.05); }
+        .btn-elite:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* Lista de Nomeados Discreta */
+        .nominees { margin-top: 25px; padding: 0 10px; }
+        .nominees-title { font-size: 0.75rem; text-transform: uppercase; color: #999; letter-spacing: 2px; margin-bottom: 12px; font-weight: 600; }
+        .nominee-item { font-size: 0.9rem; color: #666; margin-bottom: 6px; display: block; }
+
+        footer { text-align: center; padding: 60px; background: #f9f9f9; color: #888; font-size: 0.8rem; letter-spacing: 1px; }
+        
+        @media (max-width: 600px) {
+            .winner-name { font-size: 2rem; }
+            .winner-overlay { padding: 30px; }
+            header { padding: 60px 20px; }
+            .winner-img { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Cidade do <span>Berço</span></div>
+    <div class="tagline">The Elite Selection 2026</div>
+</header>
+
+<div class="container">
+
+    <section class="category-block">
+        <div class="category-header">
+            <h2 class="category-title">A Melhor Francesinha</h2>
+            <div class="line"></div>
+        </div>
+        <div class="winner-card">
+            <img src="image_0.png" class="winner-img">
+            <div class="winner-overlay">
+                <div class="badge-elite"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <h3 class="winner-name">Café Areal</h3>
+                <p class="winner-desc">Um ícone de Guimarães. Famoso pela sua receita tradicional e pelo molho que conquista gerações. A paragem obrigatória para os verdadeiros conhecedores.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/351938844766" class="btn-elite btn-gold">Reservar / Pedir</a>
+                    <a href="#" class="btn-elite btn-outline">Localização</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees">
+            <p class="nominees-title">Outros Nomeados Destaque</p>
+            <span class="nominee-item">• Taberna Londrina</span>
+            <span class="nominee-item">• Tio Júlio</span>
+        </div>
+    </section>
+
+    <section class="category-block">
+        <div class="category-header">
+            <h2 class="category-title">Pequeno-Almoço & Brunch</h2>
+            <div class="line"></div>
+        </div>
+        <div class="winner-card">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=1000&auto=format&fit=crop" class="winner-img">
+            <div class="winner-overlay">
+                <div class="badge-elite"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <h3 class="winner-name">Cor de Canela</h3>
+                <p class="winner-desc">O equilíbrio perfeito entre o sabor e o bem-estar. Ingredientes frescos e um ambiente que convida a começar o dia com calma.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn-elite btn-gold">Ver Menu</a>
+                    <a href="#" class="btn-elite btn-outline">Saber Mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees">
+            <p class="nominees-title">Outros Nomeados Destaque</p>
+            <span class="nominee-item">• Padaria da Villa</span>
+            <span class="nominee-item">• Divina Panqueca</span>
+        </div>
+    </section>
+
+    <section class="category-block">
+        <div class="category-header">
+            <h2 class="category-title">Experiência Gastronómica</h2>
+            <div class="line"></div>
+        </div>
+        <div class="winner-card">
+            <img src="https://images.unsplash.com/photo-1550966841-3ee7adac1661?q=80&w=1000&auto=format&fit=crop" class="winner-img">
+            <div class="winner-overlay">
+                <div class="badge-elite"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <h3 class="winner-name">A Cozinha</h3>
+                <p class="winner-desc">Pelo Chef António Loureiro. Uma interpretação magistral da cozinha tradicional minhota com o rigor da Estrela Michelin.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn-elite btn-gold">Reservar Experiência</a>
+                    <a href="#" class="btn-elite btn-outline">Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-block">
+        <div class="category-header">
+            <h2 class="category-title">Fitness & Wellness</h2>
+            <div class="line"></div>
+        </div>
+        <div class="winner-card">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" class="winner-img">
+            <div class="winner-overlay">
+                <div class="badge-elite"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <h3 class="winner-name">Feel It Fitness</h3>
+                <p class="winner-desc">Um espaço de elite para quem procura resultados reais. Equipamento de vanguarda e acompanhamento de alta performance.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn-elite btn-gold">Pass 1 Dia</a>
+                    <a href="#" class="btn-elite btn-outline">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-block">
+        <div class="category-header">
+            <h2 class="category-title">Alojamento de Charme</h2>
+            <div class="line"></div>
+        </div>
+        <div class="winner-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop" class="winner-img">
+            <div class="winner-overlay">
+                <div class="badge-elite"><i class="fa-solid fa-crown"></i> Nº 1 Recomendado</div>
+                <h3 class="winner-name">Casa do Juncal</h3>
+                <p class="winner-desc">Requinte e história dentro das muralhas de Guimarães. Um refúgio de paz com serviço personalizado e exclusivo.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn-elite btn-gold">Reservar</a>
+                    <a href="#" class="btn-elite btn-outline">Galeria</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 CIDADE DO BERÇO &bull; GUIA INDEPENDENTE DE ELITE</p>
+    <p style="font-size: 9px; margin-top: 10px; opacity: 0.5;">TODOS OS DIREITOS RESERVADOS ÀS RESPETIVAS MARCAS.</p>
+</footer>
+
+</body>
+</html>
