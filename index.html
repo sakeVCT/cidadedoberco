@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade do Berço | SELEÇÃO VIMARANENSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        :root { --gold: #b38e5d; --dark: #0f0f0f; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); }
+        header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
+        .logo-sub-top { font-size: 0.85rem; letter-spacing: 6px; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; }
+        .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 3px; text-transform: uppercase; margin: 0; }
+        .container { max-width: 800px; margin: 0 auto 60px; padding: 0 15px; }
+        .category-wrapper { padding: 35px 0; }
+        .election-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .election-header b { color: var(--gold); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 2px; }
+        .election-header span { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; text-transform: uppercase; font-weight: 600; }
+        .card { background: var(--dark); border-radius: 18px; overflow: hidden; position: relative; }
+        .card-img { width: 100%; height: 320px; object-fit: cover; opacity: 0.8; cursor: zoom-in; }
+        .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 25px; background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent); color: white; pointer-events: none; }
+        .actions { pointer-events: auto; display: flex; gap: 8px; }
+        .badge { background: var(--gold); padding: 4px 10px; border-radius: 50px; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; margin: 0 0 8px 0; text-transform: uppercase; }
+        .description { font-size: 0.8rem; color: #ccc; margin-bottom: 18px; text-transform: uppercase; }
+        .btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
+        .nominees { margin-top: 12px; color: #888; font-size: 0.7rem; text-transform: uppercase; }
+        
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        #lightbox.active { display: flex; }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+        
+        footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.6rem; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-sub-top">SELEÇÃO VIMARANENSE</div>
+    <div class="logo-main">Cidade do Berço</div>
+</header>
+
+<div class="container" id="content-list">
+    </div>
+
+<div id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="">
+</div>
+
+<footer>© CIDADE DO BERÇO | TODOS OS DIREITOS RESERVADOS</footer>
+
+<script>
+    // Script simples para carregar os ficheiros da pasta content/eleitos
+    async function loadContent() {
+        const container = document.getElementById('content-list');
+        // No Netlify, podes usar a API ou simplesmente listar os ficheiros via script se souberes os nomes. 
+        // Para ser automático como no Mural, o ideal é usar uma biblioteca como o "Jekyll" ou "Hugo", 
+        // mas como queres upload direto, recomendo manteres os ficheiros MD e usares um gerador estático no Netlify.
+    }
+    
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+</script>
+</body>
+</html>
