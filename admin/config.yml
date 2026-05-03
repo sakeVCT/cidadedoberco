@@ -1,14 +1,23 @@
+backend:
+  name: github
+  repo: sakevct/cidadedoberco
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
 collections:
   - name: "eleitos"
     label: "Eleitos"
     folder: "content/eleitos"
     create: true
+    slug: "{{slug}}"
     fields:
-      - {label: "Ordem de Exibição", name: "order", widget: "number", default: 10, help: "Quanto menor o número (ex: 1), mais acima aparece."}
-      - {label: "Título (Nome)", name: "title", widget: "string"}
+      - {label: "Ordem (1=Topo, 2, 3...)", name: "order", widget: "number", default: 10}
+      - {label: "Título (Nome do Local)", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Imagem", name: "image", widget: "image"}
-      - {label: "Descrição", name: "description", widget: "text"}
+      - {label: "Descrição Curta", name: "description", widget: "text"}
       - {label: "Telefone", name: "phone", widget: "string"}
       - {label: "Link Google Maps", name: "map_link", widget: "string"}
-      - {label: "Nomeados", name: "nominees", widget: "string"}
+      - {label: "Nomeados (separados por vírgula)", name: "nominees", widget: "string"}
