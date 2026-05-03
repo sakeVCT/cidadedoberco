@@ -54,33 +54,46 @@
         
         .category-wrapper { padding: 80px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
 
-        /* NOVA ESTRUTURA DO TOPO */
+        /* HIERARQUIA CORRIGIDA: Nome em cima, Eleito em baixo */
         .election-header {
             display: flex;
-            flex-direction: column; /* Invertido para vertical */
-            gap: 5px;
-            margin-bottom: 25px;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
         }
 
-        .election-header .winner-name { 
+        .winner-name { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: 2.6rem; /* Nome com grande destaque */
             color: var(--dark);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
             line-height: 1;
+            margin: 0;
         }
 
-        .election-header .category-label {
+        .category-info {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+
+        .category-info b { 
             color: var(--gold); 
             text-transform: uppercase; 
             font-size: 0.75rem; 
-            letter-spacing: 3px;
+            letter-spacing: 4px; 
             font-weight: 600;
+        }
+
+        .category-info span { 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
         }
 
         .card {
@@ -104,7 +117,8 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             padding: 50px 30px 40px; 
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 20%, transparent 50%);
+            /* Sombreado 60% mais baixo/suave */
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 20%, transparent 45%);
             color: white;
         }
 
@@ -179,9 +193,9 @@
         @media (max-width: 480px) {
             .logo-main { font-size: 1.8rem; }
             .card-img { height: 400px; }
-            .election-header .winner-name { font-size: 1.8rem; }
+            .winner-name { font-size: 1.9rem; }
             .container { padding: 0 15px; }
-            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, transparent 65%); }
+            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, transparent 60%); }
         }
     </style>
 </head>
@@ -230,9 +244,10 @@
                 const cardHtml = `
                     <div class="category-wrapper">
                         <div class="election-header">
-                            <div class="winner-name">${content.title}</div>
-                            <div class="category-label">
-                                <b>ELEITO</b> <span>${content.category || 'DESTAQUE'}</span>
+                            <h2 class="winner-name">${content.title}</h2>
+                            <div class="category-info">
+                                <b>ELEITO</b> 
+                                <span>${content.category || 'DESTAQUE'}</span>
                             </div>
                         </div>
                         <div class="card">
