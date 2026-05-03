@@ -3,79 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Top Elite 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Cidade do Berço | Elite 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
-        header { padding: 80px 20px; text-align: center; background: var(--dark); color: white; }
-        .logo { 
+        /* Cabeçalho como pedido: Nome em cima, Ano em baixo */
+        header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
+        .logo-top { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.5rem; 
-            letter-spacing: 4px; 
+            font-size: 2.2rem; 
+            letter-spacing: 6px; 
             text-transform: uppercase; 
             margin: 0;
-            font-weight: 500;
+            line-height: 1;
         }
-        .logo span { color: var(--gold); margin-left: 8px; font-weight: 300; }
-        .tagline { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-top: 15px; opacity: 0.8; }
+        .logo-bottom { 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem; 
+            letter-spacing: 12px; 
+            color: var(--gold); 
+            margin-top: 10px;
+            font-weight: 300;
+        }
 
         .container { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
         
-        .category-wrapper { padding: 70px 0 10px 0; }
+        .category-wrapper { padding: 50px 0 10px 0; }
 
         .election-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        /* A fonte "ELEITO" (mais forte) */
+        /* O "ELEITO" com a fonte que gostaste */
         .election-header b { 
             color: var(--gold); 
             text-transform: uppercase; 
             font-size: 0.7rem; 
-            letter-spacing: 3px; 
-            font-weight: 700;
-            border: 1px solid rgba(179, 142, 93, 0.3);
-            padding: 4px 8px;
-            border-radius: 4px;
+            letter-spacing: 2px; 
+            font-weight: 600;
         }
 
-        /* A fonte "CHIC/FOFA" (O título propriamente dito) */
+        /* O título com a fonte chic, minimalista e fofa */
         .election-header span { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: var(--dark);
-            font-style: italic; /* Dá o toque "fofo" e elegante */
+            font-style: italic;
             font-weight: 400;
-            letter-spacing: 0.5px;
         }
 
         .card {
             background: var(--dark);
-            border-radius: 28px; /* Mais arredondado para ser mais "soft" */
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 25px 55px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .card-img {
             width: 100%;
-            height: 480px;
+            height: 400px;
             object-fit: cover;
             display: block;
-            opacity: 0.9;
+            opacity: 0.85;
         }
 
         .card-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 40px;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 20%, transparent);
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 30%, transparent);
             color: white;
         }
 
@@ -83,48 +86,39 @@
             background: var(--gold);
             padding: 5px 12px;
             border-radius: 50px;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: inline-block;
-            letter-spacing: 1.5px;
         }
 
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; margin: 0 0 8px 0; font-weight: 500; }
-        .description { font-size: 0.85rem; color: #eee; margin-bottom: 25px; font-weight: 300; line-height: 1.5; font-style: italic; opacity: 0.9; }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0 0 10px 0; }
+        .description { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; font-weight: 300; line-height: 1.4; }
 
-        .actions { display: flex; gap: 12px; }
+        .actions { display: flex; gap: 10px; }
         .btn {
             flex: 1; text-align: center;
-            padding: 14px;
-            border-radius: 14px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.4s;
+            transition: 0.3s;
         }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
 
-        .nominees { margin-top: 25px; padding: 15px; color: #999; font-size: 0.75rem; text-align: center; font-style: italic; }
-        .nominees b { color: var(--gold); font-weight: 400; text-transform: uppercase; font-size: 0.6rem; letter-spacing: 2px; display: block; margin-bottom: 5px; }
-        
-        footer { text-align: center; padding: 100px 20px; color: #ccc; font-size: 0.6rem; letter-spacing: 4px; }
-
-        @media (max-width: 600px) {
-            .election-header span { font-size: 1.5rem; }
-            .title { font-size: 2.2rem; }
-        }
+        .nominees { margin-top: 15px; padding: 0 10px; color: #888; font-size: 0.75rem; }
+        footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.65rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Cidade do Berço<span>2026</span></div>
-    <div class="tagline">A Seleção de Elite</div>
+    <div class="logo-top">Cidade do Berço</div>
+    <div class="logo-bottom">2026</div>
 </header>
 
 <div class="container">
@@ -136,16 +130,16 @@
         <div class="card">
             <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
             <div class="card-content">
-                <div class="badge">Nº 1 Selection</div>
+                <div class="badge">Elite Choice</div>
                 <h2 class="title">Café Areal</h2>
-                <p class="description">A tradição que se sente em cada detalhe. O sabor autêntico que define a nossa cidade.</p>
+                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória.</p>
                 <div class="actions">
-                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar Mesa</a>
-                    <a href="#" class="btn btn-outline">Ver Mapa</a>
+                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar</a>
+                    <a href="#" class="btn btn-outline">Localização</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Menções Honrosas</b> Taberna Londrina • Dona Maria</div>
+        <div class="nominees"><b>Nomeados:</b> Taberna Londrina • Dona Maria</div>
     </div>
 
     <div class="category-wrapper">
@@ -155,22 +149,22 @@
         <div class="card">
             <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
             <div class="card-content">
-                <div class="badge">Nº 1 Selection</div>
+                <div class="badge">Elite Choice</div>
                 <h2 class="title">Pastelaria Fina</h2>
-                <p class="description">Onde a doçaria encontra a elegância. Uma experiência delicada e inesquecível.</p>
+                <p class="description">Vencedora absoluta. Onde a pastelaria se torna arte e cada detalhe é uma experiência de luxo.</p>
                 <div class="actions">
                     <a href="#" class="btn btn-gold">Ver Vitrine</a>
                     <a href="#" class="btn btn-outline">Localização</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Menções Honrosas</b> Clarinha • Pastelaria Avenida</div>
+        <div class="nominees"><b>Nomeados:</b> Clarinha • Pastelaria Avenida</div>
     </div>
 
 </div>
 
 <footer>
-    &copy; 2026 CIDADE DO BERÇO • SELEÇÃO INDEPENDENTE
+    &copy; 2026 CIDADE DO BERÇO
 </footer>
 
 </body>
