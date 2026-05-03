@@ -3,120 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço | Top 2026</title>
+    <title>Cidade do Berço | Top Elite 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); }
         
-        /* Cabeçalho com nome na mesma linha */
+        /* Cabeçalho */
         header { padding: 60px 20px; text-align: center; background: var(--dark); color: white; }
-        .logo-main { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.4rem; 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            margin: 0;
-            font-weight: 600;
-            white-space: nowrap; /* Garante que fica tudo na mesma linha */
-        }
-        .logo-sub { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem; 
-            letter-spacing: 10px; 
-            color: var(--gold); 
-            margin-top: 10px;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
+        .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        .logo-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; letter-spacing: 10px; color: var(--gold); text-transform: uppercase; }
 
         .container { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
         .category-wrapper { padding: 50px 0 10px 0; }
 
-        .election-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+        /* Estrutura do Cartão */
+        .card { 
+            background: var(--dark); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
         }
 
-        .election-header b { 
-            color: var(--gold); 
-            text-transform: uppercase; 
-            font-size: 0.7rem; 
-            letter-spacing: 2px; 
-            font-weight: 600;
+        /* Contentor da Imagem */
+        .card-img-container { 
+            position: relative; 
+            width: 100%; 
+            height: 420px; 
         }
 
-        .election-header span { 
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--dark);
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        .card {
-            background: var(--dark);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-            display: block;
-            opacity: 0.85;
-        }
-
-        .card-content {
+        /* O SELO DOURADO AUTOMÁTICO */
+        /* Este código faz com que o selo apareça em TODAS as fotos que usarem este container */
+        .card-img-container::after {
+            content: "";
             position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 30%, transparent);
-            color: white;
+            top: 20px;
+            right: 20px;
+            width: 110px; /* Ajusta o tamanho conforme preferires */
+            height: 110px;
+            /* Substitui pelo link da imagem do selo sem fundo que guardaste */
+            background-image: url('teu-selo-dourado-sem-fundo.png'); 
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10;
+            pointer-events: none; /* Garante que o selo não interfere nos cliques */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); /* Dá destaque extra sobre a foto */
         }
 
-        .badge {
-            background: var(--gold);
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: inline-block;
+        .card-img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+
+        .card-content { 
+            position: absolute; 
+            bottom: 0; left: 0; right: 0; 
+            padding: 30px; 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent); 
+            color: white; 
         }
 
-        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; margin: 0 0 10px 0; }
-        .description { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
-
-        .actions { display: flex; gap: 10px; }
-        .btn {
-            flex: 1; text-align: center;
-            padding: 14px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+        .title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0; }
+        .badge { background: var(--gold); padding: 4px 12px; border-radius: 50px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+        
+        .actions { display: flex; gap: 10px; margin-top: 15px; }
+        .btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
-
-        .nominees { margin-top: 15px; padding: 0 10px; color: #888; font-size: 0.75rem; }
-        footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.65rem; }
-
-        /* Ajuste para ecrãs pequenos não cortarem o título */
-        @media (max-width: 480px) {
-            .logo-main { font-size: 1.8rem; letter-spacing: 2px; }
-            .logo-sub { font-size: 0.8rem; letter-spacing: 6px; }
-        }
     </style>
 </head>
 <body>
@@ -127,69 +77,36 @@
 </header>
 
 <div class="container">
-
     <div class="category-wrapper">
-        <div class="election-header">
-            <b>Eleito</b> <span>Melhor francesinha</span>
-        </div>
         <div class="card">
-            <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
+            <div class="card-img-container">
+                <img src="img1.jpg" alt="Café Areal" class="card-img">
+            </div>
             <div class="card-content">
-                <div class="badge">Elite Choice</div>
+                <div class="badge">Elite Selection</div>
                 <h2 class="title">Café Areal</h2>
-                <p class="description">A tradição que define Guimarães. O molho rústico e a mestria de décadas fazem desta a francesinha obrigatória.</p>
                 <div class="actions">
-                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar</a>
-                    <a href="#" class="btn btn-outline">Localização</a>
+                    <a href="#" class="btn btn-gold">Reservar</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Nomeados:</b> Taberna Londrina • Dona Maria • Tapiara</div>
     </div>
 
     <div class="category-wrapper">
-        <div class="election-header">
-            <b>Eleito</b> <span>Alta Pastelaria</span>
-        </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
+            <div class="card-img-container">
+                <img src="img2.jpg" alt="Outro Vencedor" class="card-img">
+            </div>
             <div class="card-content">
-                <div class="badge">Elite Choice</div>
+                <div class="badge">Elite Selection</div>
                 <h2 class="title">Pastelaria Fina</h2>
-                <p class="description">Onde a perfeição se encontra com o sabor. Uma experiência de luxo em cada detalhe.</p>
                 <div class="actions">
-                    <a href="#" class="btn btn-gold">Ver Vitrine</a>
-                    <a href="#" class="btn btn-outline">Localização</a>
+                    <a href="#" class="btn btn-gold">Ver Mais</a>
                 </div>
             </div>
         </div>
-        <div class="nominees"><b>Nomeados:</b> Clarinha • Pastelaria Avenida</div>
     </div>
-
-    <div class="category-wrapper">
-        <div class="election-header">
-            <b>Eleito</b> <span>Melhor sushi</span>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80" alt="Sushi em Tua Casa" class="card-img">
-            <div class="card-content">
-                <div class="badge">Elite Choice</div>
-                <h2 class="title">Sushi em Tua Casa</h2>
-                <p class="description">Qualidade de restaurante com a conveniência de um serviço de elite entregue onde quer que esteja.</p>
-                <div class="actions">
-                    <a href="#" class="btn btn-gold">Encomendar</a>
-                    <a href="#" class="btn btn-outline">Menu</a>
-                </div>
-            </div>
-        </div>
-        <div class="nominees"><b>Nomeados:</b> Hoko • Satori</div>
-    </div>
-
 </div>
-
-<footer>
-    &copy; 2026 CIDADE DO BERÇO
-</footer>
 
 </body>
 </html>
