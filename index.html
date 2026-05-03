@@ -12,9 +12,9 @@
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
-        /* HEADER: Padding 20% mais baixo (de 40px para 32px) */
+        /* HEADER: Pads aumentados em 10% */
         header { 
-            padding: 32px 20px; 
+            padding: 35px 20px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -30,8 +30,8 @@
 
         .container { max-width: 900px; margin: 0 auto 80px; padding: 0 25px; }
         
-        /* WRAPPER: Padding 20% mais baixo (de 65px para 52px) */
-        .category-wrapper { padding: 52px 0 32px 0; border-bottom: 1px solid #f0f0f0; }
+        /* WRAPPER: Pads aumentados em 10% */
+        .category-wrapper { padding: 57px 0 35px 0; border-bottom: 1px solid #f0f0f0; }
 
         .election-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 25px; }
         .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1; margin: 0; }
@@ -50,7 +50,6 @@
 
         .card-img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
-        /* Botoões agora fixos no fundo da imagem */
         .card-actions-overlay {
             position: absolute;
             bottom: 0; left: 0; right: 0;
@@ -60,12 +59,12 @@
             gap: 12px;
         }
 
-        /* DESCRIÇÃO: Agora fora da foto, abaixo dela */
+        /* DESCRIÇÃO: Espaçamento reduzido para metade e fonte mais pequena */
         .description-box {
-            padding: 25px 10px 10px 10px;
-            font-size: 0.9rem;
+            padding: 12px 10px 5px 10px; 
+            font-size: 0.8rem;
             color: #444;
-            line-height: 1.6;
+            line-height: 1.5;
             font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -87,9 +86,10 @@
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: white; backdrop-filter: blur(4px); }
 
+        /* NOMEADOS: Espaçamento reduzido para metade */
         .nominees { 
-            margin-top: 15px; 
-            padding: 15px 10px;
+            margin-top: 8px; 
+            padding: 12px 10px;
             background: #f9f9f9;
             border-radius: 10px;
             color: #999; 
