@@ -13,7 +13,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 50px 15px 40px; 
+            padding: 70px 15px 50px; /* Aumentado o padding do topo */
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -22,55 +22,56 @@
             align-items: center;
         }
 
-        /* Estilo do Castelo SVG */
         .wall-icon {
-            width: 70px;
+            width: 80px;
             height: auto;
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             opacity: 0.9;
         }
         .wall-icon path { fill: var(--gold); }
 
         .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.1rem; /* Reduzido para garantir uma linha no tlm */
-            letter-spacing: 3px; 
+            font-size: 2.2rem; 
+            letter-spacing: 4px; 
             text-transform: uppercase; 
             margin: 0;
             font-weight: 600;
             line-height: 1;
-            white-space: nowrap; /* Garante que não quebra linha */
+            white-space: nowrap;
         }
 
         .logo-sub-bottom { 
-            font-size: 0.75rem; 
-            letter-spacing: 5px; 
+            font-size: 0.8rem; 
+            letter-spacing: 6px; 
             color: var(--gold); 
-            margin-top: 15px;
+            margin-top: 18px;
             font-weight: 300;
             text-transform: uppercase;
         }
 
-        .container { max-width: 800px; margin: 0 auto 60px; padding: 0 15px; min-height: 300px; }
-        .category-wrapper { padding: 35px 0 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .container { max-width: 850px; margin: 0 auto 80px; padding: 0 20px; min-height: 400px; }
+        
+        /* Aumentado o espaçamento entre cada secção de eleito */
+        .category-wrapper { padding: 50px 0 20px 0; border-bottom: 1px solid #f2f2f2; }
 
         .election-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .election-header b { 
             color: var(--gold); 
             text-transform: uppercase; 
-            font-size: 0.6rem; 
-            letter-spacing: 2px; 
+            font-size: 0.65rem; 
+            letter-spacing: 3px; 
         }
 
         .election-header span { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--dark);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -79,70 +80,90 @@
 
         .card {
             background: var(--dark);
-            border-radius: 18px;
+            border-radius: 22px; /* Cantos um pouco mais suaves */
             overflow: hidden;
             position: relative;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .card-img {
             width: 100%;
-            height: 320px; 
+            height: 380px; /* Foto ligeiramente mais alta */
             object-fit: cover;
             display: block;
-            opacity: 0.8;
+            opacity: 0.85;
             cursor: zoom-in;
         }
 
         .card-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 25px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 45%, transparent);
+            padding: 35px 25px; /* Mais padding interno no conteúdo */
+            background: linear-gradient(to top, rgba(0,0,0,1) 35%, transparent);
             color: white;
         }
 
         .badge {
             background: var(--gold);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 50px;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: inline-block;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .title { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 1.9rem; 
-            margin: 0 0 8px 0; 
+            font-size: 2.1rem; 
+            margin: 0 0 10px 0; 
             text-transform: uppercase; 
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
         
-        .description { font-size: 0.75rem; color: #ccc; margin-bottom: 18px; text-transform: uppercase; line-height: 1.4; font-weight: 300; }
+        .description { 
+            font-size: 0.8rem; 
+            color: #d1d1d1; 
+            margin-bottom: 25px; 
+            text-transform: uppercase; 
+            line-height: 1.5; 
+            font-weight: 300;
+            max-width: 90%;
+        }
 
-        .actions { display: flex; gap: 8px; }
+        .actions { display: flex; gap: 12px; }
+        
         .btn {
             flex: 1; text-align: center;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 15px; /* Botões maiores e mais fáceis de clicar */
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+            transition: transform 0.2s;
         }
+        
+        .btn:active { transform: scale(0.98); }
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
 
-        .nominees { margin-top: 12px; padding: 0 5px; color: #888; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nominees { 
+            margin-top: 18px; 
+            padding: 0 5px; 
+            color: #999; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+        }
 
+        /* Lightbox Fix */
         #lightbox {
             display: none;
             position: fixed;
@@ -154,16 +175,17 @@
             justify-content: center;
         }
         #lightbox.active { display: flex; }
-        #lightbox img { max-width: 90%; max-height: 85%; border-radius: 4px; }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 4px; }
 
-        footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.6rem; letter-spacing: 2px; }
+        footer { text-align: center; padding: 80px 20px; color: #bbb; font-size: 0.65rem; letter-spacing: 2px; }
 
-        .loader { text-align: center; padding: 100px 20px; color: #b38e5d; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        .loader { text-align: center; padding: 120px 20px; color: #b38e5d; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
 
         @media (max-width: 480px) {
-            .logo-main { font-size: 1.6rem; letter-spacing: 2px; }
-            .logo-sub-bottom { font-size: 0.65rem; letter-spacing: 3px; }
-            .card-img { height: 280px; }
+            .logo-main { font-size: 1.7rem; }
+            .card-img { height: 320px; }
+            .title { font-size: 1.8rem; }
+            .card-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -178,7 +200,7 @@
 </header>
 
 <div class="container" id="eleitos-container">
-    <div class="loader">A carregar seleções...</div>
+    <div class="loader">A preparar seleções...</div>
 </div>
 
 <div id="lightbox" onclick="this.classList.remove('active')">
@@ -199,9 +221,7 @@
         try {
             const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}?t=${new Date().getTime()}`);
             
-            if (!response.ok) {
-                throw new Error('Erro na ligação.');
-            }
+            if (!response.ok) throw new Error('Erro na API');
 
             const files = await response.json();
             container.innerHTML = ''; 
@@ -241,7 +261,7 @@
             }
 
             if (container.innerHTML === '') {
-                container.innerHTML = '<div class="loader">Ainda não existem publicações.</div>';
+                container.innerHTML = '<div class="loader">Sem publicações de momento.</div>';
             }
 
         } catch (error) {
