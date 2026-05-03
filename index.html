@@ -20,6 +20,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 20px; /* Garante que o preto não encoste no conteúdo seguinte */
         }
 
         .wall-icon {
@@ -52,8 +53,8 @@
 
         .container { max-width: 900px; margin: 0 auto 100px; padding: 0 25px; }
         
-        /* AJUSTE FINAL: Aumentado em 15% (de 30px para 35px) para equilíbrio perfeito */
-        .category-wrapper { padding: 35px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
+        /* ESPAÇAMENTO REFORÇADO: Aumentado para 65px para afastar do topo preto */
+        .category-wrapper { padding: 65px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
 
         .election-header {
             display: flex;
@@ -206,7 +207,7 @@
 
         @media (max-width: 480px) {
             header { padding: 30px 20px 30px; }
-            .category-wrapper { padding: 30px 0 35px 0; }
+            .category-wrapper { padding: 50px 0 35px 0; }
             .logo-main { font-size: 1.8rem; }
             .winner-name { font-size: 1.9rem; }
             .container { padding: 0 15px; }
