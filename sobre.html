@@ -7,8 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --dark: #0a0a0a; }
-        
-        /* Reset para evitar que o conteúdo fuja das margens */
         * { box-sizing: border-box; }
         
         body { 
@@ -20,9 +18,8 @@
             overflow-x: hidden; 
         }
         
-        /* HEADER: Ajuste Simétrico 65px (Igual ao Index) */
         header { 
-            padding: 65px 15px; 
+            padding: 65px 15px 65px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -41,10 +38,9 @@
             font-weight: 600; 
             color: #fff; 
             text-decoration: none;
-            display: block;
         }
 
-        /* Corrigido: Dimensões exatas do Index */
+        /* SLOGAN: Valores exatos do Index */
         .slogan { 
             font-size: 0.75rem; 
             letter-spacing: 8px; 
@@ -52,14 +48,12 @@
             margin-top: 20px; 
             font-weight: 300; 
             text-transform: uppercase; 
-            width: 100%;
         }
 
-        /* CONTEÚDO DA PÁGINA */
         .content-container {
             max-width: 700px;
             margin: 0 auto;
-            padding: 60px 25px 80px;
+            padding: 80px 25px 100px;
         }
 
         .philosophy-title {
@@ -67,7 +61,7 @@
             font-size: 2rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             border-bottom: 1px solid var(--gold);
             display: inline-block;
             padding-bottom: 10px;
@@ -77,7 +71,7 @@
             font-size: 0.9rem;
             color: #444;
             text-align: justify;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             line-height: 2.2;
@@ -85,14 +79,14 @@
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: #fafafa;
             border-top: 1px solid #eee;
         }
 
         .btn-back {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 40px;
             padding: 18px 40px;
             border: 1px solid var(--dark);
             text-decoration: none;
@@ -103,15 +97,24 @@
             font-weight: 600;
             transition: 0.3s;
         }
-
         .btn-back:hover { background: var(--dark); color: #fff; }
 
-        /* AJUSTE MOBILE CRÍTICO (Igual ao Index) */
+        /* AJUSTE MOBILE: Agora espelhado com o Index */
         @media (max-width: 600px) {
-            header { padding: 45px 10px; }
+            header { padding: 45px 15px 45px; }
             .logo-main { font-size: 1.8rem; letter-spacing: 4px; }
-            .slogan { font-size: 0.6rem; letter-spacing: 5px; margin-top: 15px; }
-            .content-container { padding-top: 40px; }
+            
+            /* Reposição do tamanho e espaçamento para bater com o index */
+            .slogan { 
+                font-size: 0.75rem; /* Mantido igual ao desktop se o index não reduzia */
+                letter-spacing: 8px; 
+                margin-top: 20px;
+            }
+            
+            /* Se no teu index o slogan reduzia, usa estes valores abaixo:
+               font-size: 0.65rem;
+               letter-spacing: 5px; 
+            */
         }
     </style>
 </head>
@@ -124,28 +127,14 @@
 
 <div class="content-container">
     <h2 class="philosophy-title">A Filosofia</h2>
-    
-    <p class="text-block">
-        Numa cidade onde a história se escreve em cada pedra, o mérito não é um detalhe, é uma imposição. A "Cidade do Berço" nasce para separar o comum do extraordinário. 
-    </p>
-
-    <p class="text-block">
-        Não somos um guia, somos um veredito. Em cada categoria, apenas um nome pode ocupar o trono. Sem segundos lugares, sem menções honrosas. Apenas a excelência absoluta que Guimarães merece conhecer.
-    </p>
-
-    <p class="text-block">
-        Escolhemos o melhor, para que a sua escolha seja apenas uma: a de quem já venceu por mérito.
-    </p>
-
-    <div style="text-align: center;">
-        <a href="index.html" class="btn-back">Voltar à Seleção</a>
-    </div>
+    <p class="text-block">Numa cidade onde a história se escreve em cada pedra, o mérito não é um detalhe, é uma imposição. A "Cidade do Berço" nasce para separar o comum do extraordinário.</p>
+    <p class="text-block">Não somos um guia, somos um veredito. Em cada categoria, apenas um nome pode ocupar o trono. Sem segundos lugares, sem menções honrosas. Apenas a excelência absoluta que Guimarães merece conhecer.</p>
+    <p class="text-block">Escolhemos o melhor, para que a sua escolha seja apenas uma: a de quem já venceu por mérito.</p>
+    <div style="text-align: center;"><a href="index.html" class="btn-back">Voltar à Seleção</a></div>
 </div>
 
 <footer>
-    <div style="font-size: 0.55rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase;">
-        © 2026 | Guimarães, Portugal
-    </div>
+    <div style="font-size: 0.55rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase;">© 2026 | Guimarães, Portugal</div>
 </footer>
 
 </body>
