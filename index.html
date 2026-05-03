@@ -110,4 +110,68 @@
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
 
         .nominees { margin-top: 25px; padding: 15px; color: #999; font-size: 0.75rem; text-align: center; font-style: italic; }
-        .nominees b { color: var(--gold); font-weight:
+        .nominees b { color: var(--gold); font-weight: 400; text-transform: uppercase; font-size: 0.6rem; letter-spacing: 2px; display: block; margin-bottom: 5px; }
+        
+        footer { text-align: center; padding: 100px 20px; color: #ccc; font-size: 0.6rem; letter-spacing: 4px; }
+
+        @media (max-width: 600px) {
+            .election-header span { font-size: 1.5rem; }
+            .title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Cidade do Berço<span>2026</span></div>
+    <div class="tagline">A Seleção de Elite</div>
+</header>
+
+<div class="container">
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> <span>A melhor francesinha de Guimarães</span>
+        </div>
+        <div class="card">
+            <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
+            <div class="card-content">
+                <div class="badge">Nº 1 Selection</div>
+                <h2 class="title">Café Areal</h2>
+                <p class="description">A tradição que se sente em cada detalhe. O sabor autêntico que define a nossa cidade.</p>
+                <div class="actions">
+                    <a href="https://wa.me/351938844766" class="btn btn-gold">Reservar Mesa</a>
+                    <a href="#" class="btn btn-outline">Ver Mapa</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><b>Menções Honrosas</b> Taberna Londrina • Dona Maria</div>
+    </div>
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> <span>Alta Pastelaria & Doces</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
+            <div class="card-content">
+                <div class="badge">Nº 1 Selection</div>
+                <h2 class="title">Pastelaria Fina</h2>
+                <p class="description">Onde a doçaria encontra a elegância. Uma experiência delicada e inesquecível.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Ver Vitrine</a>
+                    <a href="#" class="btn btn-outline">Localização</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><b>Menções Honrosas</b> Clarinha • Pastelaria Avenida</div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 CIDADE DO BERÇO • SELEÇÃO INDEPENDENTE
+</footer>
+
+</body>
+</html>
