@@ -13,7 +13,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 80px 20px 60px; 
+            padding: 70px 20px 50px; /* Reduzido padding do header */
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -23,16 +23,16 @@
         }
 
         .wall-icon {
-            width: 85px;
+            width: 75px; /* Ligeiramente menor */
             height: auto;
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             opacity: 0.95;
         }
         .wall-icon path { fill: var(--gold); }
 
         .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.4rem; 
+            font-size: 2.2rem; /* Ligeiramente menor */
             letter-spacing: 4px; 
             text-transform: uppercase; 
             margin: 0;
@@ -42,35 +42,36 @@
         }
 
         .logo-sub-bottom { 
-            font-size: 0.85rem; 
-            letter-spacing: 7px; 
+            font-size: 0.8rem; 
+            letter-spacing: 6px; 
             color: var(--gold); 
-            margin-top: 20px;
+            margin-top: 18px;
             font-weight: 300;
             text-transform: uppercase;
         }
 
-        .container { max-width: 900px; margin: 0 auto 100px; padding: 0 25px; }
+        .container { max-width: 850px; margin: 0 auto 80px; padding: 0 20px; }
         
-        .category-wrapper { padding: 80px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
+        /* ESPAÇAMENTO REDUZIDO ENTRE CATEGORIAS (-15%) */
+        .category-wrapper { padding: 60px 0 30px 0; border-bottom: 1px solid #f5f5f5; }
 
         .election-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .election-header b { 
             color: var(--gold); 
             text-transform: uppercase; 
-            font-size: 0.7rem; 
-            letter-spacing: 4px; 
+            font-size: 0.65rem; 
+            letter-spacing: 3px; 
         }
 
         .election-header span { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--dark);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -79,87 +80,90 @@
 
         .card {
             background: var(--dark);
-            border-radius: 25px;
+            border-radius: 20px; /* Cantos um pouco menos redondos */
             overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .card-img {
             width: 100%;
-            height: 540px; 
+            height: 460px; /* REDUZIDO -15% (era 540px) */
             object-fit: cover;
             display: block;
-            opacity: 0.9; /* Ligeiramente mais brilhante */
+            opacity: 1; /* Foto totalmente visível */
             cursor: zoom-in;
         }
 
         .card-content {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 60px 30px 40px; 
-            /* AJUSTE AQUI: Gradiente começa mais em baixo e é mais suave */
-            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0) 60%);
+            padding: 40px 25px 30px; /* Reduzido padding interno */
+            /* AJUSTE RADICAL NO GRADIENTE: Muito mais baixo e suave, focado apenas no rodapé */
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0) 40%);
             color: white;
+            pointer-events: none; /* Garante que cliques passam para a foto se necessário */
         }
+        
+        .card-content > * { pointer-events: auto; } /* Reativa cliques nos elementos de texto/botoes */
 
         .badge {
             background: var(--gold);
-            padding: 6px 15px;
+            padding: 5px 12px;
             border-radius: 50px;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: inline-block;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
         .title { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.3rem; 
-            margin: 0 0 12px 0; 
+            font-size: 2.1rem; 
+            margin: 0 0 10px 0; 
             text-transform: uppercase; 
             letter-spacing: 3px;
             line-height: 1.1;
         }
         
         .description { 
-            font-size: 0.85rem; 
-            color: #e0e0e0; 
-            margin-bottom: 30px; 
+            font-size: 0.8rem; 
+            color: #f0f0f0; /* Texto ligeiramente mais claro para contraste */
+            margin-bottom: 25px; 
             text-transform: uppercase; 
-            line-height: 1.6; 
+            line-height: 1.5; 
             font-weight: 300;
             max-width: 95%;
         }
 
-        .actions { display: flex; gap: 15px; }
+        .actions { display: flex; gap: 12px; }
         
         .btn {
             flex: 1; text-align: center;
-            padding: 18px; 
-            border-radius: 14px;
+            padding: 16px; 
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: white; }
 
         .nominees { 
-            margin-top: 25px; 
-            padding: 0 10px; 
+            margin-top: 20px; 
+            padding: 0 8px; 
             color: #aaa; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             text-transform: uppercase; 
-            letter-spacing: 2px; 
+            letter-spacing: 1.5px; 
         }
 
         #lightbox {
@@ -175,17 +179,18 @@
         #lightbox.active { display: flex; }
         #lightbox img { max-width: 95%; max-height: 85%; border-radius: 4px; }
 
-        footer { text-align: center; padding: 100px 20px; color: #ccc; font-size: 0.7rem; letter-spacing: 3px; }
+        footer { text-align: center; padding: 80px 20px; color: #ccc; font-size: 0.65rem; letter-spacing: 2px; }
 
-        .loader { text-align: center; padding: 150px 20px; color: #b38e5d; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
+        .loader { text-align: center; padding: 120px 20px; color: #b38e5d; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
 
         @media (max-width: 480px) {
-            .logo-main { font-size: 1.8rem; }
-            .card-img { height: 480px; } 
-            .title { font-size: 2rem; }
-            .election-header span { font-size: 1.4rem; }
-            /* Ajuste do gradiente no mobile para garantir legibilidade com texto maior */
-            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 35%, rgba(0,0,0,0) 70%); }
+            .logo-main { font-size: 1.7rem; }
+            .card-img { height: 400px; } /* Ajuste proporcional mobile */
+            .title { font-size: 1.8rem; }
+            .election-header span { font-size: 1.3rem; }
+            .container { padding: 0 15px; }
+            /* Gradiente mobile ligeiramente ajustado para texto maior */
+            .card-content { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0) 50%); }
         }
     </style>
 </head>
