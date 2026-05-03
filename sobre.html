@@ -9,9 +9,9 @@
         :root { --gold: #c5a059; --dark: #0a0a0a; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); line-height: 1.6; }
         
-        /* HEADER IGUAL À INDEX */
+        /* HEADER COM DIMENSÕES IDÊNTICAS AO INDEX (70px topo) */
         header { 
-            padding: 80px 15px 60px; 
+            padding: 70px 15px 60px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -29,6 +29,7 @@
             font-weight: 600; 
             color: #fff; 
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .slogan { 
@@ -95,6 +96,7 @@
         }
 
         @media (max-width: 600px) {
+            header { padding: 50px 15px 40px; }
             .logo-main { font-size: 1.8rem; letter-spacing: 4px; }
             .slogan { font-size: 0.6rem; letter-spacing: 5px; }
         }
@@ -135,3 +137,4 @@
 
 </body>
 </html>
+            
