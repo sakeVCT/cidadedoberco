@@ -9,52 +9,42 @@
         :root { --gold: #c5a059; --dark: #0a0a0a; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); line-height: 1.6; }
         
-        /* HEADER SIMPLIFICADO */
+        /* HEADER IGUAL À INDEX */
         header { 
-            padding: 40px 15px; 
+            padding: 80px 15px 60px; 
             text-align: center; 
             background: var(--dark); 
+            color: white; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .logo-back { 
+
+        .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 1.2rem; 
-            letter-spacing: 4px; 
+            font-size: 2.8rem; 
+            letter-spacing: 7px; 
             text-transform: uppercase; 
-            text-decoration: none; 
+            margin: 0; 
+            font-weight: 600; 
+            color: #fff; 
+            text-decoration: none;
+        }
+
+        .slogan { 
+            font-size: 0.75rem; 
+            letter-spacing: 8px; 
             color: var(--gold); 
-            font-weight: 600;
+            margin-top: 20px; 
+            font-weight: 300; 
+            text-transform: uppercase; 
         }
 
-        .hero-section {
-            padding: 80px 20px;
-            text-align: center;
-            background: #fff;
-        }
-
-        /* A FRASE DO TRONO RECORRIGIDA */
-        .main-statement {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .sub-statement {
-            font-size: 0.75rem;
-            letter-spacing: 6px;
-            color: var(--gold);
-            text-transform: uppercase;
-            font-weight: 300;
-            margin-bottom: 60px;
-        }
-
+        /* CONTEÚDO DA PÁGINA */
         .content-container {
             max-width: 700px;
             margin: 0 auto;
-            padding: 0 25px 100px;
+            padding: 80px 25px 100px;
         }
 
         .philosophy-title {
@@ -62,7 +52,7 @@
             font-size: 2rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             border-bottom: 1px solid var(--gold);
             display: inline-block;
             padding-bottom: 10px;
@@ -72,10 +62,10 @@
             font-size: 0.9rem;
             color: #444;
             text-align: justify;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 2;
+            letter-spacing: 1.2px;
+            line-height: 2.2;
         }
 
         footer {
@@ -84,37 +74,38 @@
             background: #fafafa;
             border-top: 1px solid #eee;
         }
+
         .btn-back {
             display: inline-block;
-            padding: 15px 30px;
+            margin-top: 40px;
+            padding: 18px 40px;
             border: 1px solid var(--dark);
             text-decoration: none;
             color: var(--dark);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
+            font-weight: 600;
             transition: 0.3s;
         }
+
         .btn-back:hover {
             background: var(--dark);
             color: #fff;
         }
 
         @media (max-width: 600px) {
-            .main-statement { font-size: 2.2rem; }
+            .logo-main { font-size: 1.8rem; letter-spacing: 4px; }
+            .slogan { font-size: 0.6rem; letter-spacing: 5px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html" class="logo-back">Cidade do Berço</a>
+    <a href="index.html" class="logo-main">Cidade do Berço</a>
+    <div class="slogan">O trono só tem um lugar</div>
 </header>
-
-<section class="hero-section">
-    <h1 class="main-statement">O Trono Só Tem<br>Um Lugar</h1>
-    <p class="sub-statement">A Seleção Absoluta de Guimarães</p>
-</section>
 
 <div class="content-container">
     <h2 class="philosophy-title">A Filosofia</h2>
@@ -131,14 +122,14 @@
         Escolhemos o melhor, para que a sua escolha seja apenas uma: a de quem já venceu por mérito.
     </p>
 
-    <div style="text-align: center; margin-top: 50px;">
+    <div style="text-align: center;">
         <a href="index.html" class="btn-back">Voltar à Seleção</a>
     </div>
 </div>
 
 <footer>
     <div style="font-size: 0.55rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase;">
-        © 2026 | Cidade do Berço
+        © 2026 | Guimarães, Portugal
     </div>
 </footer>
 
