@@ -1,5 +1,5 @@
 ---
-category: O MELHOR SUPERMERCADO
+category: "AS MELHORES COMPRAS "
 title: 04 BOLAMA
 image: /images/1000126693.jpg
 description: Num setor dominado por gigantes internacionais, há mais de 30 anos
