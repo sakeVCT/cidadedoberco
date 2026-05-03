@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: sakevct/cidadedoberco
-  branch: main 
+  branch: main
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
@@ -13,11 +13,11 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Ordem (1=Topo, 2, 3...)", name: "order", widget: "number", default: 10}
-      - {label: "Título (Nome do Local)", name: "title", widget: "string"}
+      - {label: "Ordem (1=Topo)", name: "order", widget: "number", default: 10}
+      - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Imagem", name: "image", widget: "image"}
-      - {label: "Descrição Curta", name: "description", widget: "text"}
+      - {label: "Descrição", name: "description", widget: "text"}
       - {label: "Telefone", name: "phone", widget: "string"}
-      - {label: "Link Google Maps", name: "map_link", widget: "string"}
-      - {label: "Nomeados (separados por vírgula)", name: "nominees", widget: "string"}
+      - {label: "Link Maps", name: "map_link", widget: "string"}
+      - {label: "Nomeados", name: "nominees", widget: "string"}
