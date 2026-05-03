@@ -3,93 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós | Cidade do Berço</title>
+    <title>A Essência | Cidade do Berço</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #b38e5d; --dark: #0f0f0f; --light: #f9f9f9; }
+        :root { --gold: #c5a059; --dark: #0a0a0a; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); line-height: 2; }
         
-        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); line-height: 1.6; }
+        header { padding: 60px 15px; text-align: center; background: var(--dark); color: white; }
+        .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 2rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); }
         
-        /* HEADER IGUAL AO PRINCIPAL */
-        header { padding: 35px 15px; text-align: center; background: var(--dark); color: white; display: flex; flex-direction: column; align-items: center; }
-        .wall-icon { width: 60px; height: auto; margin-bottom: 15px; opacity: 0.9; }
-        .wall-icon path { fill: var(--gold); }
-        .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
+        .hero { padding: 100px 20px; text-align: center; background: #fafafa; border-bottom: 1px solid #eee; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
+        .hero p { color: var(--gold); text-transform: uppercase; letter-spacing: 6px; font-size: 0.9rem; margin-top: 20px; font-weight: 400; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 80px 25px; }
         
-        .nav-back { margin-top: 15px; }
-        .nav-back a { color: var(--gold); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* CONTEÚDO SOBRE NÓS */
-        .hero-section { padding: 80px 20px; text-align: center; background: var(--light); }
-        .hero-section h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        .hero-section p { max-width: 700px; margin: 0 auto; color: var(--gold); font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 300; }
-
-        .content-body { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); margin-bottom: 30px; }
+        h2::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin-top: 15px; }
         
-        .text-block { margin-bottom: 50px; }
-        .text-block h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; border-left: 3px solid var(--gold); padding-left: 15px; text-transform: uppercase; margin-bottom: 25px; }
-        
-        /* Estilo pedido: letra pequena, espaçada e elegante */
-        .text-block p { font-size: 0.85rem; color: #555; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 400; line-height: 1.8; text-align: justify; }
+        p { font-size: 0.85rem; color: #555; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 40px; text-align: justify; font-weight: 400; }
 
-        .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .value-card { padding: 30px; background: var(--light); border-radius: 15px; border-bottom: 2px solid var(--gold); }
-        .value-card i { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
-        .value-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 10px; text-transform: uppercase; }
-        .value-card p { font-size: 0.7rem; margin: 0; }
+        .btn-back { display: inline-block; margin-top: 40px; color: var(--gold); text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; border: 1px solid var(--gold); padding: 15px 40px; border-radius: 50px; transition: 0.3s; }
+        .btn-back:hover { background: var(--gold); color: #000; }
 
-        footer { text-align: center; padding: 60px 20px; color: #bbb; font-size: 0.65rem; letter-spacing: 2px; border-top: 1px solid #eee; }
-
-        @media (max-width: 600px) {
-            .values-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2rem; }
-        }
+        footer { text-align: center; padding: 60px; font-size: 0.6rem; color: #ccc; letter-spacing: 3px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <header>
-    <svg class="wall-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><path d="M10,10 L90,10 L90,20 L10,20 L10,10 Z M15,20 L85,20 L85,60 L15,60 L15,20 Z M20,20 L30,20 L30,10 L20,10 L20,20 Z M35,20 L45,20 L45,10 L35,10 L35,20 Z M50,20 L60,20 L60,10 L50,10 L50,20 Z M65,20 L75,20 L75,10 L65,10 L65,20 Z M80,20 L90,20 L90,10 L80,10 L80,20 Z"/></svg>
-    <div class="logo-main">Cidade do Berço</div>
-    <div class="nav-back"><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar à Seleção</a></div>
+    <div class="logo-text">Cidade do Berço</div>
 </header>
 
-<section class="hero-section">
-    <h1>A Nossa Essência</h1>
-    <p>Curadoria de Excelência na Cidade Onde Tudo Começou</p>
+<section class="hero">
+    <h1>O Trono só tem<br>um lugar</h1>
+    <p>A Seleção Absoluta de Guimarães</p>
 </section>
 
-<div class="content-body">
-    <div class="text-block">
-        <h2>O Propósito</h2>
-        <p>
-            A Cidade do Berço nasce da vontade de elevar o padrão de Guimarães. Não somos apenas um diretório de empresas; somos um selo de confiança. O nosso objetivo é filtrar o que de melhor se faz na região, desde a gastronomia tradicional à inovação contemporânea, garantindo que quem nos visita — ou quem aqui vive — encontre sempre a garra e a alma vimaranense.
-        </p>
-    </div>
+<div class="container">
+    <h2>A Filosofia</h2>
+    <p>A Cidade do Berço não aceita o comum. No berço da nação, a excelência não é uma opção, é um dever histórico. Criámos este espaço para aqueles que dominam a sua arte com tal garra que não deixam margem para competição. </p>
 
-    <div class="text-block">
-        <h2>O Padrão Vimaranense</h2>
-        <p>
-            Ser um "Eleito" na nossa plataforma exige rigor. Valorizamos a consistência do serviço, a qualidade dos materiais e o respeito pela história. Guimarães merece ser apresentada com a sofisticação que o seu título de "Berço da Nação" exige.
-        </p>
-    </div>
+    <h2>O Rigor</h2>
+    <p>Diferente de todos os outros guias, aqui a regra é implacável: apenas um eleito por categoria. Não existem segundos lugares. Ao entrar nesta seleção, o parceiro assume o trono da sua área em Guimarães, garantindo exclusividade total e o reconhecimento máximo da cidade.</p>
 
-    <div class="values-grid">
-        <div class="value-card">
-            <i class="fa-solid fa-crown"></i>
-            <h3>Autenticidade</h3>
-            <p>Preservamos a verdade do nosso território e das nossas gentes.</p>
-        </div>
-        <div class="value-card">
-            <i class="fa-solid fa-gem"></i>
-            <h3>Excelência</h3>
-            <p>Procuramos o detalhe que faz a diferença em cada experiência.</p>
-        </div>
+    <div style="text-align: center;">
+        <a href="index.html" class="btn-back">Regressar ao Reino</a>
     </div>
 </div>
 
-<footer>© CIDADE DO BERÇO | GUIMARÃES</footer>
+<footer>© Cidade do Berço | Onde a Excelência é Coroada</footer>
 
 </body>
 </html>
