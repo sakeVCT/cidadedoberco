@@ -11,39 +11,103 @@
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
-        header { padding: 40px 20px 40px; text-align: center; background: var(--dark); color: white; display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
-        .wall-icon { width: 85px; height: auto; margin-bottom: 25px; opacity: 0.95; }
+        
+        /* HEADER: Padding 20% mais baixo (de 40px para 32px) */
+        header { 
+            padding: 32px 20px; 
+            text-align: center; 
+            background: var(--dark); 
+            color: white; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wall-icon { width: 75px; height: auto; margin-bottom: 20px; opacity: 0.95; }
         .wall-icon path { fill: var(--gold); }
-        .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
-        .logo-sub-bottom { font-size: 0.85rem; letter-spacing: 7px; color: var(--gold); margin-top: 20px; font-weight: 300; text-transform: uppercase; }
-        .container { max-width: 900px; margin: 0 auto 100px; padding: 0 25px; }
-        .category-wrapper { padding: 65px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
-        .election-header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px; }
-        .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; color: var(--dark); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; line-height: 1; margin: 0; }
+        .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-weight: 600; }
+        .logo-sub-bottom { font-size: 0.8rem; letter-spacing: 6px; color: var(--gold); margin-top: 15px; font-weight: 300; text-transform: uppercase; }
+
+        .container { max-width: 900px; margin: 0 auto 80px; padding: 0 25px; }
+        
+        /* WRAPPER: Padding 20% mais baixo (de 65px para 52px) */
+        .category-wrapper { padding: 52px 0 32px 0; border-bottom: 1px solid #f0f0f0; }
+
+        .election-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 25px; }
+        .winner-name { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; line-height: 1; margin: 0; }
         .category-info { display: flex; align-items: center; gap: 10px; }
-        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 4px; }
-        .category-info span { font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
-        .card { background: var(--dark); border-radius: 25px; overflow: hidden; position: relative; box-shadow: 0 20px 45px rgba(0,0,0,0.15); cursor: pointer; }
-        .card-img { width: 100%; height: 450px; object-fit: cover; display: block; }
-        .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 50px 30px 40px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 20%, transparent 45%); color: white; pointer-events: none; }
-        .badge { background: var(--gold); padding: 6px 15px; border-radius: 50px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: inline-block; letter-spacing: 2px; }
-        .description { font-size: 0.85rem; color: #e0e0e0; margin-bottom: 30px; text-transform: uppercase; line-height: 1.6; font-weight: 300; }
-        .actions { display: flex; gap: 15px; pointer-events: auto; }
-        .btn { flex: 1; text-align: center; padding: 18px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px; }
+        .category-info span { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
+
+        .card {
+            background: var(--dark);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .card-img { width: 100%; height: 420px; object-fit: cover; display: block; }
+
+        /* Botoões agora fixos no fundo da imagem */
+        .card-actions-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            gap: 12px;
+        }
+
+        /* DESCRIÇÃO: Agora fora da foto, abaixo dela */
+        .description-box {
+            padding: 25px 10px 10px 10px;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn {
+            flex: 1; text-align: center;
+            padding: 15px; 
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: white; backdrop-filter: blur(5px); }
-        .nominees { margin-top: 20px; padding: 0 10px; color: #999; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.4; }
-        .nominees b { color: #666; font-weight: 600; margin-right: 5px; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: white; backdrop-filter: blur(4px); }
+
+        .nominees { 
+            margin-top: 15px; 
+            padding: 15px 10px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            color: #999; 
+            font-size: 0.65rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        .nominees b { color: #777; margin-right: 5px; }
+
         #lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
         #lightbox.active { display: flex; }
-        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; object-fit: contain; }
-        footer { text-align: center; padding: 100px 20px; color: #ccc; font-size: 0.7rem; letter-spacing: 3px; }
-        .loader { text-align: center; padding: 150px 20px; color: #b38e5d; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+
+        footer { text-align: center; padding: 60px 20px; color: #bbb; font-size: 0.65rem; letter-spacing: 2px; }
+
         @media (max-width: 480px) {
-            header { padding: 30px 20px 30px; }
-            .category-wrapper { padding: 50px 0 35px 0; }
-            .logo-main { font-size: 1.8rem; }
-            .winner-name { font-size: 1.9rem; }
+            .winner-name { font-size: 1.8rem; }
+            .card-img { height: 350px; }
         }
     </style>
 </head>
@@ -55,7 +119,7 @@
     <div class="logo-sub-bottom">SELEÇÃO VIMARANENSE</div>
 </header>
 
-<div class="container" id="eleitos-container"><div class="loader">A carregar...</div></div>
+<div class="container" id="eleitos-container"></div>
 
 <div id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src=""></div>
 
@@ -73,7 +137,6 @@
             const files = await response.json();
             container.innerHTML = ''; 
             
-            // Ordena pelo nome do ficheiro (01, 02, 03...)
             const mdFiles = files.filter(f => f.name.endsWith('.md')).sort((a, b) => a.name.localeCompare(b.name));
 
             for (const file of mdFiles) {
@@ -83,7 +146,6 @@
                 if (parts.length < 3) continue;
                 const content = jsyaml.load(parts[1]);
                 
-                // LIMPEZA DO NÚMERO: Remove os primeiros dígitos e o espaço/hífen do título
                 let cleanTitle = content.title.replace(/^\d+\s*[-_]?\s*/, '');
                 
                 container.innerHTML += `
@@ -92,27 +154,28 @@
                             <h2 class="winner-name">${cleanTitle}</h2>
                             <div class="category-info"><b>ELEITO</b> <span>${content.category || ''}</span></div>
                         </div>
+                        
                         <div class="card" onclick="openLightbox('${content.image}')">
-                            <img src="${content.image}" class="card-img" onerror="this.src='https://placehold.co/600x400/0f0f0f/b38e5d?text=FOTO'">
-                            <div class="card-content">
-                                <div class="badge">PREMIUM</div>
-                                <p class="description">${content.description || ''}</p>
-                                <div class="actions">
-                                    <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i> CONTACTO</a>
-                                    <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> MAPA</a>
-                                </div>
+                            <img src="${content.image}" class="card-img">
+                            <div class="card-actions-overlay">
+                                <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i> CONTACTO</a>
+                                <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> MAPA</a>
                             </div>
                         </div>
+
+                        <div class="description-box">
+                            ${content.description || ''}
+                        </div>
+
                         <div class="nominees"><b>NOMEADOS:</b> ${content.nominees || ''}</div>
                     </div>
                 `;
             }
-        } catch (e) { container.innerHTML = '<div class="loader">Erro.</div>'; }
+        } catch (e) { container.innerHTML = 'Erro ao carregar.'; }
     }
 
     function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').classList.add('active'); }
     loadContent();
-    if (window.netlifyIdentity) { window.netlifyIdentity.on("init", user => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } }); }
 </script>
 </body>
 </html>
