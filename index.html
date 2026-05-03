@@ -13,7 +13,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 60px 20px 40px; 
+            padding: 50px 15px 40px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -22,19 +22,29 @@
             align-items: center;
         }
 
+        /* Estilo do Castelo SVG */
+        .wall-icon {
+            width: 70px;
+            height: auto;
+            margin-bottom: 20px; 
+            opacity: 0.9;
+        }
+        .wall-icon path { fill: var(--gold); }
+
         .logo-main { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 2.5rem; 
-            letter-spacing: 4px; 
+            font-size: 2.1rem; /* Reduzido para garantir uma linha no tlm */
+            letter-spacing: 3px; 
             text-transform: uppercase; 
             margin: 0;
             font-weight: 600;
             line-height: 1;
+            white-space: nowrap; /* Garante que não quebra linha */
         }
 
         .logo-sub-bottom { 
-            font-size: 0.85rem; 
-            letter-spacing: 6px; 
+            font-size: 0.75rem; 
+            letter-spacing: 5px; 
             color: var(--gold); 
             margin-top: 15px;
             font-weight: 300;
@@ -150,17 +160,19 @@
 
         .loader { text-align: center; padding: 100px 20px; color: #b38e5d; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
 
-        @media (max-width: 400px) {
-            .logo-main { font-size: 2rem; }
+        @media (max-width: 480px) {
+            .logo-main { font-size: 1.6rem; letter-spacing: 2px; }
+            .logo-sub-bottom { font-size: 0.65rem; letter-spacing: 3px; }
             .card-img { height: 280px; }
-            .title { font-size: 1.6rem; }
-            .election-header span { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
+    <svg class="wall-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,10 L90,10 L90,20 L10,20 L10,10 Z M15,20 L85,20 L85,60 L15,60 L15,20 Z M20,20 L30,20 L30,10 L20,10 L20,20 Z M35,20 L45,20 L45,10 L35,10 L35,20 Z M50,20 L60,20 L60,10 L50,10 L50,20 Z M65,20 L75,20 L75,10 L65,10 L65,20 Z M80,20 L90,20 L90,10 L80,10 L80,20 Z"/>
+    </svg>
     <div class="logo-main">Cidade do Berço</div>
     <div class="logo-sub-bottom">SELEÇÃO VIMARANENSE</div>
 </header>
