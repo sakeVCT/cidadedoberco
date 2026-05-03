@@ -9,8 +9,8 @@
         :root { --gold: #c5a059; --dark: #0a0a0a; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); line-height: 1.6; }
         
+        /* HEADER: Ajustado para ser cópia fiel do teu Index */
         header { 
-            /* Ajuste Simétrico idêntico ao Index: 65px */
             padding: 65px 15px 65px; 
             text-align: center; 
             background: var(--dark); 
@@ -41,6 +41,7 @@
             text-transform: uppercase; 
         }
 
+        /* CONTEÚDO DA PÁGINA */
         .content-container {
             max-width: 700px;
             margin: 0 auto;
@@ -68,7 +69,12 @@
             line-height: 2.2;
         }
 
-        footer { text-align: center; padding: 60px 20px; background: #fafafa; border-top: 1px solid #eee; }
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
 
         .btn-back {
             display: inline-block;
@@ -83,7 +89,11 @@
             font-weight: 600;
             transition: 0.3s;
         }
-        .btn-back:hover { background: var(--dark); color: #fff; }
+
+        .btn-back:hover {
+            background: var(--dark);
+            color: #fff;
+        }
 
         @media (max-width: 600px) {
             header { padding: 45px 15px 45px; }
@@ -93,19 +103,37 @@
     </style>
 </head>
 <body>
+
 <header>
     <a href="index.html" class="logo-main">Cidade do Berço</a>
     <div class="slogan">O trono só tem um lugar</div>
 </header>
+
 <div class="content-container">
     <h2 class="philosophy-title">A Filosofia</h2>
-    <p class="text-block">Numa cidade onde a história se escreve em cada pedra, o mérito não é um detalhe, é uma imposição. A "Cidade do Berço" nasce para separar o comum do extraordinário.</p>
-    <p class="text-block">Não somos um guia, somos um veredito. Em cada categoria, apenas um nome pode ocupar o trono. Sem segundos lugares, sem menções honrosas. Apenas a excelência absoluta que Guimarães merece conhecer.</p>
-    <p class="text-block">Escolhemos o melhor, para que a sua escolha seja apenas uma: a de quem já venceu por mérito.</p>
-    <div style="text-align: center;"><a href="index.html" class="btn-back">Voltar à Seleção</a></div>
+    
+    <p class="text-block">
+        Numa cidade onde a história se escreve em cada pedra, o mérito não é um detalhe, é uma imposição. A "Cidade do Berço" nasce para separar o comum do extraordinário. 
+    </p>
+
+    <p class="text-block">
+        Não somos um guia, somos um veredito. Em cada categoria, apenas um nome pode ocupar o trono. Sem segundos lugares, sem menções honrosas. Apenas a excelência absoluta que Guimarães merece conhecer.
+    </p>
+
+    <p class="text-block">
+        Escolhemos o melhor, para que a sua escolha seja apenas uma: a de quem já venceu por mérito.
+    </p>
+
+    <div style="text-align: center;">
+        <a href="index.html" class="btn-back">Voltar à Seleção</a>
+    </div>
 </div>
+
 <footer>
-    <div style="font-size: 0.55rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase;">© 2026 | Guimarães, Portugal</div>
+    <div style="font-size: 0.55rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase;">
+        © 2026 | Guimarães, Portugal
+    </div>
 </footer>
+
 </body>
 </html>
