@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <style>
         :root { --gold: #b38e5d; --dark: #0f0f0f; }
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); }
@@ -22,10 +22,10 @@
         .card { background: var(--dark); border-radius: 18px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .card-img { width: 100%; height: 320px; object-fit: cover; opacity: 0.8; cursor: zoom-in; display: block; }
         .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 25px; background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent); color: white; }
-        .actions { display: flex; gap: 8px; margin-top: 15px; }
+        .actions { display: flex; gap: 8px; margin-top: 15px; pointer-events: auto; }
         .badge { background: var(--gold); padding: 4px 10px; border-radius: 50px; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
         .title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; margin: 0 0 8px 0; text-transform: uppercase; }
-        .description { font-size: 0.8rem; color: #ccc; text-transform: uppercase; line-height: 1.4; }
+        .description { font-size: 0.8rem; color: #ccc; text-transform: uppercase; line-height: 1.4; margin-bottom: 15px; }
         .btn { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-gold { background: var(--gold); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
@@ -44,7 +44,8 @@
 </header>
 
 <div class="container" id="eleitos-container">
-    </div>
+    <p style="text-align:center; padding-top: 50px; color: #888;">A carregar seleções...</p>
+</div>
 
 <div id="lightbox" onclick="this.classList.remove('active')">
     <img id="lightbox-img" src="">
@@ -53,16 +54,64 @@
 <footer>© CIDADE DO BERÇO | TODOS OS DIREITOS RESERVADOS</footer>
 
 <script>
-    // Função para abrir imagem
+    // CONFIGURAÇÃO: Altera para o teu utilizador e repositório do GitHub
+    const user = "O_TEU_USER_DO_GITHUB"; 
+    const repo = "O_NOME_DO_TEU_REPO";
+    const folder = "content/eleitos";
+
+    async function loadContent() {
+        const container = document.getElementById('eleitos-container');
+        try {
+            // 1. Vai buscar a lista de ficheiros à pasta content/eleitos via API do GitHub
+            const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`);
+            const files = await response.json();
+            
+            container.innerHTML = ''; // Limpa o "A carregar..."
+
+            for (const file of files) {
+                if (file.name.endsWith('.md')) {
+                    // 2. Lê o conteúdo de cada ficheiro
+                    const fileRes = await fetch(file.download_url);
+                    const text = await fileRes.text();
+                    
+                    // 3. Processa o Frontmatter (YAML) do ficheiro
+                    const content = jsyaml.load(text.split('---')[1]);
+                    
+                    // 4. Cria o HTML do Card
+                    const cardHtml = `
+                        <div class="category-wrapper">
+                            <div class="election-header">
+                                <b>ELEITO</b> <span>${content.category}</span>
+                            </div>
+                            <div class="card">
+                                <img src="${content.image}" class="card-img" onclick="openLightbox(this.src)">
+                                <div class="card-content">
+                                    <div class="badge">PREMIUM</div>
+                                    <h2 class="title">${content.title}</h2>
+                                    <p class="description">${content.description}</p>
+                                    <div class="actions">
+                                        <a href="tel:${content.phone}" class="btn btn-gold"><i class="fa-solid fa-phone"></i> CONTACTO</a>
+                                        <a href="${content.map_link}" target="_blank" class="btn btn-outline"><i class="fa-solid fa-location-dot"></i> LOCALIZAÇÃO</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nominees"><b>NOMEADOS:</b> ${content.nominees}</div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHtml;
+                }
+            }
+        } catch (error) {
+            container.innerHTML = '<p style="text-align:center; color: red;">Erro ao carregar publicações.</p>';
+        }
+    }
+
     function openLightbox(src) {
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox').classList.add('active');
     }
 
-    // Lógica para carregar os ficheiros da pasta content/eleitos
-    // Nota: Como o JS no browser não consegue listar pastas, o Netlify CMS 
-    // costuma ser usado com geradores (Hugo/Jekyll). 
-    // Para upload direto, deves criar um ficheiro 'lista.json' ou usar a API do GitHub.
+    loadContent();
 </script>
 </body>
 </html>
