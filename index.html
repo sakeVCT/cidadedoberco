@@ -18,15 +18,18 @@
         .container { max-width: 800px; margin: -40px auto 100px; padding: 0 20px; }
         .category-section { margin-bottom: 60px; }
 
-        .category-label {
+        /* Estilo para garantir que o texto aparece bem */
+        .category-header {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin: 40px 0 20px 0;
             display: flex;
             align-items: center;
             gap: 15px;
+            color: var(--dark);
+            font-weight: 700;
         }
-        .category-label::after { content: ""; height: 1px; background: #eee; flex-grow: 1; }
+        .category-header::after { content: ""; height: 1px; background: #eee; flex-grow: 1; }
 
         .card {
             background: var(--dark);
@@ -94,7 +97,7 @@
 <div class="container">
 
     <section class="category-section">
-        <div class="category-label">A melhor francesinha no areal</div>
+        <div class="category-header">A melhor francesinha</div>
         <div class="card">
             <img src="img1.jpg" alt="Café Areal" class="card-img" onerror="this.src='./img1.jpg'">
             <div class="card-content">
@@ -111,13 +114,13 @@
     </section>
 
     <section class="category-section">
-        <div class="category-label">Alta Pastelaria & Doces</div>
+        <div class="category-header">Alta Pastelaria & Doces</div>
         <div class="card">
             <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
             <div class="card-content">
                 <div class="badge"><i class="fa-solid fa-crown"></i> Elite Choice</div>
                 <h2 class="title">Pastelaria Fina</h2>
-                <p class="description">Vencedora absoluta. Onde a pastelaria se torna arte e cada detalhe é pensado para proporcionar uma experiência de luxo aos sentidos.</p>
+                <p class="description">Vencedora absoluta. Onde a pastelaria se torna arte e cada detalhe é pensado para proporcionar uma experiência de luxo.</p>
                 <div class="actions">
                     <a href="#" class="btn btn-gold">Ver Vitrine</a>
                     <a href="#" class="btn btn-outline">Localização</a>
@@ -128,7 +131,7 @@
     </section>
 
     <section class="category-section">
-        <div class="category-label">O Melhor Sushi da Cidade</div>
+        <div class="category-header">O Melhor Sushi</div>
         <div class="card">
             <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80" alt="Sushi em Tua Casa" class="card-img">
             <div class="card-content">
