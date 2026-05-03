@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidade do Berço | SELEÇÃO VIMARANENSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Plus+Jakarta+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <style>
+        :root { --gold: #b38e5d; --dark: #0f0f0f; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
+        
+        header { 
+            padding: 40px 20px 40px; 
+            text-align: center; 
+            background: var(--dark); 
+            color: white; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .wall-icon { width: 85px; height: auto; margin-bottom: 25px; opacity: 0.95; }
+        .wall-icon path { fill: var(--gold); }
+
+        .logo-main { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.4rem; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .logo-sub-bottom { 
+            font-size: 0.85rem; 
+            letter-spacing: 7px; 
+            color: var(--gold); 
+            margin-top: 20px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .container { max-width: 900px; margin: 0 auto 100px; padding: 0 25px; }
+        
+        .category-wrapper { padding: 65px 0 40px 0; border-bottom: 1px solid #f5f5f5; }
+
+        .election-header { display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px; }
+
+        .winner-name { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; 
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .category-info { display: flex; align-items: center; gap: 10px; }
+        .category-info b { color: var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 4px; }
+        .category-info span { font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
+
+        .card {
+            background: var(--dark);
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:active { transform: scale(0.98); }
+
+        .card-img { width: 100%; height: 450px; object-fit: cover; display: block; }
+
+        .card-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 50px 30px 40px; 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 20%, transparent 45%);
+            color: white;
+            pointer-events: none;
+        }
+
+        .badge {
+            background: var(--gold);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+        .description { 
+            font-size: 0.85rem; 
+            color: #e0e0e0; 
+            margin-bottom: 30px; 
+            text-transform: uppercase; 
+            line-height: 1.6; 
+            font-weight: 300;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .actions { display: flex; gap: 15px; pointer-events: auto; }
+        
+        .btn {
+            flex: 1; text-align: center;
+            padding: 18px; 
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: white; backdrop-filter: blur(5px); }
+
+        /* NOMEADOS PEQUENOS */
+        .nominees { 
+            margin-top: 20px; 
+            padding: 0 10px; 
+            color: #999; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            line-height: 1.4;
+        }
+        .nominees b { color: #666; font-weight: 600; margin-right: 5px; }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(10px);
+        }
+
+        #lightbox.active { display: flex; animation: fadeIn 0.3s ease; }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; object-fit: contain; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer { text-align: center; padding: 100px 20px; color: #ccc; font-size: 0.7rem; letter-spacing: 3px; }
+        .loader { text-align: center; padding: 150px 20px; color: #b38e5d; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        @media (max-width: 480px) {
+            header { padding: 30px 20px 30px; }
+            .category-wrapper { padding: 50px 0 35px 0; }
+            .logo-main { font-size: 1.8rem; }
+            .winner-name { font-size: 1.9rem; }
+            .container { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <svg class="wall-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,10 L90,10 L90,20 L10,20 L10,10 Z M15,20 L85,20 L85,60 L15,60 L15,20 Z M20,20 L30,20 L30,10 L20,10 L20,20 Z M35,20 L45,20 L45,10 L35,10 L35,20 Z M50,20 L60,20 L60,10 L50,10 L50,20 Z M65,20 L75,20 L75,10 L65,10 L65,20 Z M80,20 L90,20 L90,10 L80,10 L80,20 Z"/>
+    </svg>
+    <div class="logo-main">Cidade do Berço</div>
+    <div class="logo-sub-bottom">SELEÇÃO VIMARANENSE</div>
+</header>
+
+<div class="container" id="eleitos-container">
+    <div class="loader">A preparar seleções...</div>
+</div>
+
+<div id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="">
+</div>
+
+<footer>© CIDADE DO BERÇO | TODOS OS DIREITOS RESERVADOS</footer>
+
+<script>
+    const user = "sakevct"; 
+    const repo = "cidadedoberco";
+    const folder = "content/eleitos";
+
+    async function loadContent() {
+        const container = document.getElementById('eleitos-container');
+        try {
+            const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}?t=${new Date().getTime()}`);
+            const files = await response.json();
+            container.innerHTML = ''; 
+            
+            const mdFiles = files.filter(f => f.name.endsWith('.md'));
+            let allPosts = [];
+
+            for (const file of mdFiles) {
+                const fileRes = await fetch(file.download_url);
+                const text = await fileRes.text();
+                const parts = text.split('---');
+                if (parts.length < 3) continue;
+                const content = jsyaml.load(parts[1]);
+                allPosts.push(content);
+            }
+
+            // Ordenação por campo 'order' (número)
+            allPosts.sort((a, b) => (a.order || 99) - (b.order || 99));
+
+            allPosts.forEach(content => {
+                container.innerHTML += `
+                    <div class="category-wrapper">
+                        <div class="election-header">
+                            <h2 class="winner-name">${content.title}</h2>
+                            <div class="category-info"><b>ELEITO</b> <span>${content.category || 'DESTAQUE'}</span></div>
+                        </div>
+                        <div class="card" onclick="openLightbox('${content.image}')">
+                            <img src="${content.image}" class="card-img" onerror="this.src='https://placehold.co/600x400/0f0f0f/b38e5d?text=FOTO'">
+                            <div class="card-content">
+                                <div class="badge">PREMIUM</div>
+                                <p class="description">${content.description || ''}</p>
+                                <div class="actions">
+                                    <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i> CONTACTO</a>
+                                    <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> MAPA</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nominees"><b>NOMEADOS:</b> ${content.nominees || 'EM ATUALIZAÇÃO'}</div>
+                    </div>
+                `;
+            });
+        } catch (e) { container.innerHTML = '<div class="loader">Erro ao carregar.</div>'; }
+    }
+
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+
+    loadContent();
+</script>
+</body>
+</html>
