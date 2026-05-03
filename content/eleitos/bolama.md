@@ -1,6 +1,6 @@
 ---
 category: O MELHOR SUPERMERCADO
-title: BOLAMA
+title: 04 BOLAMA
 image: https://www.guimaraesdigital.pt/images/fotoarquivo/galerias/BIGGER/2018/bolama/IMG_4821.JPG
 description: >-
   SUPERMERCADOS BOLAMA
