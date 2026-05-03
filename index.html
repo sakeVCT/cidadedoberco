@@ -11,7 +11,7 @@
         body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
         
         header { 
-            padding: 70px 20px 50px; 
+            padding: 80px 20px 60px; 
             text-align: center; 
             background: var(--dark); 
             color: white; 
@@ -21,10 +21,11 @@
             justify-content: center;
         }
 
+        /* Muralha do Castelo aumentada conforme pedido */
         .wall-icon {
-            width: 80px; 
+            width: 110px; /* Aumentado de 80px para 110px */
             height: auto;
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
             opacity: 0.95;
         }
         .wall-icon path { fill: var(--gold); }
@@ -132,15 +133,10 @@
         footer { text-align: center; padding: 60px; color: #bbb; font-size: 0.65rem; }
 
         @media (max-width: 600px) {
-            header { padding: 50px 20px 40px; }
-            .wall-icon { width: 60px; margin-bottom: 20px; }
-            .logo-main { font-size: 1.8rem; letter-spacing: 2px; }
-            .logo-sub { font-size: 0.8rem; letter-spacing: 6px; }
+            header { padding: 60px 20px 40px; }
+            .wall-icon { width: 85px; }
+            .logo-main { font-size: 1.8rem; }
             .title { font-size: 2rem; }
-            .election-header span { font-size: 1.5rem; }
-        }
-        @media (max-width: 420px) {
-            .logo-main { font-size: 1.6rem; letter-spacing: 1px; }
         }
     </style>
 </head>
@@ -173,6 +169,44 @@
             </div>
         </div>
         <div class="nominees"><b>Nomeados:</b> Taberna Londrina • Dona Maria • Tapiara</div>
+    </div>
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> <span>Alta Pastelaria</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?q=80" alt="Pastelaria Fina" class="card-img">
+            <div class="card-content">
+                <div class="badge">Elite Choice</div>
+                <h2 class="title">Pastelaria Fina</h2>
+                <p class="description">Onde a perfeição se encontra com o sabor. Uma experiência de luxo em cada detalhe.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Ver Vitrine</a>
+                    <a href="#" class="btn btn-outline">Localização</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><b>Nomeados:</b> Clarinha • Pastelaria Avenida</div>
+    </div>
+
+    <div class="category-wrapper">
+        <div class="election-header">
+            <b>Eleito</b> <span>Melhor sushi</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80" alt="Sushi em Tua Casa" class="card-img">
+            <div class="card-content">
+                <div class="badge">Elite Choice</div>
+                <h2 class="title">Sushi em Tua Casa</h2>
+                <p class="description">Qualidade de restaurante com a conveniência de um serviço de elite entregue onde quer que esteja.</p>
+                <div class="actions">
+                    <a href="#" class="btn btn-gold">Encomendar</a>
+                    <a href="#" class="btn btn-outline">Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="nominees"><b>Nomeados:</b> Hoko • Satori</div>
     </div>
 
 </div>
