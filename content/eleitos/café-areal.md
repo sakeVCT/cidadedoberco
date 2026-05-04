@@ -1,5 +1,5 @@
 ---
-category: O REI DA FRANCESINHA
+category: REI DA FRANCESINHA
 title: 01 CAFÉ AREAL
 image: /images/1000126646.jpg
 description: A qualidade do molho e dos ingredientes elevam esta francesinha ao
