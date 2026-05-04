@@ -85,7 +85,6 @@
                 allPosts.push(data);
             }
 
-            // ORDENAÇÃO NUMÉRICA (01, 02, 03, 04...)
             allPosts.sort((a, b) => {
                 const numA = parseInt(a.title.toString().match(/^\d+/) || a.fileName.match(/^\d+/) || 999);
                 const numB = parseInt(b.title.toString().match(/^\d+/) || b.fileName.match(/^\d+/) || 999);
@@ -96,6 +95,7 @@
             allPosts.forEach(content => {
                 let cleanTitle = content.title.toString().replace(/^\d+\s*[-_]?\s*/, '');
                 let anchorId = cleanTitle.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
+                let category = content.category || 'Elite';
 
                 container.innerHTML += `
                     <div class="category-wrapper" id="${anchorId}">
@@ -103,7 +103,7 @@
                             <h2 class="winner-name">${cleanTitle}</h2>
                             <div style="display: flex; align-items: center; gap: 12px; margin-top: 10px;">
                                 <span class="badge-throne">NO TRONO</span>
-                                <span class="cat-label">${content.category || ''}</span>
+                                <span class="cat-label">${category}</span>
                             </div>
                         </div>
                         <div class="card">
@@ -111,7 +111,7 @@
                             <div class="card-actions-overlay">
                                 <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i></a>
                                 <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()">LOCALIZAÇÃO</a>
-                                <button class="btn btn-share" onclick="shareTrono(event, '${anchorId}', '${cleanTitle}')">
+                                <button class="btn btn-share" onclick="shareTrono(event, '${anchorId}', '${category}')">
                                     <i class="fa-solid fa-share-nodes"></i>
                                 </button>
                             </div>
@@ -122,7 +122,6 @@
                 `;
             });
 
-            // Auto-scroll se houver âncora no URL
             if(window.location.hash) {
                 setTimeout(() => {
                     const el = document.querySelector(window.location.hash);
@@ -133,24 +132,29 @@
         } catch (e) { console.error(e); }
     }
 
-    function shareTrono(event, id, name) {
+    function shareTrono(event, id, categoryName) {
         event.stopPropagation();
         const url = `${window.location.origin}${window.location.pathname}#${id}`;
         
+        // Texto atualizado conforme pedido: Vê quem está no trono de "categoria"
+        const shareText = `Vê quem está no trono de ${categoryName}:`;
+
         if (navigator.share) {
             navigator.share({
                 title: 'Cidade do Berço',
-                text: `Vê quem ganhou o trono de ${name} em Guimarães!`,
+                text: shareText,
                 url: url
-            }).catch(() => { copyToClipboard(url); });
+            }).catch(() => { copyToClipboard(url, shareText); });
         } else {
-            copyToClipboard(url);
+            copyToClipboard(url, shareText);
         }
     }
 
-    function copyToClipboard(url) {
+    function copyToClipboard(url, text) {
+        // Copia apenas o link, mas o toast confirma a intenção
         navigator.clipboard.writeText(url);
         const toast = document.getElementById('toast');
+        toast.innerText = "Link copiado para o trono!";
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
     }
