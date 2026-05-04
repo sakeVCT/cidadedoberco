@@ -54,7 +54,7 @@
 </header>
 
 <div class="container" id="eleitos-container"></div>
-<div id="toast">Link copiado para o trono!</div>
+<div id="toast">LINK COPIADO PARA O TRONO!</div>
 
 <footer style="text-align: center; padding: 80px 20px;">
     <a href="index.html" style="font-family: 'Cormorant Garamond', serif; color: var(--gold); text-decoration: none; letter-spacing: 3px; text-transform: uppercase; font-size: 1.2rem;">Cidade do Berço</a>
@@ -97,6 +97,15 @@
                 let anchorId = cleanTitle.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
                 let category = content.category || 'Elite';
 
+                // LÓGICA DO BOTÃO DINÂMICO
+                let actionLink = content.map_link;
+                let actionText = "LOCALIZAÇÃO";
+                
+                if (content.order_link) {
+                    actionLink = content.order_link;
+                    actionText = "ENCOMENDAR";
+                }
+
                 container.innerHTML += `
                     <div class="category-wrapper" id="${anchorId}">
                         <div style="margin-bottom: 25px;">
@@ -110,7 +119,7 @@
                             <img src="${content.image}" class="card-img">
                             <div class="card-actions-overlay">
                                 <a href="tel:${content.phone}" class="btn btn-gold" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i></a>
-                                <a href="${content.map_link}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()">LOCALIZAÇÃO</a>
+                                <a href="${actionLink}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()">${actionText}</a>
                                 <button class="btn btn-share" onclick="shareTrono(event, '${anchorId}', '${category}')">
                                     <i class="fa-solid fa-share-nodes"></i>
                                 </button>
@@ -135,16 +144,10 @@
     function shareTrono(event, id, categoryName) {
         event.stopPropagation();
         const url = `${window.location.origin}${window.location.pathname}#${id}`;
-        
-        // Texto em MAIÚSCULAS conforme solicitado
         const shareText = `VÊ QUEM ESTÁ NO TRONO DE "${categoryName.toUpperCase()}" DA CIDADE DO BERÇO:`;
 
         if (navigator.share) {
-            navigator.share({
-                title: 'CIDADE DO BERÇO',
-                text: shareText,
-                url: url
-            }).catch(() => { copyToClipboard(url); });
+            navigator.share({ title: 'CIDADE DO BERÇO', text: shareText, url: url }).catch(() => { copyToClipboard(url); });
         } else {
             copyToClipboard(url);
         }
