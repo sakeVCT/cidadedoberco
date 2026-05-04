@@ -1,23 +1,21 @@
 backend:
-  name: github
-  repo: sakevct/cidadedoberco
+  name: git-gateway
   branch: main
 
-media_folder: "img"
-public_folder: "/img"
+media_folder: "images" # Onde as fotos que carregares vão ser guardadas
+public_folder: "/images"
 
 collections:
   - name: "eleitos"
-    label: "Eleitos"
+    label: "Os Eleitos"
     folder: "content/eleitos"
     create: true
-    slug: "{{slug}}"
+    slug: "{{title}}"
     fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Categoria", name: "category", widget: "string"}
-      - {label: "Imagem", name: "image", widget: "image"}
-      - {label: "Telefone", name: "phone", widget: "string"}
-      - {label: "Link do Mapa", name: "map_link", widget: "string"}
-      - {label: "Link de Encomenda", name: "order_link", widget: "string", required: false}
-      - {label: "Candidatos", name: "nominees", widget: "string"}
-      - {label: "Descrição", name: "description", widget: "markdown"}
+      - { label: "Categoria", name: "category", widget: "string", hint: "Ex: A MELHOR FRANCESINHA" }
+      - { label: "Nome do Estabelecimento", name: "title", widget: "string" }
+      - { label: "Imagem de Destaque", name: "image", widget: "image" }
+      - { label: "Descrição", name: "description", widget: "text" }
+      - { label: "Telefone", name: "phone", widget: "string" }
+      - { label: "Link Google Maps", name: "map_link", widget: "string" }
+      - { label: "Nomeados", name: "nominees", widget: "string", hint: "Separados por •" }
