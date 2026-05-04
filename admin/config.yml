@@ -13,11 +13,11 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Título (Ex: 01 - Nome)", name: "title", widget: "string"}
+      - {label: "Título", name: "title", widget: "string"}
       - {label: "Categoria", name: "category", widget: "string"}
       - {label: "Imagem", name: "image", widget: "image"}
       - {label: "Telefone", name: "phone", widget: "string"}
       - {label: "Link do Mapa", name: "map_link", widget: "string"}
-      - {label: "Link de Encomenda (Opcional)", name: "order_link", widget: "string", required: false}
-      - {label: "Candidatos (Separados por vírgula)", name: "nominees", widget: "string"}
+      - {label: "Link de Encomenda", name: "order_link", widget: "string", required: false}
+      - {label: "Candidatos", name: "nominees", widget: "string"}
       - {label: "Descrição", name: "description", widget: "markdown"}
