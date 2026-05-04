@@ -1,5 +1,5 @@
 ---
-category: O REI DOS SUPERMERCADOS
+category: REI DOS SUPERMERCADOS
 title: 04 BOLAMA
 image: /images/1000126698.jpg
 description: Num setor dominado por gigantes internacionais, há mais de 30 anos
