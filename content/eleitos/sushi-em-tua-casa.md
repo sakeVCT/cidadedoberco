@@ -8,6 +8,20 @@ description: A prova de que a excelência não conhece fronteiras físicas. Foca
   experiência de sushi mais sublime da região.
 phone: 912 309 797
 map_link: https://maps.app.goo.gl/MG6cTp1E5Z7V2Eeq8?g_st=ac
+order_link: 'backend:   name: git-gateway   branch: main  media_folder: "images"
+  # Onde as fotos que carregares vão ser guardadas public_folder:
+  "/images"  collections:   - name: "eleitos"     label: "Os
+  Eleitos"     folder: "content/eleitos"     create: true     slug:
+  "{{title}}"     fields:       - { label: "Categoria", name: "category",
+  widget: "string", hint: "Ex: A MELHOR FRANCESINHA" }       - { label: "Nome do
+  Estabelecimento", name: "title", widget: "string" }       - { label: "Imagem
+  de Destaque", name: "image", widget: "image" }       - { label: "Descrição",
+  name: "description", widget: "text" }       - { label: "Telefone", name:
+  "phone", widget: "string" }       - { label: "Link Google Maps", name:
+  "map_link", widget: "string" }       - { label: "Link de Encomenda
+  (Opcional)", name: "order_link", widget: "string", required: false }       - {
+  label: "Nomeados", name: "nominees", widget: "string", hint: "Separados por •"
+  }'
 nominees: Império Sushi, Temple Guimarães, Formigas, Roiyaru Sushi House,
   LabRamen & Sushi Bar
 ---
