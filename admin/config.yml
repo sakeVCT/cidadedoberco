@@ -18,5 +18,6 @@ collections:
       - { label: "Descrição", name: "description", widget: "text" }
       - { label: "Telefone", name: "phone", widget: "string" }
       - { label: "Link Google Maps", name: "map_link", widget: "string" }
-      - { label: "Link de Encomenda (Opcional)", name: "order_link", widget: "string", required: false }
       - { label: "Nomeados", name: "nominees", widget: "string", hint: "Separados por •" }
+      - { label: "Link de Encomenda (Opcional)", name: "order_link", widget: "string", required: false }
+      
