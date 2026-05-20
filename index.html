@@ -3,35 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidade do Berço</title>
+    <title>Cidade do Berço | Made in Guimarães</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; background: #eee; margin: 0; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .cat { color: #ce1126; font-weight: bold; font-size: 0.8em; text-transform: uppercase; }
-        h1 { text-align: center; color: #333; }
+        :root {
+            --primaria: #ce1126; /* Vermelho histórico de Guimarães */
+            --escura: #1a1a1a;
+            --clara: #ffffff;
+            --cinza: #f8f9fa;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cinza);
+            color: var(--escura);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Header e Slogan */
+        header {
+            background-color: var(--escura);
+            color: var(--clara);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primaria);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Container da Grelha */
+        .container {
+            max-width: 1200px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Estilo dos Cards */
+        .card {
+            background: var(--clara);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .categoria {
+            display: inline-block;
+            background: var(--cinza);
+            color: var(--primaria);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border: 1px solid #eee;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+            color: var(--escura);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn-ver {
+            text-decoration: none;
+            color: var(--escura);
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .btn-ver:hover {
+            color: var(--primaria);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Ajustes para Telemóvel */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .container { margin-top: -20px; }
+        }
     </style>
 </head>
 <body>
-    <h1>Cidade do Berço</h1>
-    <div id="lista" class="grid"></div>
+
+    <header>
+        <h1>Cidade do Berço</h1>
+        <p>MADE IN GUIMARÃES</p>
+    </header>
+
+    <div class="container">
+        <div id="lista" class="grid">
+            </div>
+    </div>
+
+    <footer>
+        &copy; 2026 CidadedoBerco.pt - Guimarães, Portugal
+    </footer>
 
     <script>
-        fetch('locais.json')
-            .then(res => res.json())
-            .then(dados => {
+        // Função para carregar os dados do ficheiro JSON
+        async function carregarLocais() {
+            try {
+                const response = await fetch('locais.json');
+                const dados = await response.json();
                 const lista = document.getElementById('lista');
+                
+                // Limpa a lista antes de carregar (caso haja cache)
+                lista.innerHTML = '';
+
                 dados.forEach(local => {
                     lista.innerHTML += `
                         <div class="card">
-                            <span class="cat">${local.categoria}</span>
-                            <h3>${local.nome}</h3>
-                            <p>${local.descricao}</p>
-                            <a href="${local.link}" target="_blank">Ver mais</a>
+                            <div class="card-body">
+                                <span class="categoria">${local.categoria}</span>
+                                <h3>${local.nome}</h3>
+                                <p>${local.descricao}</p>
+                                <a href="${local.link}" class="btn-ver" target="_blank">
+                                    Saber mais ➔
+                                </a>
+                            </div>
                         </div>
                     `;
                 });
-            });
+            } catch (error) {
+                console.error("Erro ao carregar locais:", error);
+                document.getElementById('lista').innerHTML = "<p>A carregar os segredos de Guimarães...</p>";
+            }
+        }
+
+        // Inicia o carregamento
+        carregarLocais();
     </script>
+
 </body>
 </html>
