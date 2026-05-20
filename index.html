@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primaria: #ce1126; /* Vermelho histórico de Guimarães */
+            --primaria: #D4AF37; /* Dourado Metálico */
             --escura: #1a1a1a;
             --clara: #ffffff;
             --cinza: #f8f9fa;
@@ -29,7 +29,7 @@
             color: var(--clara);
             padding: 60px 20px;
             text-align: center;
-            border-bottom: 5px solid var(--primaria);
+            border-bottom: 5px solid var(--primaria); /* Linha Dourada */
         }
 
         header h1 {
@@ -42,10 +42,11 @@
 
         header p {
             margin: 10px 0 0;
-            font-weight: 300;
+            font-weight: 700; /* Mais visível */
             letter-spacing: 2px;
-            opacity: 0.8;
+            color: var(--primaria); /* Made in Guimarães a Dourado */
             font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         /* Container da Grelha */
@@ -75,6 +76,7 @@
 
         .card:hover {
             transform: translateY(-5px);
+            border-color: var(--primaria);
         }
 
         .card-body {
@@ -85,14 +87,14 @@
         .categoria {
             display: inline-block;
             background: var(--cinza);
-            color: var(--primaria);
+            color: var(--primaria); /* Categoria também a dourado */
             font-size: 0.7rem;
             font-weight: 700;
             padding: 4px 12px;
             border-radius: 50px;
             margin-bottom: 15px;
             text-transform: uppercase;
-            border: 1px solid #eee;
+            border: 1px solid var(--primaria);
         }
 
         .card h3 {
@@ -130,7 +132,6 @@
             font-size: 0.8rem;
         }
 
-        /* Ajustes para Telemóvel */
         @media (max-width: 600px) {
             header h1 { font-size: 1.8rem; }
             .container { margin-top: -20px; }
@@ -154,14 +155,11 @@
     </footer>
 
     <script>
-        // Função para carregar os dados do ficheiro JSON
         async function carregarLocais() {
             try {
                 const response = await fetch('locais.json');
                 const dados = await response.json();
                 const lista = document.getElementById('lista');
-                
-                // Limpa a lista antes de carregar (caso haja cache)
                 lista.innerHTML = '';
 
                 dados.forEach(local => {
@@ -179,12 +177,9 @@
                     `;
                 });
             } catch (error) {
-                console.error("Erro ao carregar locais:", error);
-                document.getElementById('lista').innerHTML = "<p>A carregar os segredos de Guimarães...</p>";
+                console.error("Erro:", error);
             }
         }
-
-        // Inicia o carregamento
         carregarLocais();
     </script>
 
